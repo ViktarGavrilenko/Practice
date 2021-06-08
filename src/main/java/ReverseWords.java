@@ -1,7 +1,8 @@
 public class ReverseWords {
-    String ReverseWordsInString(String stringIn) {
 
-        int countSpaceInStr = count(stringIn, " ");
+    String putWordsReverseInString(String stringIn) {
+
+        int countSpaceInStr = countTargetStr(stringIn, " ");
         String stringOut = "";
 
         for (int x = 0; x < countSpaceInStr; x++) {
@@ -19,7 +20,7 @@ public class ReverseWords {
     }
 
     // Количество вхождений подстроки в строку
-    int count(String str, String target) {
+    int countTargetStr(String str, String target) {
         return (str.length() - str.replace(target, "").length()) / target.length();
     }
 }

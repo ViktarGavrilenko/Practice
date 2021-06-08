@@ -10,7 +10,7 @@ public class TaskOne {
         ReverseWords r = new ReverseWords();
 
         System.out.println("Введенная строка:" + stringWordsIn);
-        System.out.println("Строка на оборот:" + r.ReverseWordsInString(stringWordsIn));
+        System.out.println("Строка на оборот:" + r.putWordsReverseInString(stringWordsIn));
 
     }
 
