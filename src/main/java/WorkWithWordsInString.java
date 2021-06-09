@@ -1,4 +1,4 @@
-public class ReverseWords {
+public class WorkWithWordsInString {
 
     String putWordsReverseInString(String stringIn) {
 
