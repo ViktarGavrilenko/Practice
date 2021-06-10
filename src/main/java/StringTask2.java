@@ -10,7 +10,7 @@
  * rather than "actions" and data rather than logic. OOP blabla. Object-oriented programming bla."
  */
 
-public class TaskTwo {
+public class StringTask2 {
     public static void main(String[] args) {
 
         String stringIn = "Object-oriented programming is a programming language" +

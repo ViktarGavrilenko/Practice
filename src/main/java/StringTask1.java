@@ -2,7 +2,7 @@
  * Вводится строка слов. Вывести слова в обратном порядке
  */
 
-public class TaskOne {
+public class StringTask1 {
 
     public static void main(String[] args) {
 
