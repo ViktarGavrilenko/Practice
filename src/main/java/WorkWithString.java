@@ -24,6 +24,7 @@ public class WorkWithString {
         return str;
     }
 
+    // TODO agorozhanko 12.06.2021: копипаст
     int countTargetStr(String str, String target) {
         return (str.length() - str.replace(target, "").length()) / target.length();
     }

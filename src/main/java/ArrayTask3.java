@@ -7,6 +7,7 @@
 import java.util.Arrays;
 
 public class ArrayTask3 {
+    // TODO agorozhanko 12.06.2021: что будет если ввести все одинаковые числа?
     public static void main(String[] args) {
         int[][] inArray = {{5, 8, 88, 3, 42, 10, 10, 6},
                 {1, 53, 2, 3, 77, 10, 2, 54},

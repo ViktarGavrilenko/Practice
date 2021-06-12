@@ -19,6 +19,7 @@ public class WorkWithWordsInString {
         return stringOut;
     }
 
+    // TODO agorozhanko 12.06.2021: копипаст
     // Количество вхождений подстроки в строку
     int countTargetStr(String str, String target) {
         return (str.length() - str.replace(target, "").length()) / target.length();

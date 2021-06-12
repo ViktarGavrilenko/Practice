@@ -22,9 +22,10 @@ public class WorkWithArray {
         return compareValue(averageOne, averageTwo);
     }
 
+    // TODO agorozhanko 12.06.2021: здесь не имеет смысла хранить и возвращать строковвую переменную используй sout
     public String compareValue(float one, float two) {
         String resultCompare;
-
+// TODO agorozhanko 12.06.2021: заиспользуй тут оператор switch
         if (one > two) {
             resultCompare = "Среднее арифметическое первого массива больше второго";
         } else {

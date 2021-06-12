@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
 public class MinMaxValueTwoArray {
+    // TODO agorozhanko 12.06.2021: метод выполняет 2 действия, каждый метод должен выполнять одну операцию
     public void searchMinMaxValueTwoArray(int[][] inArray) {
         int[][] outArray = new int[5][2];
         int maxValue;

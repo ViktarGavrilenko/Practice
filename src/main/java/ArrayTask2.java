@@ -16,6 +16,8 @@ public class ArrayTask2 {
 
         WorkWithArray workArray = new WorkWithArray();
 
+// TODO agorozhanko 12.06.2021: вместо oneArray и twoArray правильнее будет firstArray и secondArray, но в любом случае
+//  такие названия не передают сути переменных
         oneArray = workArray.addValueInArray(oneArray);
         twoArray = workArray.addValueInArray(twoArray);
 

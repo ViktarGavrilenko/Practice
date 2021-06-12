@@ -4,6 +4,11 @@
 
 import java.util.Arrays;
 
+// TODO agorozhanko 12.06.2021: в названиях не должно быть цифр, только слова 
+
+// TODO agorozhanko 12.06.2021: Названийя классов, переменных, пакетов должны быть более осмысленными и содержательными.
+//  Руководствуйся "чистым кодом"
+
 public class ArrayTask1 {
 
     public static void main(String[] args) {
