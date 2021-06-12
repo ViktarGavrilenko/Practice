@@ -15,6 +15,7 @@ public class WorkWithString {
                 indexStart = lowerCaseStr.lastIndexOf(lowerCaseEntryMax, indexStart) + lengthEntryMax;
             } else {
                 indexEntryMax = lowerCaseStr.indexOf(lowerCaseEntryMax, indexStart);
+                // TODO agorozhanko 12.06.2021: для чего тут пустые строки?
                 lowerCaseStr = lowerCaseStr.substring(0, indexEntryMax) + "" + entryMin + "" + lowerCaseStr.substring(indexEntryMax + lengthEntryMax);
                 str = str.substring(0, indexEntryMax) + "" + entryMin + "" + str.substring(indexEntryMax + lengthEntryMax);
                 indexStart = indexEntryMax + lengthEntryMax;
