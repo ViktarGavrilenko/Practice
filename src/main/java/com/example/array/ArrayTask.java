@@ -3,9 +3,9 @@ package com.example.array;
 import java.util.Arrays;
 
 public class ArrayTask {
+// TODO agorozhanko 16.06.2021: ловить NullPointerException чтобы проверить что введена пустая переменная - плохой вариант
+// TODO agorozhanko 16.06.2021: в целом плохая практика ловить NullPointerException, их не должно быть
 
-    // TODO agorozhanko 12.06.2021: что будет если ввести пустой или неинициализированный массив?
-    // TODO: Viktar Gavrilenko 14.06.2021: добавил исключение и сообщения о пустом и неинициализируемом массиве
     //  Меняем элементы массива в обратном порядке
     public int[] reverseArray(int[] inArray) {
         try {
@@ -66,12 +66,8 @@ public class ArrayTask {
         }
     }
 
-    // TODO agorozhanko 12.06.2021: здесь не имеет смысла хранить и возвращать строковую переменную используй sout
-    // TODO: Viktar Gavrilenko 14.06.2021: использовал sout для вывода информации
     // Выводим результат сравнения двух чисел
     public void compareValue(float first, float second) {
-        // TODO agorozhanko 12.06.2021: заиспользуй тут оператор switch
-        // TODO: Viktar Gavrilenko 14.06.2021: в данном случае рациональнее применить if else
         if (first > second) {
             System.out.println("Среднее арифметическое первого массива больше второго");
         } else if (first < second) {
@@ -81,8 +77,6 @@ public class ArrayTask {
         }
     }
 
-    // TODO agorozhanko 12.06.2021: метод выполняет 2 действия, каждый метод должен выполнять одну операцию
-    // TODO: Viktar Gavrilenko 14.06.2021: создал второй метод printTwoDimensionalArray, для вывода двумерного массива
     // Поиск максимального и минимального значения каждой строки двумерного массива
     public int[][] searchMinMaxValueTwoArray(int[][] inArray) {
         int[][] outArray = new int[5][2];

@@ -1,17 +1,11 @@
-// TODO agorozhanko 12.06.2021: какая должна быть первоначальная структура проекта?
-
-// TODO agorozhanko 12.06.2021: нужно логически вынести в классы и пакеты утилитные методы, бизнес логику, так чтобы
-//  формировались слои проекта
-
-// TODO agorozhanko 12.06.2021: все задачи нужно вынести в методы
 // TODO agorozhanko 12.06.2021: методы должны быть универсальными
 
-// TODO agorozhanko 12.06.2021: все задачи нужно выполнять в одном классе (одном мэйн методе)
 
 // TODO agorozhanko 12.06.2021: программа должна быть отказоустойчивой, нужно предусматривать в коде критические
 //  ситуации, которые могут привести к поломкам программы
 
-// TODO: Viktar Gavrilenko 15.06.2021: Отредактировал проект согласно вышесказанному
+// TODO agorozhanko 16.06.2021: проверь код на копипаст, многое можно вынести в методы. Если есть общие методы,
+//  их нужно вынести в утилиты, так сформируется дополнительный слой проекта
 
 package com.example;
 
@@ -28,9 +22,6 @@ public class MyMainClass {
 
         String entryMax = "object-oriented programming";
         String entryMin = "OOP";
-        // TODO agorozhanko 12.06.2021: вместо oneArray и twoArray правильнее будет firstArray и secondArray,
-        //  но в любом случае такие названия не передают сути переменных
-        // TODO: Viktar Gavrilenko 14.06.2021: переименовал переменные в firstArrayToCompare и secondArrayToCompare
         int[] firstArrayToCompare = new int[5];
         int[] secondArrayToCompare = new int[5];
         int[][] TwoDimensionalArray = {{5, 8, 88, 3, 42, 10, 10, 6},

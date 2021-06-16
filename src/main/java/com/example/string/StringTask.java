@@ -26,8 +26,6 @@ public class StringTask {
         return stringOut;
     }
 
-    // TODO agorozhanko 12.06.2021: копипаст
-    // TODO: Viktar Gavrilenko 15.06.2021: оставил один вариант
     // Количество вхождений подстроки в строку
     public int countTargetStr(String str, String target) {
         int countTarger = 0;
@@ -73,9 +71,6 @@ public class StringTask {
                     if (x % 2 == 0) {
                         indexStart = indexEntryMax + lengthEntryMax;
                     } else {
-                        // TODO agorozhanko 12.06.2021: для чего тут пустые строки?
-                        // TODO: Viktar Gavrilenko 14.06.2021: исправил (почему-то думал, что соединять переменные
-                        //  в одной строке нужно через пустые кавычки)
                         lowerCaseStr = lowerCaseStr.substring(0, indexEntryMax) + entryMin +
                                 lowerCaseStr.substring(indexEntryMax + lengthEntryMax);
                         str = str.substring(0, indexEntryMax) + entryMin + str.substring(indexEntryMax + lengthEntryMax);
