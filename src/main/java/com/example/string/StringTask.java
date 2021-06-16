@@ -86,6 +86,7 @@ public class StringTask {
         } catch (NullPointerException e) {
             System.out.println("Метод replaceEverySecondEntryString вернул исключение " + e.getMessage());
         }
+
         return str;
     }
 
@@ -97,8 +98,10 @@ public class StringTask {
         if (str == null || str.isEmpty()) {
             System.out.println("!!!Введена пустая строка в методе minNumberDistinctChar!!!");
         } else {
+            str = str.trim();
+
             int countCharMinWord = str.length();
-            int countWords = str.split("\\s+").length;
+            int countWords = countWordsInStr(str);
             int minChar;
             int lastSpace;
 
@@ -123,5 +126,120 @@ public class StringTask {
 
         return outWord;
     }
+
+    // Кол-во слов в строке
+    public int countWordsInStr(String str) {
+        int countWords = 0;
+
+        try {
+            str = str.trim();
+            countWords = str.split("\\s+").length;
+        } catch (NullPointerException e) {
+            System.out.println("Метод countWordsInStr вернул исключение " + e.getMessage());
+            System.out.println("неинициализирована переменная str в методе");
+        }
+
+        return countWords;
+    }
+
+    // Проверяем слово на содержание символов только латинского алфавита
+    public boolean checkWordLatinChar(String word) {
+        return word.matches("[a-zA-Z]+");
+    }
+
+    // Поиск кол-во слов в предложении, содержащих только символы латинского алфавита
+    public int searchCountWordLatinChar(String str) {
+        int countWordLatinChar = 0;
+        int lastSpace;
+        String word;
+
+        try {
+            int countWordsStr = countWordsInStr(str);
+            str = str.trim();
+            for (int x = 0; x < countWordsStr; x++) {
+                lastSpace = str.lastIndexOf(" ");
+                word = str.substring(lastSpace + 1);
+
+                if (checkWordLatinChar(word)) {
+                    countWordLatinChar++;
+                }
+
+                if (lastSpace != -1) {
+                    str = str.substring(0, lastSpace);
+                }
+
+                str = str.trim();
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Метод findCountWordLatinChar вернул исключение " + e.getMessage());
+            System.out.println("неинициализирована переменная str в методе");
+        }
+
+        return countWordLatinChar;
+    }
+
+    // Ищем в строке числовые палиндромы
+    public void searchNumericPalindromes(String str) {
+        String word;
+        int firstSpace;
+        int countWordStr = countWordsInStr(str);
+
+        try {
+            str = str.trim();
+
+            for (int x = 0; x < countWordStr; x++) {
+                firstSpace = str.indexOf(" ");
+
+                if (firstSpace != -1) {
+                    word = str.substring(0, firstSpace);
+                } else {
+                    word = str;
+                }
+
+                if (word.matches("\\d+") && checkWordPalindrome(word)) {
+                    System.out.println(word);
+                }
+
+                if (firstSpace != -1) {
+                    str = str.substring(firstSpace + 1);
+                }
+
+                str = str.trim();
+            }
+
+        } catch (NullPointerException e) {
+            System.out.println("Метод searchNumericPalindromes вернул исключение " + e.getMessage());
+            System.out.println("неинициализирована переменная str в методе");
+        }
+    }
+
+    // Проверяем является ли слово палиндромом
+    public boolean checkWordPalindrome(String word) {
+        boolean result = false;
+        try {
+            int lengthWord = word.length();
+
+            int firstChar = 0;
+            int lastChar = lengthWord - 1;
+
+            for (int x = 0; x < lengthWord / 2; x++) {
+                if (word.charAt(firstChar) != word.charAt(lastChar)) {
+                    result = false;
+                    break;
+                } else {
+                    firstChar++;
+                    lastChar--;
+                    result = true;
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Метод checkWordPalindrome вернул исключение " + e.getMessage());
+            System.out.println("неинициализирована переменная word в методе");
+        }
+        
+        return result;
+    }
+
+
 }
 
