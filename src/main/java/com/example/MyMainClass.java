@@ -15,8 +15,8 @@
 
 package com.example;
 
-import com.example.Array.ArrayTask;
-import com.example.String.StringTask;
+import com.example.array.ArrayTask;
+import com.example.string.StringTask;
 
 import java.util.Arrays;
 
