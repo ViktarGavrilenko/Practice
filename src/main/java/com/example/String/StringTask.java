@@ -9,7 +9,6 @@ public class StringTask {
         if (stringIn == null || stringIn.isEmpty()) {
             System.out.println("!!!Введена пустая строка в методе putWordsReverseInString!!!");
         } else {
-
             int countSpaceInStr = countTargetStr(stringIn, " ");
 
             for (int x = 0; x < countSpaceInStr; x++) {
@@ -32,6 +31,7 @@ public class StringTask {
     // Количество вхождений подстроки в строку
     public int countTargetStr(String str, String target) {
         int countTarger = 0;
+
         try {
             if (str == null || str.isEmpty()) {
                 System.out.println("!!!Введена пустая строка в методе countTargetStr!!!");
@@ -40,12 +40,14 @@ public class StringTask {
             if (target == null || target.isEmpty()) {
                 System.out.println("!!!Введена пустая подстрока в методе countTargetStr!!!");
             }
+
             countTarger = (str.length() - str.replace(target, "").length()) / target.length();
 
         } catch (NullPointerException e) {
             System.out.println("Строка в методе countTargetStr неинициализирован");
             System.out.println("Метод countTargetStr вернул ошибку " + e);
         }
+
         return countTarger;
     }
 
@@ -67,6 +69,7 @@ public class StringTask {
 
                 for (int x = 0; x < countEntryMaxInStr; x++) {
                     indexEntryMax = lowerCaseStr.indexOf(lowerCaseEntryMax, indexStart);
+
                     if (x % 2 == 0) {
                         indexStart = indexEntryMax + lengthEntryMax;
                     } else {
@@ -79,13 +82,11 @@ public class StringTask {
                         indexStart = indexEntryMax + entryMin.length();
                     }
                 }
-
             }
         } catch (NullPointerException e) {
             System.out.println("Метод replaceEverySecondEntryString вернул исключение " + e.getMessage());
         }
         return str;
-
     }
 
     // Поиск слова с минимальным числом различных символов. Если таких слов несколько, найти первое из них
@@ -115,6 +116,7 @@ public class StringTask {
                     countCharMinWord = minChar;
                     outWord = word;
                 }
+                
                 str = str.trim();
             }
         }

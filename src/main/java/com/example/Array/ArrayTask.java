@@ -6,7 +6,6 @@ public class ArrayTask {
 
     // TODO agorozhanko 12.06.2021: что будет если ввести пустой или неинициализированный массив?
     // TODO: Viktar Gavrilenko 14.06.2021: добавил исключение и сообщения о пустом и неинициализируемом массиве
-
     //  Меняем элементы массива в обратном порядке
     public int[] reverseArray(int[] inArray) {
         try {
@@ -65,8 +64,6 @@ public class ArrayTask {
             System.out.println("Массив в методе compareAverageArrays неинициализирован");
             System.out.println("Метод compareAverageArrays вернул ошибку " + e);
         }
-
-
     }
 
     // TODO agorozhanko 12.06.2021: здесь не имеет смысла хранить и возвращать строковую переменную используй sout
@@ -86,7 +83,6 @@ public class ArrayTask {
 
     // TODO agorozhanko 12.06.2021: метод выполняет 2 действия, каждый метод должен выполнять одну операцию
     // TODO: Viktar Gavrilenko 14.06.2021: создал второй метод printTwoDimensionalArray, для вывода двумерного массива
-
     // Поиск максимального и минимального значения каждой строки двумерного массива
     public int[][] searchMinMaxValueTwoArray(int[][] inArray) {
         int[][] outArray = new int[5][2];
@@ -100,6 +96,7 @@ public class ArrayTask {
             for (int x = 0; x < inArray.length; x++) {
                 maxValue = inArray[x][0];
                 minValue = inArray[x][0];
+
                 for (int y = 0; y < inArray[x].length; y++) {
                     if (maxValue < inArray[x][y]) {
                         maxValue = inArray[x][y];
@@ -109,6 +106,7 @@ public class ArrayTask {
                         minValue = inArray[x][y];
                     }
                 }
+
                 outArray[x][0] = maxValue;
                 outArray[x][1] = minValue;
             }
@@ -134,7 +132,5 @@ public class ArrayTask {
             System.out.println("Массив в методе printTwoDimensionalArray неинициализирован");
             System.out.println("Метод printTwoDimensionalArray вернул ошибку " + e);
         }
-
-
     }
 }

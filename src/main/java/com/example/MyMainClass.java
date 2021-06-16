@@ -27,38 +27,33 @@ public class MyMainClass {
                 " Object-oriented programming blabla. Object-oriented programming bla.";
         String entryMax = "object-oriented programming";
         String entryMin = "OOP";
-
-        StringTask myString = new StringTask();
-
-        System.out.println(myString.putWordsReverseInString(stringIn)); // Строка с обратным порядком слов
-        System.out.println(myString.replaceEverySecondEntryString(stringIn, entryMax, entryMin)); // Заменить каждое
-        // второе вхождение строки
-        System.out.println(myString.minNumberDistinctChar(stringIn)); // Слово с минимальным числом символов
         // TODO agorozhanko 12.06.2021: вместо oneArray и twoArray правильнее будет firstArray и secondArray,
         //  но в любом случае такие названия не передают сути переменных
         // TODO: Viktar Gavrilenko 14.06.2021: переименовал переменные в firstArrayToCompare и secondArrayToCompare
-
         int[] firstArrayToCompare = new int[5];
         int[] secondArrayToCompare = new int[5];
-
-        ArrayTask myArray = new ArrayTask();
-
-        firstArrayToCompare = myArray.addValueInArray(firstArrayToCompare);     // Заполняем массивы случайными
-        secondArrayToCompare = myArray.addValueInArray(secondArrayToCompare);   // числами от 0 до 5
-
-        System.out.println(Arrays.toString(firstArrayToCompare));   // Выводим первый массив
-        System.out.println(Arrays.toString(secondArrayToCompare));  // Выводим второй массив
-        myArray.compareAverageArrays(firstArrayToCompare, secondArrayToCompare);    // Сравниваем среднее арифметическое
-        // двух массивов
-        System.out.println(Arrays.toString(myArray.reverseArray(secondArrayToCompare))); // Меняем элементы массива в
-        // обратном порядке
-
         int[][] TwoDimensionalArray = {{5, 8, 88, 3, 42, 10, 10, 6},
                 {1, 53, 2, 3, 77, 10, 2, 54},
                 {4, 3, 91, 3, 12, 10, 4, 12},
                 {6, 3, 11, 3, 22, 10, 5, 60},
                 {2, 4, 32, 71, 4, 40, 48, 9}};
 
+        StringTask myString = new StringTask();
+        ArrayTask myArray = new ArrayTask();
+
+        System.out.println(myString.putWordsReverseInString(stringIn)); // Строка с обратным порядком слов
+        System.out.println(myString.replaceEverySecondEntryString(stringIn, entryMax, entryMin)); // Заменить каждое
+        // второе вхождение строки
+        System.out.println(myString.minNumberDistinctChar(stringIn)); // Слово с минимальным числом символов
+
+        firstArrayToCompare = myArray.addValueInArray(firstArrayToCompare);     // Заполняем массивы случайными
+        secondArrayToCompare = myArray.addValueInArray(secondArrayToCompare);   // числами от 0 до 5
+        System.out.println(Arrays.toString(firstArrayToCompare));   // Выводим первый массив
+        System.out.println(Arrays.toString(secondArrayToCompare));  // Выводим второй массив
+        myArray.compareAverageArrays(firstArrayToCompare, secondArrayToCompare);    // Сравниваем среднее арифметическое
+        // двух массивов
+        System.out.println(Arrays.toString(myArray.reverseArray(secondArrayToCompare))); // Меняем элементы массива в
+        // обратном порядке
         myArray.printTwoDimensionalArray(TwoDimensionalArray); // Выводим двумерный массив
         myArray.printTwoDimensionalArray(myArray.searchMinMaxValueTwoArray(TwoDimensionalArray)); // Максимальное
         // и минимальное значение каждой строки двумерного массива
