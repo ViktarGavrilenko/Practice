@@ -1,4 +1,4 @@
-package com.example.String;
+package com.example.string;
 
 public class StringTask {
 
@@ -116,7 +116,7 @@ public class StringTask {
                     countCharMinWord = minChar;
                     outWord = word;
                 }
-                
+
                 str = str.trim();
             }
         }
