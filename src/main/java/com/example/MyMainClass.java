@@ -1,16 +1,20 @@
 // TODO agorozhanko 12.06.2021: методы должны быть универсальными
-
+// TODO: Viktar Gavrilenko 17.06.2021: исправил метод compareAverageArrays
 
 // TODO agorozhanko 12.06.2021: программа должна быть отказоустойчивой, нужно предусматривать в коде критические
 //  ситуации, которые могут привести к поломкам программы
+// TODO: Viktar Gavrilenko 17.06.2021: исправил (добавил в методы проверку входных параметров c помощью if else)
 
 // TODO agorozhanko 16.06.2021: проверь код на копипаст, многое можно вынести в методы. Если есть общие методы,
 //  их нужно вынести в утилиты, так сформируется дополнительный слой проекта
+// TODO: Viktar Gavrilenko 17.06.2021: добавил метод getAverageArray
+// TODO: Viktar Gavrilenko 17.06.2021: вынес общие методы в отдельный пакет
 
 package com.example;
 
 import com.example.array.ArrayTask;
 import com.example.string.StringTask;
+import static com.example.utilits.ArrayUtilities.*;
 
 import java.util.Arrays;
 
@@ -22,6 +26,7 @@ public class MyMainClass {
 
         String entryMax = "object-oriented programming";
         String entryMin = "OOP";
+
         int[] firstArrayToCompare = new int[5];
         int[] secondArrayToCompare = new int[5];
         int[][] TwoDimensionalArray = {{5, 8, 88, 3, 42, 10, 10, 6},
@@ -33,7 +38,7 @@ public class MyMainClass {
         StringTask myString = new StringTask();
         ArrayTask myArray = new ArrayTask();
 
-        System.out.println(myString.putWordsReverseInString("one Two three")); // Строка с обратным порядком слов
+        System.out.println(myString.putWordsReverseInString("one Two three four")); // Строка с обратным порядком слов
         System.out.println(myString.replaceEverySecondEntryString(stringIn, entryMax, entryMin)); // Заменить каждое
         // второе вхождение строки
         System.out.println(myString.minNumberDistinctChar("  fffff ab f 1234 jkjk ")); // Слово с минимальным числом
@@ -46,8 +51,8 @@ public class MyMainClass {
         // двух массивов
         System.out.println(Arrays.toString(myArray.reverseArray(secondArrayToCompare))); // Меняем элементы массива в
         // обратном порядке
-        myArray.printTwoDimensionalArray(TwoDimensionalArray); // Выводим двумерный массив
-        myArray.printTwoDimensionalArray(myArray.searchMinMaxValueTwoArray(TwoDimensionalArray)); // Максимальное
+        printTwoDimensionalArray(TwoDimensionalArray); // Выводим двумерный массив
+        printTwoDimensionalArray(myArray.searchMinMaxValueTwoArray(TwoDimensionalArray)); // Максимальное
         // и минимальное значение каждой строки двумерного массива
         System.out.println(myString.searchCountWordLatinChar("one Two three раз два три one1 two2 123 ")); // Кол-во
         // слов в предложении содержащих только латинские символы

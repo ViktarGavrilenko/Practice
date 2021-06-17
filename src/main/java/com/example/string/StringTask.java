@@ -1,5 +1,7 @@
 package com.example.string;
 
+import static com.example.utilits.StringUtilities.*;
+
 public class StringTask {
 
     // Выводим строку с обратным порядком слов
@@ -26,60 +28,36 @@ public class StringTask {
         return stringOut;
     }
 
-    // Количество вхождений подстроки в строку
-    public int countTargetStr(String str, String target) {
-        int countTarger = 0;
-
-        try {
-            if (str == null || str.isEmpty()) {
-                System.out.println("!!!Введена пустая строка в методе countTargetStr!!!");
-            }
-
-            if (target == null || target.isEmpty()) {
-                System.out.println("!!!Введена пустая подстрока в методе countTargetStr!!!");
-            }
-
-            countTarger = (str.length() - str.replace(target, "").length()) / target.length();
-
-        } catch (NullPointerException e) {
-            System.out.println("Строка в методе countTargetStr неинициализирован");
-            System.out.println("Метод countTargetStr вернул ошибку " + e);
-        }
-
-        return countTarger;
-    }
-
     //  Заменяет каждое второе вхождение строки
     public String replaceEverySecondEntryString(String str, String entryMax, String entryMin) {
-        try {
-            if (str.isEmpty()) {
-                System.out.println("!!!Введена пустая строка в методе replaceEverySecondEntryString!!!");
-            } else if (entryMax.isEmpty()) {
-                System.out.println("!!!Введена пустая подстрока в методе replaceEverySecondEntryString!!!");
-            } else {
-                String lowerCaseStr = str.toLowerCase();
-                String lowerCaseEntryMax = entryMax.toLowerCase();
 
-                int lengthEntryMax = entryMax.length();
-                int countEntryMaxInStr = countTargetStr(lowerCaseStr, lowerCaseEntryMax);
-                int indexStart = 0;
-                int indexEntryMax = 0;
+        if (str == null || str.isEmpty()) {
+            System.out.println("!!!Введена неинициализированая или пустая строка в методе replaceEverySecondEntryString!!!");
+        } else if (entryMax == null || entryMax.isEmpty()) {
+            System.out.println("!!!Введена неинициализированая или пустая подстрока в методе replaceEverySecondEntryString!!!");
+        } else if (entryMin == null) {
+            System.out.println("!!!Введена неинициализированая подстрока в методе replaceEverySecondEntryString!!!");
+        } else {
+            String lowerCaseStr = str.toLowerCase();
+            String lowerCaseEntryMax = entryMax.toLowerCase();
 
-                for (int x = 0; x < countEntryMaxInStr; x++) {
-                    indexEntryMax = lowerCaseStr.indexOf(lowerCaseEntryMax, indexStart);
+            int lengthEntryMax = entryMax.length();
+            int countEntryMaxInStr = countTargetStr(lowerCaseStr, lowerCaseEntryMax);
+            int indexStart = 0;
+            int indexEntryMax = 0;
 
-                    if (x % 2 == 0) {
-                        indexStart = indexEntryMax + lengthEntryMax;
-                    } else {
-                        lowerCaseStr = lowerCaseStr.substring(0, indexEntryMax) + entryMin +
-                                lowerCaseStr.substring(indexEntryMax + lengthEntryMax);
-                        str = str.substring(0, indexEntryMax) + entryMin + str.substring(indexEntryMax + lengthEntryMax);
-                        indexStart = indexEntryMax + entryMin.length();
-                    }
+            for (int x = 0; x < countEntryMaxInStr; x++) {
+                indexEntryMax = lowerCaseStr.indexOf(lowerCaseEntryMax, indexStart);
+
+                if (x % 2 == 0) {
+                    indexStart = indexEntryMax + lengthEntryMax;
+                } else {
+                    lowerCaseStr = lowerCaseStr.substring(0, indexEntryMax) + entryMin +
+                            lowerCaseStr.substring(indexEntryMax + lengthEntryMax);
+                    str = str.substring(0, indexEntryMax) + entryMin + str.substring(indexEntryMax + lengthEntryMax);
+                    indexStart = indexEntryMax + entryMin.length();
                 }
             }
-        } catch (NullPointerException e) {
-            System.out.println("Метод replaceEverySecondEntryString вернул исключение " + e.getMessage());
         }
 
         return str;
@@ -91,7 +69,7 @@ public class StringTask {
         String word;
 
         if (str == null || str.isEmpty()) {
-            System.out.println("!!!Введена пустая строка в методе minNumberDistinctChar!!!");
+            System.out.println("!!!Введена неинициализированая или пустая строка в методе minNumberDistinctChar!!!");
         } else {
             str = str.trim();
 
@@ -122,33 +100,15 @@ public class StringTask {
         return outWord;
     }
 
-    // Кол-во слов в строке
-    public int countWordsInStr(String str) {
-        int countWords = 0;
-
-        try {
-            str = str.trim();
-            countWords = str.split("\\s+").length;
-        } catch (NullPointerException e) {
-            System.out.println("Метод countWordsInStr вернул исключение " + e.getMessage());
-            System.out.println("неинициализирована переменная str в методе");
-        }
-
-        return countWords;
-    }
-
-    // Проверяем слово на содержание символов только латинского алфавита
-    public boolean checkWordLatinChar(String word) {
-        return word.matches("[a-zA-Z]+");
-    }
-
     // Поиск кол-во слов в предложении, содержащих только символы латинского алфавита
     public int searchCountWordLatinChar(String str) {
         int countWordLatinChar = 0;
         int lastSpace;
         String word;
 
-        try {
+        if (str == null || str.isEmpty()) {
+            System.out.println("!!!Введена неинициализированая или пустая строка в методе searchCountWordLatinChar!!!");
+        } else {
             int countWordsStr = countWordsInStr(str);
             str = str.trim();
             for (int x = 0; x < countWordsStr; x++) {
@@ -165,9 +125,6 @@ public class StringTask {
 
                 str = str.trim();
             }
-        } catch (NullPointerException e) {
-            System.out.println("Метод findCountWordLatinChar вернул исключение " + e.getMessage());
-            System.out.println("неинициализирована переменная str в методе");
         }
 
         return countWordLatinChar;
@@ -179,7 +136,9 @@ public class StringTask {
         int firstSpace;
         int countWordStr = countWordsInStr(str);
 
-        try {
+        if (str == null || str.isEmpty()) {
+            System.out.println("!!!Введена неинициализированая или пустая строка в методе searchNumericPalindromes!!!");
+        } else {
             str = str.trim();
 
             for (int x = 0; x < countWordStr; x++) {
@@ -201,40 +160,7 @@ public class StringTask {
 
                 str = str.trim();
             }
-
-        } catch (NullPointerException e) {
-            System.out.println("Метод searchNumericPalindromes вернул исключение " + e.getMessage());
-            System.out.println("неинициализирована переменная str в методе");
         }
     }
-
-    // Проверяем является ли слово палиндромом
-    public boolean checkWordPalindrome(String word) {
-        boolean result = false;
-        try {
-            int lengthWord = word.length();
-
-            int firstChar = 0;
-            int lastChar = lengthWord - 1;
-
-            for (int x = 0; x < lengthWord / 2; x++) {
-                if (word.charAt(firstChar) != word.charAt(lastChar)) {
-                    result = false;
-                    break;
-                } else {
-                    firstChar++;
-                    lastChar--;
-                    result = true;
-                }
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Метод checkWordPalindrome вернул исключение " + e.getMessage());
-            System.out.println("неинициализирована переменная word в методе");
-        }
-        
-        return result;
-    }
-
-
 }
 
