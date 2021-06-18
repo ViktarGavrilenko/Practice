@@ -1,4 +1,4 @@
-package com.example.utilits;
+package com.example.utilities;
 
 public class StringUtilities {
 
