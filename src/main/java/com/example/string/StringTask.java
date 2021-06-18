@@ -1,6 +1,6 @@
 package com.example.string;
 
-import static com.example.utilits.StringUtilities.*;
+import static com.example.utilities.StringUtilities.*;
 
 public class StringTask {
 
@@ -17,7 +17,8 @@ public class StringTask {
                 if (stringOut.length() == 0) {
                     stringOut = stringIn.substring(stringIn.lastIndexOf(" ") + 1);
                 } else {
-                    stringOut = stringOut + " " + stringIn.substring(stringIn.lastIndexOf(" ") + 1);
+                    stringOut = new StringBuilder().append(stringOut).append(" ").
+                            append(stringIn.substring(stringIn.lastIndexOf(" ") + 1)).toString();
                 }
                 stringIn = stringIn.substring(0, stringIn.lastIndexOf(" "));
             }
