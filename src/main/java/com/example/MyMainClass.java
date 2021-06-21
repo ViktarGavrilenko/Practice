@@ -30,7 +30,8 @@ public class MyMainClass {
 
         int[] firstArrayToCompare = new int[5];
         int[] secondArrayToCompare = new int[5];
-        int[] oneDimensionalArray = {1, 3, -1, 16, 1, 8, 17, 8, 2, 2};
+        int[] oneDimensionalArray = {1, 1, 10, 16, 1, 8, -1, 8, -1, 2};
+
         int[][] twoDimensionalArray = {{5, 8, 88, 3, 42, 10, 10, 6},
                 {1, 53, 2, 3, 77, 10, 2, 54},
                 {4, 3, 91, 3, 12, 10, 4, 12},
@@ -56,15 +57,15 @@ public class MyMainClass {
         printTwoDimensionalArray(twoDimensionalArray); // Выводим двумерный массив
         printTwoDimensionalArray(myArray.searchMinMaxValueTwoArray(twoDimensionalArray)); // Максимальное
         // и минимальное значение каждой строки двумерного массива
-        System.out.println("------------------------------");
+        System.out.println("-----------------------------");
         System.out.println(myString.searchCountWordLatinChar("one Two three раз два три one1 two2 123 ")); // Кол-во
         // слов в предложении содержащих только латинские символы
         System.out.println("------------------------------");
         myString.searchNumericPalindromes("Если есть хвосты по дз, начните с 1 не сданного задания. 123 " +
                 "324 111 4554"); // Ищем в строке числовые палиндромы
-        System.out.println("------------------------------");
+        System.out.println("-------------------------------");
         myArray.searchUniqueValueArray(oneDimensionalArray); // Выводим уникальные значения массива
-        System.out.println("------------------------------");
+        System.out.println("--------------------------------");
         System.out.println(myArray.calcSumBetweenMinMax(oneDimensionalArray)); // Сумма между максимальным и минимальным
         // элементами массива
     }
