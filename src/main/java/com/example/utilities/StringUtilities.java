@@ -6,12 +6,10 @@ public class StringUtilities {
     public static int countTargetStr(String str, String target) {
         int countTarger = 0;
 
-        if (str == null || str.isEmpty()) {
-            System.out.println("!!!Введена пустая строка в методе countTargetStr!!!");
-        } else if (target == null || target.isEmpty()) {
-            System.out.println("!!!Введена пустая подстрока в методе countTargetStr!!!");
-        } else {
-            countTarger = (str.length() - str.replace(target, "").length()) / target.length();
+        if (checkStrNullOrEmpty(str)) {
+            if (checkStrNullOrEmpty(target)) {
+                countTarger = (str.length() - str.replace(target, "").length()) / target.length();
+            }
         }
 
         return countTarger;
@@ -21,9 +19,7 @@ public class StringUtilities {
     public static int countWordsInStr(String str) {
         int countWords = 0;
 
-        if (str == null || str.isEmpty()) {
-            System.out.println("!!!Введена неинициализированая или пустая строка в методе countWordsInStr!!!");
-        } else {
+        if (checkStrNullOrEmpty(str)) {
             str = str.trim();
             countWords = str.split("\\s+").length;
         }
@@ -35,9 +31,7 @@ public class StringUtilities {
     public static boolean checkWordPalindrome(String word) {
         boolean result = false;
 
-        if (word == null || word.isEmpty()) {
-            System.out.println("!!!Введена неинициализированая или пустая строка в методе checkWordPalindrome!!!");
-        } else {
+        if (checkStrNullOrEmpty(word)) {
             int lengthWord = word.length();
 
             int firstChar = 0;
@@ -61,5 +55,18 @@ public class StringUtilities {
     // Проверяем слово на содержание символов только латинского алфавита
     public static boolean checkWordLatinChar(String word) {
         return word.matches("[a-zA-Z]+");
+    }
+
+    // Проверка строки: не инициализирована ли строка или пустая
+    public static boolean checkStrNullOrEmpty(String str) {
+        boolean checkArray;
+
+        if (str == null || str.isEmpty()) {
+            System.out.println("Получена неинициализированная или пустая строка!");
+            checkArray = false;
+        } else {
+            checkArray = true;
+        }
+        return checkArray;
     }
 }
