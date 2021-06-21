@@ -9,10 +9,7 @@ public class ArrayTask {
 
     //  Меняем элементы массива в обратном порядке
     public int[] reverseArray(int[] inArray) {
-
-        if (inArray == null || inArray.length < 1) {
-            System.out.println("Массив в методе reverseArray неинициализирован или пустой");
-        } else {
+        if (checkArrayNullOrEmpty(inArray)) {
             int tempVariable;
             int lastValue = inArray.length - 1;
 
@@ -29,10 +26,7 @@ public class ArrayTask {
 
     // Заполняем массив случайными числами от 0 до 5
     public int[] addValueInArray(int[] inArray) {
-
-        if (inArray == null || inArray.length < 1) {
-            System.out.println("Массив в методе addValueInArray неинициализирован или пустой");
-        } else {
+        if (checkArrayNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 inArray[x] = (int) (Math.random() * 5);
             }
@@ -44,18 +38,16 @@ public class ArrayTask {
     // Сравниваем средние арифметические значения двух массивов
     public void compareAverageArrays(int[] firstArray, int[] secondArray) {
         float resultCompare;
-        if (firstArray == null || firstArray.length < 1) {
-            System.out.println("Массив в методе compareAverageArrays неинициализирован или пустой");
-        } else if (secondArray == null || secondArray.length < 1) {
-            System.out.println("Массив в методе compareAverageArrays неинициализирован или пустой");
-        } else {
-            resultCompare = Float.compare(getAverageArray(firstArray), getAverageArray(secondArray));
-            if (resultCompare == 0) {
-                System.out.println("Средние арифметические значения массивов равны");
-            } else if (resultCompare > 0) {
-                System.out.println("Среднее арифметическое первого массива больше второго");
-            } else {
-                System.out.println("Среднее арифметическое второго массива больше первого");
+        if (checkArrayNullOrEmpty(firstArray)) {
+            if (checkArrayNullOrEmpty(secondArray)) {
+                resultCompare = Float.compare(getAverageArray(firstArray), getAverageArray(secondArray));
+                if (resultCompare == 0) {
+                    System.out.println("Средние арифметические значения массивов равны");
+                } else if (resultCompare > 0) {
+                    System.out.println("Среднее арифметическое первого массива больше второго");
+                } else {
+                    System.out.println("Среднее арифметическое второго массива больше первого");
+                }
             }
         }
     }
@@ -63,12 +55,8 @@ public class ArrayTask {
     // Поиск максимального и минимального значения каждой строки двумерного массива
     public int[][] searchMinMaxValueTwoArray(int[][] inArray) {
         int[][] outArray = new int[5][2];
-        int maxValue;
-        int minValue;
 
-        if (inArray == null || inArray.length < 1) {
-            System.out.println("Массив в методе searchMinMaxValueTwoArray неинициализирован или пустой ");
-        } else {
+        if (checkArrayNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 outArray[x][0] = getMaxValueArray(inArray[x]);
                 outArray[x][1] = getMinValueArray(inArray[x]);
@@ -82,19 +70,15 @@ public class ArrayTask {
     public void searchUniqueValueArray(int[] inArray) {
         boolean uniqueValue = false;
 
-        if (inArray == null || inArray.length < 1) {
-            System.out.println("Массив в методе searchUniqueValueArray неинициализирован или пустой ");
-        } else {
+        if (checkArrayNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 for (int y = 0; y < inArray.length; y++) {
-
                     if (inArray[x] == inArray[y] && x != y) {
                         uniqueValue = false;
                         break;
                     } else {
                         uniqueValue = true;
                     }
-
                 }
 
                 if (uniqueValue) {
@@ -107,38 +91,19 @@ public class ArrayTask {
     // Поиск суммы между максимальным и минимальным элементами массива
     public int calcSumBetweenMinMax(int[] inArray) {
         int result = 0;
-        int indexMax = 0;
-        int indexMin = 0;
+        int indexMax;
+        int indexMin;
         int maxValue;
         int minValue;
 
-        if (inArray == null || inArray.length < 1) {
-            System.out.println("Массив в методе searchUniqueValueArray неинициализирован или пустой ");
-        } else {
+        if (checkArrayNullOrEmpty(inArray)) {
             maxValue = getMaxValueArray(inArray);
             minValue = getMinValueArray(inArray);
 
-            for (int x = 0; x < inArray.length; x++) {
-                if (maxValue == inArray[x]) {
-                    indexMax = x;
-                }
-            }
+            indexMax = getLastIndexOfArrayGivenValue(inArray, maxValue);
+            indexMin = getFirstIndexOfArrayGivenValue(inArray, minValue);
 
-            for (int x = inArray.length - 1; x >= 0; x--) {
-                if (minValue == inArray[x]) {
-                    indexMin = x;
-                }
-            }
-
-            if (indexMax > indexMin) {
-                for (int x = indexMin + 1; x < indexMax; x++) {
-                    result = result + inArray[x];
-                }
-            } else {
-                for (int x = indexMax + 1; x < indexMin; x++) {
-                    result = result + inArray[x];
-                }
-            }
+            result = getSumElementsArray(inArray, indexMin, indexMax);
         }
 
         return result;
