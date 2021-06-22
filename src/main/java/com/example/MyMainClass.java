@@ -13,10 +13,12 @@
 package com.example;
 
 import com.example.array.ArrayTask;
+import com.example.exception.MyException;
 import com.example.string.StringTask;
 
 import java.util.Arrays;
 
+import static com.example.utilities.ArrayUtilities.checkArray;
 import static com.example.utilities.ArrayUtilities.printTwoDimensionalArray;
 
 public class MyMainClass {
@@ -31,6 +33,7 @@ public class MyMainClass {
         int[] firstArrayToCompare = new int[5];
         int[] secondArrayToCompare = new int[5];
         int[] oneDimensionalArray = {1, 1, 10, 16, 1, 8, -1, 8, -1, 2};
+        int[] emptyArray = {};
 
         int[][] twoDimensionalArray = {{5, 8, 88, 3, 42, 10, 10, 6},
                 {1, 53, 2, 3, 77, 10, 2, 54},
@@ -41,7 +44,8 @@ public class MyMainClass {
         StringTask myString = new StringTask();
         ArrayTask myArray = new ArrayTask();
 
-        System.out.println(myString.putWordsReverseInString("one Two three four")); // Строка с обратным порядком слов
+        System.out.println(myString.putWordsReverseInString("one Two three four")); // Строка с обратным порядком
+        // слов
         System.out.println(myString.replaceEverySecondEntryString(stringIn, entryMax, entryMin)); // Заменить каждое
         // второе вхождение строки
         System.out.println(myString.minNumberDistinctChar("  fffff ab f 1234 jkjk ")); // Слово с минимальным числом
@@ -68,5 +72,6 @@ public class MyMainClass {
         System.out.println("--------------------------------");
         System.out.println(myArray.calcSumBetweenMinMax(oneDimensionalArray)); // Сумма между максимальным и минимальным
         // элементами массива
+        checkArray(emptyArray); // Обработка исключения
     }
 }

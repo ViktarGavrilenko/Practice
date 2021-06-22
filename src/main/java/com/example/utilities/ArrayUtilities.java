@@ -1,5 +1,7 @@
 package com.example.utilities;
 
+import com.example.exception.MyException;
+
 import java.util.Arrays;
 
 public class ArrayUtilities {
@@ -137,4 +139,17 @@ public class ArrayUtilities {
         return checkArray;
     }
 
+    // Проверка массива на инициализацию с помощь моего исключения
+    public static void checkArray(int[] inArray) {
+        System.out.println("Начало проверки массива на инициализацию");
+        try {
+            if (inArray == null || inArray.length < 1) {
+                throw new MyException();
+            }
+        } catch (MyException e) {
+            System.out.println("Ошибка! Массив не инициализирован или пустой. " + e.toString());
+        } finally {
+            System.out.println("Проверка массива выполнена");
+        }
+    }
 }
