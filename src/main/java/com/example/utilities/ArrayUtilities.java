@@ -103,8 +103,12 @@ public class ArrayUtilities {
         }
 
         if (checkArrayNullOrEmpty(inArray)) {
-            for (int x = firstElement + 1; x < lastElement; x++) {
-                sumElementsArray = sumElementsArray + inArray[x];
+            if (checkNumberLimitValueArray(inArray, firstElement)) {
+                if (checkNumberLimitValueArray(inArray, lastElement)) {
+                    for (int x = firstElement + 1; x < lastElement; x++) {
+                        sumElementsArray = sumElementsArray + inArray[x];
+                    }
+                }
             }
         }
 
@@ -132,6 +136,9 @@ public class ArrayUtilities {
         if (inArray == null || inArray.length < 1) {
             System.out.println("Массив не инициализирован или пустой!");
             checkArray = false;
+        } else if (inArray[0].length < 1) {
+            System.out.println("Массив пустой!");
+            checkArray = false;
         } else {
             checkArray = true;
         }
@@ -152,4 +159,18 @@ public class ArrayUtilities {
             System.out.println("Проверка массива выполнена");
         }
     }
+
+    // Проверяет, что число не выходит за пределы массива
+    public static boolean checkNumberLimitValueArray(int[] inArray, int number) {
+        boolean resultCheck = false;
+        if (checkArrayNullOrEmpty(inArray)) {
+            if (-1 < number && number < inArray.length) {
+                resultCheck = true;
+            } else {
+                System.out.println("Значение выходит за пределы массива");
+            }
+        }
+        return resultCheck;
+    }
+
 }
