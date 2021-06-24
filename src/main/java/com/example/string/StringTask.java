@@ -5,10 +5,11 @@ import static com.example.utilities.StringUtilities.*;
 public class StringTask {
 
     // Выводим строку с обратным порядком слов
-    public String putWordsReverseInString(String stringIn) {
+    public static String putWordsReverseInString(String stringIn) {
         String stringOut = "";
 
         if (checkStrNullOrEmpty(stringIn)) {
+            stringIn = stringIn.trim();
             int countSpaceInStr = countTargetStr(stringIn, " ");
 
             for (int x = 0; x < countSpaceInStr; x++) {
@@ -28,7 +29,7 @@ public class StringTask {
     }
 
     //  Заменяет каждое второе вхождение строки
-    public String replaceEverySecondEntryString(String str, String entryMax, String entryMin) {
+    public static String replaceEverySecondEntryString(String str, String entryMax, String entryMin) {
 
         if (checkStrNullOrEmpty(str) && checkStrNullOrEmpty(entryMax)) {
             if (entryMin == null) {
@@ -61,7 +62,7 @@ public class StringTask {
     }
 
     // Поиск слова с минимальным числом различных символов. Если таких слов несколько, найти первое из них
-    public String minNumberDistinctChar(String str) {
+    public static String minNumberDistinctChar(String str) {
         String outWord = "";
         String word;
 
@@ -96,7 +97,7 @@ public class StringTask {
     }
 
     // Поиск кол-во слов в предложении, содержащих только символы латинского алфавита
-    public int searchCountWordLatinChar(String str) {
+    public static int searchCountWordLatinChar(String str) {
         int countWordLatinChar = 0;
         int lastSpace;
         String word;
@@ -124,7 +125,7 @@ public class StringTask {
     }
 
     // Ищем в строке числовые палиндромы
-    public void searchNumericPalindromes(String str) {
+    public static void searchNumericPalindromes(String str) {
         String word;
         int firstSpace;
         int countWordStr = countWordsInStr(str);
