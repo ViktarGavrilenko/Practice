@@ -54,7 +54,12 @@ public class StringUtilities {
 
     // Проверяем слово на содержание символов только латинского алфавита
     public static boolean checkWordLatinChar(String word) {
-        return word.matches("[a-zA-Z]+");
+        boolean checkWord = false;
+        if (checkStrNullOrEmpty(word)) {
+            word = word.trim();
+            checkWord =  word.matches("[a-zA-Z]+");
+        }
+        return checkWord;
     }
 
     // Проверка строки: не инициализирована ли строка или пустая
