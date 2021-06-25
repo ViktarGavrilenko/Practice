@@ -1,5 +1,7 @@
 package com.example.string;
 
+import java.util.ArrayList;
+
 import static com.example.utilities.StringUtilities.*;
 
 public class StringTask {
@@ -125,34 +127,28 @@ public class StringTask {
     }
 
     // Ищем в строке числовые палиндромы
-    public static void searchNumericPalindromes(String str) {
+    public static ArrayList<String> searchNumericPalindromes(String str) {
+        ArrayList<String> numericPalindromes = new ArrayList<String>();
         String word;
-        int firstSpace;
-        int countWordStr = countWordsInStr(str);
 
         if (checkStrNullOrEmpty(str)) {
+            int countWordStr = countWordsInStr(str);
             str = str.trim();
 
             for (int x = 0; x < countWordStr; x++) {
-                firstSpace = str.indexOf(" ");
-
-                if (firstSpace != -1) {
-                    word = str.substring(0, firstSpace);
-                } else {
-                    word = str;
-                }
+                word = getFirstWordStr(str);
 
                 if (word.matches("\\d+") && checkWordPalindrome(word)) {
-                    System.out.println(word);
+                    numericPalindromes.add(word);
                 }
 
-                if (firstSpace != -1) {
-                    str = str.substring(firstSpace + 1);
-                }
-
+                str = deleteFirstWordStr(str);
                 str = str.trim();
             }
         }
+
+        return numericPalindromes;
     }
+
 }
 
