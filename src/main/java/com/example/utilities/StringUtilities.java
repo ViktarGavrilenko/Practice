@@ -1,5 +1,7 @@
 package com.example.utilities;
 
+import java.util.ArrayList;
+
 public class StringUtilities {
 
     // Количество вхождений подстроки в строку
@@ -57,7 +59,7 @@ public class StringUtilities {
         boolean checkWord = false;
         if (checkStrNullOrEmpty(word)) {
             word = word.trim();
-            checkWord =  word.matches("[a-zA-Z]+");
+            checkWord = word.matches("[a-zA-Z]+");
         }
         return checkWord;
     }
@@ -73,5 +75,43 @@ public class StringUtilities {
             checkArray = true;
         }
         return checkArray;
+    }
+
+    // Вывод на печать списка
+    public static void printArrayList(ArrayList<String> list) {
+        for (String str : list) {
+            System.out.println(str);
+        }
+    }
+
+    // Получение первого слова в строке
+    public static String getFirstWordStr(String str) {
+        String firstWord = null;
+        int firstSpace;
+
+        if (checkStrNullOrEmpty(str)) {
+            str = str.trim();
+            firstSpace = str.indexOf(" ");
+
+            if (firstSpace != -1) {
+                firstWord = str.substring(0, firstSpace);
+            } else {
+                firstWord = str;
+            }
+
+        }
+        return firstWord;
+    }
+
+    // Удалить из строки первое слово
+    public static String deleteFirstWordStr(String str) {
+        if (checkStrNullOrEmpty(str)) {
+            str = str.trim();
+            int firstSpace = str.indexOf(" ");
+            if (firstSpace != -1) {
+                str = str.substring(firstSpace + 1);
+            }
+        }
+        return str;
     }
 }
