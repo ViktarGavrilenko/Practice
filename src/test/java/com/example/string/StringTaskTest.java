@@ -1,10 +1,10 @@
 package com.example.string;
 
-import com.example.utilities.StringUtilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class StringTaskTest {
 
@@ -60,7 +60,7 @@ public class StringTaskTest {
 
     @Test(groups = {"replaceEverySecondEntryString"})
     public void testReplaceEverySecondEntryStringNullStr() {
-        Assert.assertEquals(null, StringTask.replaceEverySecondEntryString(null, "five", "5"));
+        Assert.assertNull(StringTask.replaceEverySecondEntryString(null, "five", "5"));
     }
 
     @Test(groups = {"replaceEverySecondEntryString"})
@@ -137,6 +137,26 @@ public class StringTaskTest {
     // Тесты для метода searchNumericPalindromes
     @Test(groups = {"searchNumericPalindromes"})
     public void testSearchNumericPalindromes() {
-       // Assert.assertEquals(2, StringTask.searchNumericPalindromes(" one two2 три четыре two "));
+        Assert.assertEquals(Arrays.asList("11211", "343"), StringTask.searchNumericPalindromes("ono 2tt2 11211 343"));
+    }
+
+    @Test(groups = {"searchNumericPalindromes"})
+    public void testSearchNumericPalindromesNotPalindrome() {
+        Assert.assertEquals(Collections.emptyList(), StringTask.searchNumericPalindromes("ono 2twt2 112 43"));
+    }
+
+    @Test(groups = {"searchNumericPalindromes"})
+    public void testSearchNumericPalindromesOnePalindrome() {
+        Assert.assertEquals(Collections.singletonList("121"), StringTask.searchNumericPalindromes("121"));
+    }
+
+    @Test(groups = {"searchNumericPalindromes"})
+    public void testSearchNumericPalindromesNullStr() {
+        Assert.assertEquals(Collections.emptyList(), StringTask.searchNumericPalindromes(null));
+    }
+
+    @Test(groups = {"searchNumericPalindromes"})
+    public void testSearchNumericPalindromesEmptyStr() {
+        Assert.assertEquals(Collections.emptyList(), StringTask.searchNumericPalindromes(""));
     }
 }
