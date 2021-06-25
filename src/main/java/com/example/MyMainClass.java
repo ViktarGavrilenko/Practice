@@ -13,8 +13,8 @@
 package com.example;
 
 import com.example.array.ArrayTask;
-import com.example.exception.MyException;
 import com.example.string.StringTask;
+import com.example.utilities.StringUtilities;
 
 import java.util.Arrays;
 
@@ -41,14 +41,13 @@ public class MyMainClass {
                 {6, 3, 11, 3, 22, 10, 5, 60},
                 {2, 4, 32, 71, 4, 40, 48, 9}};
 
-        StringTask myString = new StringTask();
         ArrayTask myArray = new ArrayTask();
 
-        System.out.println(myString.putWordsReverseInString("one Two three four")); // Строка с обратным порядком
+        System.out.println(StringTask.putWordsReverseInString("one Two three four")); // Строка с обратным порядком
         // слов
-        System.out.println(myString.replaceEverySecondEntryString(stringIn, entryMax, entryMin)); // Заменить каждое
+        System.out.println(StringTask.replaceEverySecondEntryString(stringIn, entryMax, entryMin)); // Заменить каждое
         // второе вхождение строки
-        System.out.println(myString.minNumberDistinctChar("  fffff ab f 1234 jkjk ")); // Слово с минимальным числом
+        System.out.println(StringTask.minNumberDistinctChar("  fffff ab f 1234 jkjk ")); // Слово с минимальным числом
         // символов
         firstArrayToCompare = myArray.addValueInArray(firstArrayToCompare);     // Заполняем массивы случайными
         secondArrayToCompare = myArray.addValueInArray(secondArrayToCompare);   // числами от 0 до 5
@@ -62,11 +61,11 @@ public class MyMainClass {
         printTwoDimensionalArray(myArray.searchMinMaxValueTwoArray(twoDimensionalArray)); // Максимальное
         // и минимальное значение каждой строки двумерного массива
         System.out.println("-----------------------------");
-        System.out.println(myString.searchCountWordLatinChar("one Two three раз два три one1 two2 123 ")); // Кол-во
+        System.out.println(StringTask.searchCountWordLatinChar("one Two three раз два три one1 two2 123 ")); // Кол-во
         // слов в предложении содержащих только латинские символы
         System.out.println("------------------------------");
-        myString.searchNumericPalindromes("Если есть хвосты по дз, начните с 1 не сданного задания. 123 " +
-                "324 111 4554"); // Ищем в строке числовые палиндромы
+        StringUtilities.printArrayList(StringTask.searchNumericPalindromes("Если есть хвосты по дз, начните с 1 " +
+                "не сданного задания. 123 324 111 4554"));// Ищем в строке числовые палиндромы
         System.out.println("-------------------------------");
         myArray.searchUniqueValueArray(oneDimensionalArray); // Выводим уникальные значения массива
         System.out.println("--------------------------------");
