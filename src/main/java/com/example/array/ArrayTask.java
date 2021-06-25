@@ -3,9 +3,6 @@ package com.example.array;
 import static com.example.utilities.ArrayUtilities.*;
 
 public class ArrayTask {
-// TODO agorozhanko 16.06.2021: ловить NullPointerException чтобы проверить что введена пустая переменная - плохой вариант
-// TODO agorozhanko 16.06.2021: в целом плохая практика ловить NullPointerException, их не должно быть
-// TODO: Viktar Gavrilenko 17.06.2021: исправил
 
     //  Меняем элементы массива в обратном порядке
     public int[] reverseArray(int[] inArray) {
