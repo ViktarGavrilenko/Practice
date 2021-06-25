@@ -3,7 +3,6 @@ package com.example.utilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
 
 public class StringUtilitiesTest {
     // Тесты для метода getAverageArray
@@ -66,79 +65,130 @@ public class StringUtilitiesTest {
     // Тесты для метода checkWordPalindrome
     @Test(groups = {"checkWordPalindrome"})
     public void testCheckWordPalindromeTrue() {
-        assertTrue(StringUtilities.checkWordPalindrome("hiih"));
+        Assert.assertTrue(StringUtilities.checkWordPalindrome("hiih"));
     }
 
     @Test(groups = {"checkWordPalindrome"})
     public void testCheckWordPalindromeFalse() {
-        assertFalse(StringUtilities.checkWordPalindrome("hello"));
+        Assert.assertFalse(StringUtilities.checkWordPalindrome("hello"));
     }
 
     @Test(groups = {"checkWordPalindrome"})
     public void testCheckWordPalindromeNumber() {
-        assertTrue(StringUtilities.checkWordPalindrome("1331"));
+        Assert.assertTrue(StringUtilities.checkWordPalindrome("1331"));
     }
 
     @Test(groups = {"checkWordPalindrome"})
     public void testCheckWordPalindromeNull() {
-        assertFalse(StringUtilities.checkWordPalindrome(null));
+        Assert.assertFalse(StringUtilities.checkWordPalindrome(null));
     }
 
     @Test(groups = {"checkWordPalindrome"})
     public void testCheckWordPalindromeEmpty() {
-        assertFalse(StringUtilities.checkWordPalindrome(""));
+        Assert.assertFalse(StringUtilities.checkWordPalindrome(""));
     }
 
     // Тесты для метода checkWordPalindrome
     @Test(groups = {"checkWordLatinChar"})
     public void testCheckWordLatinCharLatin() {
-        assertTrue(StringUtilities.checkWordLatinChar("Hello"));
+        Assert.assertTrue(StringUtilities.checkWordLatinChar("Hello"));
     }
 
     @Test(groups = {"checkWordLatinChar"})
     public void testCheckWordLatinCharFirstLastSpace() {
-        assertTrue(StringUtilities.checkWordLatinChar(" Hello "));
+        Assert.assertTrue(StringUtilities.checkWordLatinChar(" Hello "));
     }
 
     @Test(groups = {"checkWordLatinChar"})
     public void testCheckWordLatinCharRusText() {
-        assertFalse(StringUtilities.checkWordLatinChar("Привет"));
+        Assert.assertFalse(StringUtilities.checkWordLatinChar("Привет"));
     }
 
     @Test(groups = {"checkWordLatinChar"})
     public void testCheckWordLatinCharSpaceStr() {
-        assertFalse(StringUtilities.checkWordLatinChar("Hello word"));
+        Assert.assertFalse(StringUtilities.checkWordLatinChar("Hello word"));
     }
 
     @Test(groups = {"checkWordLatinChar"})
     public void testCheckWordLatinCharStrNumber() {
-        assertFalse(StringUtilities.checkWordLatinChar("Hello123"));
+        Assert.assertFalse(StringUtilities.checkWordLatinChar("Hello123"));
     }
 
     @Test(groups = {"checkWordLatinChar"})
     public void testCheckWordLatinCharNull() {
-        assertFalse(StringUtilities.checkWordLatinChar(null));
+        Assert.assertFalse(StringUtilities.checkWordLatinChar(null));
     }
 
     @Test(groups = {"checkWordLatinChar"})
     public void testCheckWordLatinCharEmpty() {
-        assertFalse(StringUtilities.checkWordLatinChar(""));
+        Assert.assertFalse(StringUtilities.checkWordLatinChar(""));
     }
 
     // Тесты для метода checkStrNullOrEmpty
     @Test(groups = {"checkStrNullOrEmpty"})
     public void testCheckStrNullOrEmptyTrue() {
-        assertTrue(StringUtilities.checkStrNullOrEmpty("Hello"));
+        Assert.assertTrue(StringUtilities.checkStrNullOrEmpty("Hello"));
     }
 
     @Test(groups = {"checkStrNullOrEmpty"})
     public void testCheckStrNullOrEmptyEmpty() {
-        assertFalse(StringUtilities.checkStrNullOrEmpty(""));
+        Assert.assertFalse(StringUtilities.checkStrNullOrEmpty(""));
     }
 
     @Test(groups = {"checkStrNullOrEmpty"})
     public void testCheckStrNullOrEmptyNull() {
-        assertFalse(StringUtilities.checkStrNullOrEmpty(null));
+        Assert.assertFalse(StringUtilities.checkStrNullOrEmpty(null));
     }
 
+    // Тесты для метода getFirstWordStr
+    @Test(groups = {"getFirstWordStr"})
+    public void testGetFirstWordStr() {
+        Assert.assertEquals("Hello", StringUtilities.getFirstWordStr("Hello word!"));
+    }
+
+    @Test(groups = {"getFirstWordStr"})
+    public void testGetFirstWordStrFirstSpace() {
+        Assert.assertEquals("Hello", StringUtilities.getFirstWordStr(" Hello word! "));
+    }
+
+    @Test(groups = {"getFirstWordStr"})
+    public void testGetFirstWordStrEmptyStr() {
+        Assert.assertNull(StringUtilities.getFirstWordStr(""));
+    }
+
+    @Test(groups = {"getFirstWordStr"})
+    public void testGetFirstWordStrNullStr() {
+        Assert.assertNull(StringUtilities.getFirstWordStr(null));
+    }
+
+    @Test(groups = {"getFirstWordStr"})
+    public void testGetFirstWordStrSymbol() {
+        Assert.assertEquals("11!", StringUtilities.getFirstWordStr("11! /* "));
+    }
+
+    // Тесты для метода getFirstWordStr
+    @Test(groups = {"deleteFirstWordStr"})
+    public void testDeleteFirstWordStr() {
+        Assert.assertEquals("word! one two", StringUtilities.deleteFirstWordStr("Hello word! one two"));
+    }
+
+    @Test(groups = {"deleteFirstWordStr"})
+    public void testDeleteFirstWordStrFirstSpace() {
+        Assert.assertEquals("word! one two", StringUtilities.deleteFirstWordStr("  Hello word! one two"));
+    }
+
+    @Test(groups = {"deleteFirstWordStr"})
+    public void testDeleteFirstWordStrNullStr() {
+        Assert.assertNull(StringUtilities.deleteFirstWordStr(null));
+    }
+
+    @Test(groups = {"deleteFirstWordStr"})
+    public void testDeleteFirstWordStrEmptyStr() {
+        Assert.assertEquals("", StringUtilities.deleteFirstWordStr(""));
+    }
+
+    @Test(groups = {"deleteFirstWordStr"})
+    public void testDeleteFirstWordStrOneWord() {
+        Assert.assertEquals("Hello", StringUtilities.deleteFirstWordStr("Hello"));
+    }
 }
