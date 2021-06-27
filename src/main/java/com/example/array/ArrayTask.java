@@ -70,6 +70,7 @@ public class ArrayTask {
         if (checkArrayNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 for (int y = 0; y < inArray.length; y++) {
+                    // TODO agorozhanko 27.06.2021: лишняя булиновская переменная, можно обойтись без неё
                     if (inArray[x] == inArray[y] && x != y) {
                         uniqueValue = false;
                         break;
