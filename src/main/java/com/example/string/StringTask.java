@@ -7,12 +7,12 @@ import static com.example.utilities.StringUtilities.*;
 public class StringTask {
 
     // Выводим строку с обратным порядком слов
-    public static String putWordsReverseInString(String stringIn) {
+    // TODO: Viktar Gavrilenko 28.06.2021: Посмотреть
+    public static String putReverseWordOrder(String stringIn) {
         String stringOut = "";
-
-        if (checkStrNullOrEmpty(stringIn)) {
+        if (isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
             stringIn = stringIn.trim();
-            int countSpaceInStr = countTargetStr(stringIn, " ");
+            int countSpaceInStr = countTarget(stringIn, " ");
 
             for (int x = 0; x < countSpaceInStr; x++) {
                 if (stringOut.length() == 0) {
@@ -31,9 +31,9 @@ public class StringTask {
     }
 
     //  Заменяет каждое второе вхождение строки
-    public static String replaceEverySecondEntryString(String str, String entryMax, String entryMin) {
-
-        if (checkStrNullOrEmpty(str) && checkStrNullOrEmpty(entryMax)) {
+    public static String replaceEverySecondEntry(String str, String entryMax, String entryMin) {
+// TODO: Viktar Gavrilenko 28.06.2021: посмотреть
+        if (isNullOrEmpty(str) && isNullOrEmpty(entryMax)) {
             if (entryMin == null) {
                 System.out.println("Строка не инициализирована!");
             } else {
@@ -41,7 +41,7 @@ public class StringTask {
                 String lowerCaseEntryMax = entryMax.toLowerCase();
 
                 int lengthEntryMax = entryMax.length();
-                int countEntryMaxInStr = countTargetStr(lowerCaseStr, lowerCaseEntryMax);
+                int countEntryMaxInStr = countTarget(lowerCaseStr, lowerCaseEntryMax);
                 int indexStart = 0;
                 int indexEntryMax;
 
@@ -68,11 +68,11 @@ public class StringTask {
         String outWord = "";
         String word;
 
-        if (checkStrNullOrEmpty(str)) {
+        if (isNullOrEmpty(str)) {
             str = str.trim();
 
             int countCharMinWord = str.length();
-            int countWords = countWordsInStr(str);
+            int countWords = countWords(str);
             int minChar;
             int lastSpace;
 
@@ -104,14 +104,14 @@ public class StringTask {
         int lastSpace;
         String word;
 
-        if (checkStrNullOrEmpty(str)) {
-            int countWordsStr = countWordsInStr(str);
+        if (isNullOrEmpty(str)) {
+            int countWordsStr = countWords(str);
             str = str.trim();
             for (int x = 0; x < countWordsStr; x++) {
                 lastSpace = str.lastIndexOf(" ");
                 word = str.substring(lastSpace + 1);
 
-                if (checkWordLatinChar(word)) {
+                if (isWordLatinChar(word)) {
                     countWordLatinChar++;
                 }
 
@@ -131,18 +131,18 @@ public class StringTask {
         ArrayList<String> numericPalindromes = new ArrayList<String>();
         String word;
 
-        if (checkStrNullOrEmpty(str)) {
-            int countWordStr = countWordsInStr(str);
+        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
+            int countWordStr = countWords(str);
             str = str.trim();
 
             for (int x = 0; x < countWordStr; x++) {
-                word = getFirstWordStr(str);
+                word = getFirstWord(str);
 
-                if (word.matches("\\d+") && checkWordPalindrome(word)) {
+                if (word.matches("\\d+") && isWordPalindrome(word)) {
                     numericPalindromes.add(word);
                 }
 
-                str = deleteFirstWordStr(str);
+                str = deleteFirstWord(str);
                 str = str.trim();
             }
         }
