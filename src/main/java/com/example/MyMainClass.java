@@ -1,16 +1,18 @@
 package com.example;
 
 import com.example.array.ArrayTask;
+import com.example.exception.ArrayEmptyException;
+import com.example.exception.ArrayNullException;
 import com.example.string.StringTask;
+import com.example.utilities.ArrayUtilities;
 import com.example.utilities.StringUtilities;
 
 import java.util.Arrays;
 
-import static com.example.utilities.ArrayUtilities.checkArray;
 import static com.example.utilities.ArrayUtilities.printTwoDimensionalArray;
 
 public class MyMainClass {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArrayNullException, ArrayEmptyException {
         String stringIn = "Object-oriented programming is a programming language" +
                 " model organized around objects rather than \"actions\" and data rather than logic." +
                 " Object-oriented programming blabla. Object-oriented programming bla.";
@@ -22,6 +24,7 @@ public class MyMainClass {
         int[] secondArrayToCompare = new int[5];
         int[] oneDimensionalArray = {1, 1, 10, 16, 1, 8, -1, 8, -1, 2};
         int[] emptyArray = {};
+        int[] nullArray = null;
 
         int[][] twoDimensionalArray = {{5, 8, 88, 3, 42, 10, 10, 6},
                 {1, 53, 2, 3, 77, 10, 2, 54},
@@ -31,14 +34,14 @@ public class MyMainClass {
 
         ArrayTask myArray = new ArrayTask();
 
-        System.out.println(StringTask.putWordsReverseInString("one Two three four")); // Строка с обратным порядком
+        System.out.println(StringTask.putReverseWordOrder("one Two three four")); // Строка с обратным порядком
         // слов
-        System.out.println(StringTask.replaceEverySecondEntryString(stringIn, entryMax, entryMin)); // Заменить каждое
+        System.out.println(StringTask.replaceEverySecondEntry(stringIn, entryMax, entryMin)); // Заменить каждое
         // второе вхождение строки
         System.out.println(StringTask.minNumberDistinctChar("  fffff ab f 1234 jkjk ")); // Слово с минимальным числом
         // символов
-        firstArrayToCompare = myArray.addValueInArray(firstArrayToCompare);     // Заполняем массивы случайными
-        secondArrayToCompare = myArray.addValueInArray(secondArrayToCompare);   // числами от 0 до 5
+        firstArrayToCompare = myArray.addRandomValue(firstArrayToCompare);     // Заполняем массивы случайными
+        secondArrayToCompare = myArray.addRandomValue(secondArrayToCompare);   // числами от 0 до 5
         System.out.println(Arrays.toString(firstArrayToCompare));   // Выводим первый массив
         System.out.println(Arrays.toString(secondArrayToCompare));  // Выводим второй массив
         myArray.compareAverageArrays(firstArrayToCompare, secondArrayToCompare);    // Сравниваем среднее арифметическое
@@ -55,10 +58,13 @@ public class MyMainClass {
         StringUtilities.printArrayList(StringTask.searchNumericPalindromes("Если есть хвосты по дз, начните с 1 " +
                 "не сданного задания. 123 324 111 4554"));// Ищем в строке числовые палиндромы
         System.out.println("-------------------------------");
-        myArray.searchUniqueValueArray(oneDimensionalArray); // Выводим уникальные значения массива
+        myArray.searchUniqueValue(oneDimensionalArray); // Выводим уникальные значения массива
         System.out.println("--------------------------------");
         System.out.println(myArray.calcSumBetweenMinMax(oneDimensionalArray)); // Сумма между максимальным и минимальным
         // элементами массива
-        checkArray(emptyArray); // Обработка исключения
+        ArrayUtilities.isArrayEmpty(emptyArray);
+        ArrayUtilities.isArrayNull(nullArray);
+
+
     }
 }
