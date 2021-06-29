@@ -6,7 +6,7 @@ public class ArrayTask {
 
     //  Меняем элементы массива в обратном порядке
     public int[] reverseArray(int[] inArray) {
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             int tempVariable;
             int lastValue = inArray.length - 1;
 
@@ -22,8 +22,8 @@ public class ArrayTask {
     }
 
     // Заполняем массив случайными числами от 0 до 5
-    public int[] addValueInArray(int[] inArray) {
-        if (checkArrayNullOrEmpty(inArray)) {
+    public int[] addRandomValue(int[] inArray) {
+        if (isNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 inArray[x] = (int) (Math.random() * 5);
             }
@@ -35,9 +35,9 @@ public class ArrayTask {
     // Сравниваем средние арифметические значения двух массивов
     public void compareAverageArrays(int[] firstArray, int[] secondArray) {
         float resultCompare;
-        if (checkArrayNullOrEmpty(firstArray)) {
-            if (checkArrayNullOrEmpty(secondArray)) {
-                resultCompare = Float.compare(getAverageArray(firstArray), getAverageArray(secondArray));
+        if (isNullOrEmpty(firstArray)) {
+            if (isNullOrEmpty(secondArray)) {
+                resultCompare = Float.compare(getAverage(firstArray), getAverage(secondArray));
                 if (resultCompare == 0) {
                     System.out.println("Средние арифметические значения массивов равны");
                 } else if (resultCompare > 0) {
@@ -53,10 +53,10 @@ public class ArrayTask {
     public int[][] searchMinMaxValueTwoArray(int[][] inArray) {
         int[][] outArray = new int[5][2];
 
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
-                outArray[x][0] = getMaxValueArray(inArray[x]);
-                outArray[x][1] = getMinValueArray(inArray[x]);
+                outArray[x][0] = getMaxValue(inArray[x]);
+                outArray[x][1] = getMinValue(inArray[x]);
             }
         }
 
@@ -64,10 +64,10 @@ public class ArrayTask {
     }
 
     // Поиск уникальных значений массива
-    public void searchUniqueValueArray(int[] inArray) {
+    public void searchUniqueValue(int[] inArray) {
         boolean uniqueValue = false;
 
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 for (int y = 0; y < inArray.length; y++) {
                     // TODO agorozhanko 27.06.2021: лишняя булиновская переменная, можно обойтись без неё
@@ -94,14 +94,14 @@ public class ArrayTask {
         int maxValue;
         int minValue;
 
-        if (checkArrayNullOrEmpty(inArray)) {
-            maxValue = getMaxValueArray(inArray);
-            minValue = getMinValueArray(inArray);
+        if (isNullOrEmpty(inArray)) {
+            maxValue = getMaxValue(inArray);
+            minValue = getMinValue(inArray);
 
-            indexMax = getLastIndexOfArrayGivenValue(inArray, maxValue);
-            indexMin = getFirstIndexOfArrayGivenValue(inArray, minValue);
+            indexMax = getLastIndexWithGivenValue(inArray, maxValue);
+            indexMin = getFirstIndexWithGivenValue(inArray, minValue);
 
-            result = getSumElementsArray(inArray, indexMin, indexMax);
+            result = getSumBetweenElements(inArray, indexMin, indexMax);
         }
 
         return result;
