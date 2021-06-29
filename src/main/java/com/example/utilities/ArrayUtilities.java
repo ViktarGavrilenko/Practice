@@ -1,13 +1,14 @@
 package com.example.utilities;
 
-import com.example.exception.MyException;
+import com.example.exception.ArrayEmptyException;
+import com.example.exception.ArrayNullException;
 
 import java.util.Arrays;
 
 public class ArrayUtilities {
     // Вывод на печать двумерного массива
     public static void printTwoDimensionalArray(int[][] inArray) {
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             for (int[] ints : inArray) {
                 System.out.println(Arrays.toString(ints));
             }
@@ -15,10 +16,10 @@ public class ArrayUtilities {
     }
 
     // Среднее арифметическое значение массива
-    public static float getAverageArray(int[] inArray) {
+    public static float getAverage(int[] inArray) {
         float averageArray = 0;
 
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             for (int i : inArray) {
                 averageArray = averageArray + i;
             }
@@ -28,10 +29,10 @@ public class ArrayUtilities {
     }
 
     // Поиск максимального значения в массиве
-    public static int getMaxValueArray(int[] inArray) {
+    public static int getMaxValue(int[] inArray) {
         int maxValue = 0;
 
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             maxValue = inArray[0];
             for (int x = 1; x < inArray.length; x++) {
                 if (maxValue < inArray[x]) {
@@ -44,10 +45,10 @@ public class ArrayUtilities {
     }
 
     // Поиск минимального значения в массиве
-    public static int getMinValueArray(int[] inArray) {
+    public static int getMinValue(int[] inArray) {
         int minValue = 0;
 
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             minValue = inArray[0];
             for (int x = 1; x < inArray.length; x++) {
                 if (minValue > inArray[x]) {
@@ -60,10 +61,10 @@ public class ArrayUtilities {
     }
 
     // Поиск индекса первого элемента массива с определенным значением
-    public static int getFirstIndexOfArrayGivenValue(int[] inArray, int givenValue) {
+    public static int getFirstIndexWithGivenValue(int[] inArray, int givenValue) {
         int indexArray = -1;
 
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 if (givenValue == inArray[x]) {
                     indexArray = x;
@@ -76,10 +77,10 @@ public class ArrayUtilities {
     }
 
     // Поиск индекса последнего элемента массива с определенным значением
-    public static int getLastIndexOfArrayGivenValue(int[] inArray, int givenValue) {
+    public static int getLastIndexWithGivenValue(int[] inArray, int givenValue) {
         int indexArray = -1;
 
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             for (int x = inArray.length - 1; x >= 0; x--) {
                 if (givenValue == inArray[x]) {
                     indexArray = x;
@@ -92,7 +93,7 @@ public class ArrayUtilities {
     }
 
     // Поиск суммы элементов массива между двумя заданными элементами, сами элементы в сумму не включаются
-    public static int getSumElementsArray(int[] inArray, int firstElement, int lastElement) {
+    public static int getSumBetweenElements(int[] inArray, int firstElement, int lastElement) {
         int sumElementsArray = 0;
         int tempElement;
 
@@ -102,9 +103,9 @@ public class ArrayUtilities {
             lastElement = tempElement;
         }
 
-        if (checkArrayNullOrEmpty(inArray)) {
-            if (checkNumberLimitValueArray(inArray, firstElement)) {
-                if (checkNumberLimitValueArray(inArray, lastElement)) {
+        if (isNullOrEmpty(inArray)) {
+            if (isNumberOutsideArray(inArray, firstElement)) {
+                if (isNumberOutsideArray(inArray, lastElement)) {
                     for (int x = firstElement + 1; x < lastElement; x++) {
                         sumElementsArray = sumElementsArray + inArray[x];
                     }
@@ -115,8 +116,9 @@ public class ArrayUtilities {
         return sumElementsArray;
     }
 
+
     // Проверка одномерного массива: не инициализирован ли массив или пустой
-    public static boolean checkArrayNullOrEmpty(int[] inArray) {
+    public static boolean isNullOrEmpty(int[] inArray) {
         boolean checkArray;
 
         if (inArray == null || inArray.length < 1) {
@@ -130,7 +132,7 @@ public class ArrayUtilities {
     }
 
     // Проверка двумерного массива: не инициализирован ли массив или пустой
-    public static boolean checkArrayNullOrEmpty(int[][] inArray) {
+    public static boolean isNullOrEmpty(int[][] inArray) {
         boolean checkArray;
 
         if (inArray == null || inArray.length < 1) {
@@ -146,24 +148,28 @@ public class ArrayUtilities {
         return checkArray;
     }
 
-    // Проверка массива на инициализацию с помощь моего исключения
-    public static void checkArray(int[] inArray) {
-        System.out.println("Начало проверки массива на инициализацию");
-        try {
-            if (inArray == null || inArray.length < 1) {
-                throw new MyException();
-            }
-        } catch (MyException e) {
-            System.out.println("Ошибка! Массив не инициализирован или пустой. " + e.toString());
-        } finally {
-            System.out.println("Проверка массива выполнена");
+    // Проверка массива на инициализацию
+    public static boolean isArrayNull(int[] inArray) throws ArrayNullException {
+        if (inArray == null) {
+            throw new ArrayNullException();
         }
+        return true;
+    }
+
+    // Проверяем пустой ли массив
+    public static boolean isArrayEmpty(int[] inArray) throws ArrayEmptyException, ArrayNullException {
+        if (isArrayNull(inArray)) {
+            if (inArray.length < 1) {
+                throw new ArrayEmptyException();
+            }
+        }
+        return true;
     }
 
     // Проверяет, что число не выходит за пределы массива
-    public static boolean checkNumberLimitValueArray(int[] inArray, int number) {
+    public static boolean isNumberOutsideArray(int[] inArray, int number) {
         boolean resultCheck = false;
-        if (checkArrayNullOrEmpty(inArray)) {
+        if (isNullOrEmpty(inArray)) {
             if (-1 < number && number < inArray.length) {
                 resultCheck = true;
             } else {
