@@ -11,191 +11,231 @@ public class StringUtilitiesTest {
     String EMPTY_STR = "";
     String SPACES_STR = "    ";
 
-    // Тесты для метода getAverageArray
-    @Test(groups = {"countTargetStr"})
-    public void testCountTargetStrRusText() {
+    // Тесты для метода countTarget
+    @Test(description = "Тестируем строку с двумя вхождениями подстроки (русские символы)", groups = {"countTarget"})
+    public void testCountTargetRusText() {
         Assert.assertEquals(2, StringUtilities.countTarget("Слова: один два один", "один"));
     }
 
-    @Test(groups = {"countTargetStr"})
-    public void testCountTargetStrLatinText() {
+    @Test(description = "Тестируем строку с тремя вхождениями подстроки (латинские символы)", groups = {"countTarget"})
+    public void testCountTargetLatinText() {
         Assert.assertEquals(3, StringUtilities.countTarget("Word: one one two three one", "one"));
     }
 
-    @Test(groups = {"countTargetStr"})
-    public void testCountTargetStrNullStr() {
+    @Test(description = "Тестируем не инициализированную строку", groups = {"countTarget"})
+    public void testCountTargetNullStr() {
         Assert.assertEquals(0, StringUtilities.countTarget(NULL_STR, "one"));
     }
 
-    @Test(groups = {"countTargetStr"})
-    public void testCountTargetStrEmptyStr() {
+    @Test(description = "Тестируем пустую строку", groups = {"countTargetStr"})
+    public void testCountTargetEmptyStr() {
         Assert.assertEquals(0, StringUtilities.countTarget(EMPTY_STR, "one"));
     }
 
-    @Test(groups = {"countTargetStr"})
-    public void testCountTargetStrNullTarget() {
+    @Test(description = "Тестируем не инициализированную подстроку", groups = {"countTarget"})
+    public void testCountTargetNullTarget() {
         Assert.assertEquals(0, StringUtilities.countTarget("one two three", NULL_STR));
     }
 
-    @Test(groups = {"countTargetStr"})
-    public void testCountTargetStrNotTarget() {
+    @Test(description = "Тестируем отсутствие подстроки в строке", groups = {"countTarget"})
+    public void testCountTargetNotTarget() {
         Assert.assertEquals(0, StringUtilities.countTarget("one two three", "four"));
     }
 
-    // Тесты для метода getAverageArray
-    @Test(groups = {"countWordsInStr"})
-    public void testCountWordsInStRusText() {
+    @Test(description = "Тестируем строку только с пробелами", groups = {"countTarget"})
+    public void testCountTargetStrSpaces() {
+        Assert.assertEquals(0, StringUtilities.countTarget(SPACES_STR, "four"));
+    }
+
+    @Test(description = "Тестируем строку только с пробелами", groups = {"countTarget"})
+    public void testCountTargetTargetSpaces() {
+        Assert.assertEquals(0, StringUtilities.countTarget("one two three", SPACES_STR));
+    }
+
+    // Тесты для метода countWords
+    @Test(description = "Тестируем строку с четырьмя русскими словами", groups = {"countWords"})
+    public void testCountWordsRusText() {
         Assert.assertEquals(4, StringUtilities.countWords("Слова: один два один"));
     }
 
-    @Test(groups = {"countWordsInStr"})
-    public void testCountWordsInStLatinText() {
+    @Test(description = "Тестируем строку с шестью английскими словами и пробелами вначале и конце строки", groups = {"countWords"})
+    public void testCountWordsLatinText() {
         Assert.assertEquals(6, StringUtilities.countWords(" Word:  one one  two three one "));
     }
 
-    @Test(groups = {"countWordsInStr"})
-    public void testCountWordsInStNullStr() {
+    @Test(description = "Тестируем с не инициализированной строкой", groups = {"countWords"})
+    public void testCountWordsNullStr() {
         Assert.assertEquals(0, StringUtilities.countWords(NULL_STR));
     }
 
-    @Test(groups = {"countWordsInStr"})
-    public void testCountWordsInStEmptyStr() {
+    @Test(description = "Тестируем с пустой строкой", groups = {"countWords"})
+    public void testCountWordsEmptyStr() {
         Assert.assertEquals(0, StringUtilities.countWords(EMPTY_STR));
     }
 
-    @Test(groups = {"countWordsInStr"})
-    public void testCountWordsInStDiffStr() {
+    @Test(description = "Тестируем строку с символами и цифрами", groups = {"countWords"})
+    public void testCountWordsDiffStr() {
         Assert.assertEquals(6, StringUtilities.countWords("132 231 >> // qwe цук"));
     }
 
-    // Тесты для метода checkWordPalindrome
-    @Test(groups = {"checkWordPalindrome"})
-    public void testCheckWordPalindromeTrue() {
+    @Test(description = "Тестируем строку только с пробелами", groups = {"countWords"})
+    public void testCountWordsSpacesStr() {
+        Assert.assertEquals(0, StringUtilities.countWords(SPACES_STR));
+    }
+
+    // Тесты для метода isWordPalindrome
+    @Test(description = "Тестируем палиндром из латинских символов", groups = {"isWordPalindrome"})
+    public void testIsWordPalindromeTrue() {
         Assert.assertTrue(StringUtilities.isWordPalindrome("hiih"));
     }
 
-    @Test(groups = {"checkWordPalindrome"})
-    public void testCheckWordPalindromeFalse() {
+    @Test(description = "Тестируем строку без палиндрома", groups = {"isWordPalindrome"})
+    public void testIsWordPalindromeFalse() {
         Assert.assertFalse(StringUtilities.isWordPalindrome("hello"));
     }
 
-    @Test(groups = {"checkWordPalindrome"})
-    public void testCheckWordPalindromeNumber() {
+    @Test(description = "Тестируем строку с числовым палиндромам", groups = {"isWordPalindrome"})
+    public void testIsWordPalindromeNumber() {
         Assert.assertTrue(StringUtilities.isWordPalindrome("1331"));
     }
 
-    @Test(groups = {"checkWordPalindrome"})
-    public void testCheckWordPalindromeNull() {
+    @Test(description = "Тестируем не инициализированную строку", groups = {"isWordPalindrome"})
+    public void testIsWordPalindromeNull() {
         Assert.assertFalse(StringUtilities.isWordPalindrome(NULL_STR));
     }
 
-    @Test(groups = {"checkWordPalindrome"})
-    public void testCheckWordPalindromeEmpty() {
+    @Test(description = "Тестируем пустую строку", groups = {"isWordPalindrome"})
+    public void testIsWordPalindromeEmpty() {
         Assert.assertFalse(StringUtilities.isWordPalindrome(EMPTY_STR));
     }
 
-    // Тесты для метода checkWordPalindrome
-    @Test(groups = {"checkWordLatinChar"})
-    public void testCheckWordLatinCharLatin() {
+    @Test(description = "Тестируем строку только с пробелами", groups = {"isWordPalindrome"})
+    public void testIsWordPalindromeSpacesStr() {
+        Assert.assertFalse(StringUtilities.isWordPalindrome(SPACES_STR));
+    }
+
+    // Тесты для метода isWordLatinChar
+    @Test(description = "Тестируем не инициализированную строку", groups = {"isWordLatinChar"})
+    public void testIsWordLatinChar() {
         Assert.assertTrue(StringUtilities.isWordLatinChar("Hello"));
     }
 
-    @Test(groups = {"checkWordLatinChar"})
-    public void testCheckWordLatinCharFirstLastSpace() {
+    @Test(description = "Тестируем строку с пробелами в начале и конце", groups = {"isWordLatinChar"})
+    public void testIsWordLatinCharFirstLastSpace() {
         Assert.assertTrue(StringUtilities.isWordLatinChar(" Hello "));
     }
 
-    @Test(groups = {"checkWordLatinChar"})
-    public void testCheckWordLatinCharRusText() {
+    @Test(description = "Тестируем строку с русскими символами", groups = {"isWordLatinChar"})
+    public void testIsWordLatinCharRusText() {
         Assert.assertFalse(StringUtilities.isWordLatinChar("Привет"));
     }
 
-    @Test(groups = {"checkWordLatinChar"})
-    public void testCheckWordLatinCharSpaceStr() {
+    @Test(description = "Тестируем строку с латинскими словами", groups = {"isWordLatinChar"})
+    public void testIsWordLatinCharSpaceStr() {
         Assert.assertFalse(StringUtilities.isWordLatinChar("Hello word"));
     }
 
-    @Test(groups = {"checkWordLatinChar"})
-    public void testCheckWordLatinCharStrNumber() {
+    @Test(description = "Тестируем строку с латинскими символами и цифрами", groups = {"isWordLatinChar"})
+    public void testIsWordLatinCharStrNumber() {
         Assert.assertFalse(StringUtilities.isWordLatinChar("Hello123"));
     }
 
-    @Test(groups = {"checkWordLatinChar"})
-    public void testCheckWordLatinCharNull() {
+    @Test(description = "Тестируем не инициализированную строку", groups = {"isWordLatinChar"})
+    public void testIsWordLatinCharCharNull() {
         Assert.assertFalse(StringUtilities.isWordLatinChar(NULL_STR));
     }
 
-    @Test(groups = {"checkWordLatinChar"})
-    public void testCheckWordLatinCharEmpty() {
+    @Test(description = "Тестируем пустую строку", groups = {"isWordLatinChar"})
+    public void testIsWordLatinCharEmpty() {
         Assert.assertFalse(StringUtilities.isWordLatinChar(EMPTY_STR));
     }
 
-    // Тесты для метода checkStrNullOrEmpty
-    @Test(groups = {"checkStrNullOrEmpty"})
-    public void testCheckStrNullOrEmptyTrue() {
+    @Test(description = "Тестируем строку только с пробелами", groups = {"isWordLatinChar"})
+    public void testIsWordLatinCharSpacesStr() {
+        Assert.assertFalse(StringUtilities.isWordLatinChar(SPACES_STR));
+    }
+
+    // Тесты для метода isNullOrEmpty
+    @Test(description = "Тестируем строку с латинскими буквами", groups = {"isNullOrEmpty"})
+    public void testIsNullOrEmptyTrue() {
         Assert.assertTrue(StringUtilities.isNullOrEmpty("Hello"));
     }
 
-    @Test(groups = {"checkStrNullOrEmpty"})
-    public void testCheckStrNullOrEmptyEmpty() {
+    @Test(description = "Тестируем пустую строку", groups = {"isNullOrEmpty"})
+    public void testIsNullOrEmptyEmpty() {
         Assert.assertFalse(StringUtilities.isNullOrEmpty(EMPTY_STR));
     }
 
-    @Test(groups = {"checkStrNullOrEmpty"})
-    public void testCheckStrNullOrEmptyNull() {
+    @Test(description = "Тестируем не инициализированную строку", groups = {"isNullOrEmpty"})
+    public void testIsNullOrEmptyNull() {
         Assert.assertFalse(StringUtilities.isNullOrEmpty(NULL_STR));
     }
 
-    // Тесты для метода getFirstWordStr
-    @Test(groups = {"getFirstWordStr"})
-    public void testGetFirstWordStr() {
+    @Test(description = "Тестируем строку только с пробелами", groups = {"isNullOrEmpty"})
+    public void testIsNullOrEmptySpacesStr() {
+        Assert.assertTrue(StringUtilities.isNullOrEmpty(SPACES_STR));
+    }
+
+    // Тесты для метода getFirstWord
+    @Test(description = "Тестируем строку с латинскими словами", groups = {"getFirstWord"})
+    public void testGetFirstWord() {
         Assert.assertEquals("Hello", StringUtilities.getFirstWord("Hello word!"));
     }
 
-    @Test(groups = {"getFirstWordStr"})
-    public void testGetFirstWordStrFirstSpace() {
+    @Test(description = "Тестируем строку с пробелами в начале и конце", groups = {"getFirstWord"})
+    public void testGetFirstWordFirstSpace() {
         Assert.assertEquals("Hello", StringUtilities.getFirstWord(" Hello word! "));
     }
 
-    @Test(groups = {"getFirstWordStr"})
-    public void testGetFirstWordStrEmptyStr() {
+    @Test(description = "Тестируем пустую строку", groups = {"getFirstWord"})
+    public void testGetFirstWordEmptyStr() {
         Assert.assertNull(StringUtilities.getFirstWord(EMPTY_STR));
     }
 
-    @Test(groups = {"getFirstWordStr"})
-    public void testGetFirstWordStrNullStr() {
+    @Test(description = "Тестируем не инициализированную строку", groups = {"getFirstWord"})
+    public void testGetFirstWordNullStr() {
         Assert.assertNull(StringUtilities.getFirstWord(NULL_STR));
     }
 
-    @Test(groups = {"getFirstWordStr"})
-    public void testGetFirstWordStrSymbol() {
+    @Test(description = "Тестируем строку цифрами и символами", groups = {"getFirstWord"})
+    public void testGetFirstWordSymbol() {
         Assert.assertEquals("11!", StringUtilities.getFirstWord("11! /* "));
     }
 
-    // Тесты для метода getFirstWordStr
-    @Test(groups = {"deleteFirstWordStr"})
-    public void testDeleteFirstWordStr() {
+    @Test(description = "Тестируем строку только с пробелами", groups = {"getFirstWord"})
+    public void testGetFirstWordSpaceStr() {
+        Assert.assertNull(StringUtilities.getFirstWord(SPACES_STR));
+    }
+
+    // Тесты для метода deleteFirstWord
+    @Test(description = "Тестируем строку английскими словами", groups = {"deleteFirstWord"})
+    public void testDeleteFirstWord() {
         Assert.assertEquals("word! one two", StringUtilities.deleteFirstWord("Hello word! one two"));
     }
 
-    @Test(groups = {"deleteFirstWordStr"})
-    public void testDeleteFirstWordStrFirstSpace() {
+    @Test(description = "Тестируем строку с пробелами в начале строки", groups = {"deleteFirstWord"})
+    public void testDeleteFirstWordFirstSpace() {
         Assert.assertEquals("word! one two", StringUtilities.deleteFirstWord("  Hello word! one two"));
     }
 
-    @Test(groups = {"deleteFirstWordStr"})
-    public void testDeleteFirstWordStrNullStr() {
+    @Test(description = "Тестируем не инициализированную строку", groups = {"deleteFirstWord"})
+    public void testDeleteFirstWordNullStr() {
         Assert.assertNull(StringUtilities.deleteFirstWord(NULL_STR));
     }
 
-    @Test(groups = {"deleteFirstWordStr"})
-    public void testDeleteFirstWordStrEmptyStr() {
+    @Test(description = "Тестируем пустую строку", groups = {"deleteFirstWord"})
+    public void testDeleteFirstWordEmptyStr() {
         Assert.assertEquals(EMPTY_STR, StringUtilities.deleteFirstWord(EMPTY_STR));
     }
 
-    @Test(groups = {"deleteFirstWordStr"})
-    public void testDeleteFirstWordStrOneWord() {
+    @Test(description = "Тестируем строку с одним словом", groups = {"deleteFirstWord"})
+    public void testDeleteFirstWordOneWord() {
         Assert.assertEquals("Hello", StringUtilities.deleteFirstWord("Hello"));
+    }
+
+    @Test(description = "Тестируем строку только с пробелами", groups = {"deleteFirstWord"})
+    public void testDeleteFirstWordSpaceStr() {
+        Assert.assertEquals(SPACES_STR, StringUtilities.deleteFirstWord(SPACES_STR));
     }
 
     //Тесты для метода isStrEmpty
