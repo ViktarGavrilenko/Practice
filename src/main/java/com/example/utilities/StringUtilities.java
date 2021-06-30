@@ -24,7 +24,7 @@ public class StringUtilities {
     public static int countWords(String str) {
         int countWords = 0;
 
-        if (isNullOrEmpty(str)) {
+        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
             str = str.trim();
             countWords = str.split("\\s+").length;
         }
@@ -36,7 +36,7 @@ public class StringUtilities {
     public static boolean isWordPalindrome(String word) {
         boolean result = false;
 
-        if (isNullOrEmpty(word)) {
+        if (isNullOrEmpty(word) && !word.matches("\\s+")) {
             int lengthWord = word.length();
 
             int firstChar = 0;
@@ -113,7 +113,7 @@ public class StringUtilities {
         String firstWord = null;
         int firstSpace;
 
-        if (isNullOrEmpty(str)) {
+        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
             str = str.trim();
             firstSpace = str.indexOf(" ");
 
@@ -129,7 +129,7 @@ public class StringUtilities {
 
     // Удалить из строки первое слово
     public static String deleteFirstWord(String str) {
-        if (isNullOrEmpty(str)) {
+        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
             str = str.trim();
             int firstSpace = str.indexOf(" ");
             if (firstSpace != -1) {
