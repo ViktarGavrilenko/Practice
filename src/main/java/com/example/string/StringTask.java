@@ -1,10 +1,16 @@
 package com.example.string;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import java.util.ArrayList;
 
 import static com.example.utilities.StringUtilities.*;
 
 public class StringTask {
+
+    private static final Logger log = Logger.getLogger(StringTask.class);
+
 
     // Выводим строку с обратным порядком слов
     // TODO: Viktar Gavrilenko 28.06.2021: Посмотреть
@@ -34,7 +40,11 @@ public class StringTask {
 // TODO: Viktar Gavrilenko 28.06.2021: посмотреть
         if (isNullOrEmpty(str) && isNullOrEmpty(entryMax)) {
             if (entryMin == null) {
-                System.out.println("Строка не инициализирована!");
+                PropertyConfigurator.configure("log4j2.properties");
+                log.debug("Строка не инициализирована!");
+                log.debug("Debugging Message");
+                log.info("Informational message");
+                log.warn("Warning Message");
             } else {
                 String lowerCaseStr = str.toLowerCase();
                 String lowerCaseEntryMax = entryMax.toLowerCase();
