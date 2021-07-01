@@ -103,13 +103,10 @@ public class ArrayUtilities {
             lastElement = tempElement;
         }
 
-        if (isNullOrEmpty(inArray)) {
-            if (isNumberOutsideArray(inArray, firstElement)) {
-                if (isNumberOutsideArray(inArray, lastElement)) {
-                    for (int x = firstElement + 1; x < lastElement; x++) {
-                        sumElementsArray = sumElementsArray + inArray[x];
-                    }
-                }
+        if (isNullOrEmpty(inArray) && isNumberOutsideArray(inArray, firstElement)
+                && isNumberOutsideArray(inArray, lastElement)) {
+            for (int x = firstElement + 1; x < lastElement; x++) {
+                sumElementsArray = sumElementsArray + inArray[x];
             }
         }
 
@@ -158,10 +155,8 @@ public class ArrayUtilities {
 
     // Проверяем пустой ли массив
     public static boolean isArrayEmpty(int[] inArray) throws ArrayEmptyException, ArrayNullException {
-        if (isArrayNull(inArray)) {
-            if (inArray.length < 1) {
-                throw new ArrayEmptyException();
-            }
+        if (isArrayNull(inArray) && (inArray.length < 1)) {
+            throw new ArrayEmptyException();
         }
         return true;
     }
