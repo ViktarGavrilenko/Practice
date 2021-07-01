@@ -38,16 +38,14 @@ public class ArrayTask {
     public static byte compareAverageArrays(int[] firstArray, int[] secondArray) {
         float resultCompare;
         byte result = -1;
-        if (isNullOrEmpty(firstArray)) {
-            if (isNullOrEmpty(secondArray)) {
-                resultCompare = Float.compare(getAverage(firstArray), getAverage(secondArray));
-                if (resultCompare == 0) {
-                    result = 0;
-                } else if (resultCompare > 0) {
-                    result = 1;
-                } else {
-                    result = 2;
-                }
+        if (isNullOrEmpty(firstArray) && isNullOrEmpty(secondArray)) {
+            resultCompare = Float.compare(getAverage(firstArray), getAverage(secondArray));
+            if (resultCompare == 0) {
+                result = 0;
+            } else if (resultCompare > 0) {
+                result = 1;
+            } else {
+                result = 2;
             }
         }
         return result;
