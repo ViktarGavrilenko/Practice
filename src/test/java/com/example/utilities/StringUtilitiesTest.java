@@ -14,73 +14,73 @@ public class StringUtilitiesTest {
     // Тесты для метода countTarget
     @Test(description = "Тестируем строку с двумя вхождениями подстроки (русские символы)", groups = {"countTarget"})
     public void testCountTargetRusText() {
-        Assert.assertEquals(2, StringUtilities.countTarget("Слова: один два один", "один"));
+        Assert.assertEquals(StringUtilities.countTarget("Слова: один два один", "один"), 2);
     }
 
     @Test(description = "Тестируем строку с тремя вхождениями подстроки (латинские символы)", groups = {"countTarget"})
     public void testCountTargetLatinText() {
-        Assert.assertEquals(3, StringUtilities.countTarget("Word: one one two three one", "one"));
+        Assert.assertEquals(StringUtilities.countTarget("Word: one one two three one", "one"), 3);
     }
 
     @Test(description = "Тестируем не инициализированную строку", groups = {"countTarget"})
     public void testCountTargetNullStr() {
-        Assert.assertEquals(0, StringUtilities.countTarget(NULL_STR, "one"));
+        Assert.assertEquals(StringUtilities.countTarget(NULL_STR, "one"), 0);
     }
 
     @Test(description = "Тестируем пустую строку", groups = {"countTargetStr"})
     public void testCountTargetEmptyStr() {
-        Assert.assertEquals(0, StringUtilities.countTarget(EMPTY_STR, "one"));
+        Assert.assertEquals(StringUtilities.countTarget(EMPTY_STR, "one"), 0);
     }
 
     @Test(description = "Тестируем не инициализированную подстроку", groups = {"countTarget"})
     public void testCountTargetNullTarget() {
-        Assert.assertEquals(0, StringUtilities.countTarget("one two three", NULL_STR));
+        Assert.assertEquals(StringUtilities.countTarget("one two three", NULL_STR), 0);
     }
 
     @Test(description = "Тестируем отсутствие подстроки в строке", groups = {"countTarget"})
     public void testCountTargetNotTarget() {
-        Assert.assertEquals(0, StringUtilities.countTarget("one two three", "four"));
+        Assert.assertEquals(StringUtilities.countTarget("one two three", "four"), 0);
     }
 
     @Test(description = "Тестируем строку только с пробелами", groups = {"countTarget"})
     public void testCountTargetStrSpaces() {
-        Assert.assertEquals(0, StringUtilities.countTarget(SPACES_STR, "four"));
+        Assert.assertEquals(StringUtilities.countTarget(SPACES_STR, "four"), 0);
     }
 
     @Test(description = "Тестируем строку только с пробелами", groups = {"countTarget"})
     public void testCountTargetTargetSpaces() {
-        Assert.assertEquals(0, StringUtilities.countTarget("one two three", SPACES_STR));
+        Assert.assertEquals(StringUtilities.countTarget("one two three", SPACES_STR), 0);
     }
 
     // Тесты для метода countWords
     @Test(description = "Тестируем строку с четырьмя русскими словами", groups = {"countWords"})
     public void testCountWordsRusText() {
-        Assert.assertEquals(4, StringUtilities.countWords("Слова: один два один"));
+        Assert.assertEquals(StringUtilities.countWords("Слова: один два один"), 4);
     }
 
     @Test(description = "Тестируем строку с шестью английскими словами и пробелами вначале и конце строки", groups = {"countWords"})
     public void testCountWordsLatinText() {
-        Assert.assertEquals(6, StringUtilities.countWords(" Word:  one one  two three one "));
+        Assert.assertEquals(StringUtilities.countWords(" Word:  one one  two three one "), 6);
     }
 
     @Test(description = "Тестируем с не инициализированной строкой", groups = {"countWords"})
     public void testCountWordsNullStr() {
-        Assert.assertEquals(0, StringUtilities.countWords(NULL_STR));
+        Assert.assertEquals(StringUtilities.countWords(NULL_STR), 0);
     }
 
     @Test(description = "Тестируем с пустой строкой", groups = {"countWords"})
     public void testCountWordsEmptyStr() {
-        Assert.assertEquals(0, StringUtilities.countWords(EMPTY_STR));
+        Assert.assertEquals(StringUtilities.countWords(EMPTY_STR), 0);
     }
 
     @Test(description = "Тестируем строку с символами и цифрами", groups = {"countWords"})
     public void testCountWordsDiffStr() {
-        Assert.assertEquals(6, StringUtilities.countWords("132 231 >> // qwe цук"));
+        Assert.assertEquals(StringUtilities.countWords("132 231 >> // qwe цук"), 6);
     }
 
     @Test(description = "Тестируем строку только с пробелами", groups = {"countWords"})
     public void testCountWordsSpacesStr() {
-        Assert.assertEquals(0, StringUtilities.countWords(SPACES_STR));
+        Assert.assertEquals(StringUtilities.countWords(SPACES_STR), 0);
     }
 
     // Тесты для метода isWordPalindrome
@@ -179,12 +179,12 @@ public class StringUtilitiesTest {
     // Тесты для метода getFirstWord
     @Test(description = "Тестируем строку с латинскими словами", groups = {"getFirstWord"})
     public void testGetFirstWord() {
-        Assert.assertEquals("Hello", StringUtilities.getFirstWord("Hello word!"));
+        Assert.assertEquals(StringUtilities.getFirstWord("Hello word!"), "Hello");
     }
 
     @Test(description = "Тестируем строку с пробелами в начале и конце", groups = {"getFirstWord"})
     public void testGetFirstWordFirstSpace() {
-        Assert.assertEquals("Hello", StringUtilities.getFirstWord(" Hello word! "));
+        Assert.assertEquals(StringUtilities.getFirstWord(" Hello word! "), "Hello");
     }
 
     @Test(description = "Тестируем пустую строку", groups = {"getFirstWord"})
@@ -199,7 +199,7 @@ public class StringUtilitiesTest {
 
     @Test(description = "Тестируем строку цифрами и символами", groups = {"getFirstWord"})
     public void testGetFirstWordSymbol() {
-        Assert.assertEquals("11!", StringUtilities.getFirstWord("11! /* "));
+        Assert.assertEquals(StringUtilities.getFirstWord("11! /* "), "11!");
     }
 
     @Test(description = "Тестируем строку только с пробелами", groups = {"getFirstWord"})
@@ -210,12 +210,12 @@ public class StringUtilitiesTest {
     // Тесты для метода deleteFirstWord
     @Test(description = "Тестируем строку английскими словами", groups = {"deleteFirstWord"})
     public void testDeleteFirstWord() {
-        Assert.assertEquals("word! one two", StringUtilities.deleteFirstWord("Hello word! one two"));
+        Assert.assertEquals(StringUtilities.deleteFirstWord("Hello word! one two"), "word! one two");
     }
 
     @Test(description = "Тестируем строку с пробелами в начале строки", groups = {"deleteFirstWord"})
     public void testDeleteFirstWordFirstSpace() {
-        Assert.assertEquals("word! one two", StringUtilities.deleteFirstWord("  Hello word! one two"));
+        Assert.assertEquals(StringUtilities.deleteFirstWord("  Hello word! one two"), "word! one two");
     }
 
     @Test(description = "Тестируем не инициализированную строку", groups = {"deleteFirstWord"})
@@ -225,17 +225,17 @@ public class StringUtilitiesTest {
 
     @Test(description = "Тестируем пустую строку", groups = {"deleteFirstWord"})
     public void testDeleteFirstWordEmptyStr() {
-        Assert.assertEquals(EMPTY_STR, StringUtilities.deleteFirstWord(EMPTY_STR));
+        Assert.assertEquals(StringUtilities.deleteFirstWord(EMPTY_STR), EMPTY_STR);
     }
 
     @Test(description = "Тестируем строку с одним словом", groups = {"deleteFirstWord"})
     public void testDeleteFirstWordOneWord() {
-        Assert.assertEquals("Hello", StringUtilities.deleteFirstWord("Hello"));
+        Assert.assertEquals(StringUtilities.deleteFirstWord("Hello"), "Hello");
     }
 
     @Test(description = "Тестируем строку только с пробелами", groups = {"deleteFirstWord"})
     public void testDeleteFirstWordSpaceStr() {
-        Assert.assertEquals(SPACES_STR, StringUtilities.deleteFirstWord(SPACES_STR));
+        Assert.assertEquals(StringUtilities.deleteFirstWord(SPACES_STR), SPACES_STR);
     }
 
     //Тесты для метода isStrEmpty
@@ -292,5 +292,4 @@ public class StringUtilitiesTest {
     public void testIsStrNullWithNull() throws StrNullException {
         StringUtilities.isStrNull(NULL_STR);
     }
-
 }
