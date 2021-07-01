@@ -11,10 +11,8 @@ public class StringUtilities {
     public static int countTarget(String str, String target) {
         int countTarger = 0;
 
-        if (isNullOrEmpty(str)) {
-            if (isNullOrEmpty(target)) {
-                countTarger = (str.length() - str.replace(target, "").length()) / target.length();
-            }
+        if (isNullOrEmpty(str) && isNullOrEmpty(target)) {
+            countTarger = (str.length() - str.replace(target, "").length()) / target.length();
         }
 
         return countTarger;
@@ -85,10 +83,8 @@ public class StringUtilities {
 
     // Проверяем пустая ли строка
     public static boolean isStrEmpty(String str) throws StrEmptyException, StrNullException {
-        if (isStrNull(str)) {
-            if (str.equals("")) {
-                throw new StrEmptyException();
-            }
+        if (isStrNull(str) && str.equals("")) {
+            throw new StrEmptyException();
         }
         return true;
     }
