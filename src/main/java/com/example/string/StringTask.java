@@ -9,25 +9,24 @@ public class StringTask {
     // Выводим строку с обратным порядком слов
     // TODO: Viktar Gavrilenko 28.06.2021: Посмотреть
     public static String putReverseWordOrder(String stringIn) {
-        String stringOut = "";
+        StringBuilder stringOut = new StringBuilder();
         if (isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
             stringIn = stringIn.trim();
             int countSpaceInStr = countTarget(stringIn, " ");
 
             for (int x = 0; x < countSpaceInStr; x++) {
                 if (stringOut.length() == 0) {
-                    stringOut = stringIn.substring(stringIn.lastIndexOf(" ") + 1);
+                    stringOut = new StringBuilder(stringIn.substring(stringIn.lastIndexOf(" ") + 1));
                 } else {
-                    stringOut = new StringBuilder().append(stringOut).append(" ").
-                            append(stringIn.substring(stringIn.lastIndexOf(" ") + 1)).toString();
+                    stringOut.append(" ").append(stringIn.substring(stringIn.lastIndexOf(" ") + 1));
                 }
                 stringIn = stringIn.substring(0, stringIn.lastIndexOf(" "));
             }
 
-            stringOut = stringOut + " " + stringIn;
+            stringOut.append(" ").append(stringIn);
         }
 
-        return stringOut;
+        return stringOut.toString();
     }
 
     //  Заменяет каждое второе вхождение строки
@@ -128,7 +127,7 @@ public class StringTask {
 
     // Ищем в строке числовые палиндромы
     public static ArrayList<String> searchNumericPalindromes(String str) {
-        ArrayList<String> numericPalindromes = new ArrayList<String>();
+        ArrayList<String> numericPalindromes = new ArrayList<>();
         String word;
 
         if (isNullOrEmpty(str) && !str.matches("\\s+")) {
