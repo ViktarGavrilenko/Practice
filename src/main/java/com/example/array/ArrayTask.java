@@ -1,14 +1,17 @@
 package com.example.array;
 
+import com.example.utilities.ArrayUtilities;
+
 import java.util.ArrayList;
 
 import static com.example.utilities.ArrayUtilities.*;
 
 public class ArrayTask {
+    ArrayUtilities arrayUtilities = new ArrayUtilities();
 
     //  Меняем элементы массива в обратном порядке
-    public static int[] reverseArray(int[] inArray) {
-        if (isNullOrEmpty(inArray)) {
+    public int[] reverseArray(int[] inArray) {
+        if (arrayUtilities.isNullOrEmpty(inArray)) {
             int tempVariable;
             int lastValue = inArray.length - 1;
 
@@ -24,8 +27,8 @@ public class ArrayTask {
     }
 
     // Заполняем массив случайными числами от 0 до 5
-    public static int[] addRandomValue(int[] inArray) {
-        if (isNullOrEmpty(inArray)) {
+    public int[] addRandomValue(int[] inArray) {
+        if (arrayUtilities.isNullOrEmpty(inArray)) {
             for (int x = 0; x < inArray.length; x++) {
                 inArray[x] = (int) (Math.random() * 5);
             }
@@ -35,10 +38,10 @@ public class ArrayTask {
     }
 
     // Сравниваем средние арифметические значения двух массивов
-    public static byte compareAverageArrays(int[] firstArray, int[] secondArray) {
+    public byte compareAverageArrays(int[] firstArray, int[] secondArray) {
         float resultCompare;
         byte result = -1;
-        if (isNullOrEmpty(firstArray) && isNullOrEmpty(secondArray)) {
+        if (arrayUtilities.isNullOrEmpty(firstArray) && arrayUtilities.isNullOrEmpty(secondArray)) {
             resultCompare = Float.compare(getAverage(firstArray), getAverage(secondArray));
             if (resultCompare == 0) {
                 result = 0;
@@ -52,23 +55,23 @@ public class ArrayTask {
     }
 
     // Поиск максимального и минимального значения каждой строки двумерного массива
-    public static int[][] searchMaxMinValueTwoArray(int[][] inArray) {
+    public int[][] searchMaxMinValueTwoArray(int[][] inArray) {
         int[][] outArray = null;
-        if (isNullOrEmpty(inArray)) {
+        if (arrayUtilities.isNullOrEmpty(inArray)) {
             outArray = new int[inArray.length][2];
             for (int x = 0; x < inArray.length; x++) {
-                outArray[x][0] = getMaxValue(inArray[x]);
-                outArray[x][1] = getMinValue(inArray[x]);
+                outArray[x][0] = arrayUtilities.getMaxValue(inArray[x]);
+                outArray[x][1] = arrayUtilities.getMinValue(inArray[x]);
             }
         }
         return outArray;
     }
 
     // Поиск уникальных значений массива
-    public static ArrayList<Integer> searchUniqueValue(int[] inArray) {
+    public ArrayList<Integer> searchUniqueValue(int[] inArray) {
         ArrayList<Integer> uniqueValue = new ArrayList<>();
 
-        if (isNullOrEmpty(inArray)) {
+        if (arrayUtilities.isNullOrEmpty(inArray)) {
             boolean isUniqueValue = false;
             for (int x = 0; x < inArray.length; x++) {
                 for (int y = 0; y < inArray.length; y++) {
@@ -92,21 +95,22 @@ public class ArrayTask {
     }
 
     // Поиск суммы между максимальным и минимальным элементами массива
-    public static int calcSumBetweenMinMax(int[] inArray) {
+    public int calcSumBetweenMinMax(int[] inArray) {
         int result = 0;
         int indexMax;
         int indexMin;
         int maxValue;
         int minValue;
 
-        if (isNullOrEmpty(inArray)) {
-            maxValue = getMaxValue(inArray);
-            minValue = getMinValue(inArray);
 
-            indexMax = getLastIndexWithGivenValue(inArray, maxValue);
-            indexMin = getFirstIndexWithGivenValue(inArray, minValue);
+        if (arrayUtilities.isNullOrEmpty(inArray)) {
+            maxValue = arrayUtilities.getMaxValue(inArray);
+            minValue = arrayUtilities.getMinValue(inArray);
 
-            result = getSumBetweenElements(inArray, indexMin, indexMax);
+            indexMax = arrayUtilities.getLastIndexWithGivenValue(inArray, maxValue);
+            indexMin = arrayUtilities.getFirstIndexWithGivenValue(inArray, minValue);
+
+            result = arrayUtilities.getSumBetweenElements(inArray, indexMin, indexMax);
         }
 
         return result;
