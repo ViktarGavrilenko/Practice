@@ -9,7 +9,7 @@ public class ArrayUtilities {
     private final Logger log = Logger.getLogger(ArrayUtilities.class);
 
     // Среднее арифметическое значение массива
-    public static float getAverage(int[] inArray) {
+    public float getAverage(int[] inArray) {
         float averageArray = 0;
         ArrayUtilities arrayUtilities = new ArrayUtilities();
         if (arrayUtilities.isNullOrEmpty(inArray)) {
@@ -147,7 +147,7 @@ public class ArrayUtilities {
     }
 
     // Проверяем пустой ли массив
-    public static boolean isArrayEmpty(int[] inArray) throws ArrayEmptyException, ArrayNullException {
+    public boolean isArrayEmpty(int[] inArray) throws ArrayEmptyException, ArrayNullException {
         ArrayUtilities arrayUtilities = new ArrayUtilities();
         if (arrayUtilities.isArrayNull(inArray) && (inArray.length < 1)) {
             throw new ArrayEmptyException();
