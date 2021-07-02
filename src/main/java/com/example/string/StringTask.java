@@ -1,7 +1,6 @@
 package com.example.string;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import java.util.ArrayList;
 
@@ -11,10 +10,9 @@ public class StringTask {
 
     private static final Logger log = Logger.getLogger(StringTask.class);
 
-
     // Выводим строку с обратным порядком слов
     // TODO: Viktar Gavrilenko 28.06.2021: Посмотреть
-    public static String putReverseWordOrder(String stringIn) {
+    public String putReverseWordOrder(String stringIn) {
         StringBuilder stringOut = new StringBuilder();
         if (isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
             stringIn = stringIn.trim();
@@ -36,15 +34,10 @@ public class StringTask {
     }
 
     //  Заменяет каждое второе вхождение строки
-    public static String replaceEverySecondEntry(String str, String entryMax, String entryMin) {
-// TODO: Viktar Gavrilenko 28.06.2021: посмотреть
+    public String replaceEverySecondEntry(String str, String entryMax, String entryMin) {
         if (isNullOrEmpty(str) && isNullOrEmpty(entryMax)) {
             if (entryMin == null) {
-                PropertyConfigurator.configure("log4j2.properties");
-                log.debug("Строка не инициализирована!");
-                log.debug("Debugging Message");
-                log.info("Informational message");
-                log.warn("Warning Message");
+                log.error("Строка не инициализирована!");
             } else {
                 String lowerCaseStr = str.toLowerCase();
                 String lowerCaseEntryMax = entryMax.toLowerCase();
@@ -73,7 +66,7 @@ public class StringTask {
     }
 
     // Поиск слова с минимальным числом различных символов. Если таких слов несколько, найти первое из них
-    public static String minNumberDistinctChar(String str) {
+    public String minNumberDistinctChar(String str) {
         String outWord = "";
         String word;
 
@@ -108,7 +101,7 @@ public class StringTask {
     }
 
     // Поиск кол-во слов в предложении, содержащих только символы латинского алфавита
-    public static int searchCountWordLatinChar(String str) {
+    public int searchCountWordLatinChar(String str) {
         int countWordLatinChar = 0;
         int lastSpace;
         String word;
@@ -136,7 +129,7 @@ public class StringTask {
     }
 
     // Ищем в строке числовые палиндромы
-    public static ArrayList<String> searchNumericPalindromes(String str) {
+    public ArrayList<String> searchNumericPalindromes(String str) {
         ArrayList<String> numericPalindromes = new ArrayList<>();
         String word;
 
@@ -158,6 +151,5 @@ public class StringTask {
 
         return numericPalindromes;
     }
-
 }
 
