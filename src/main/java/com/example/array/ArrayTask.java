@@ -42,7 +42,7 @@ public class ArrayTask {
         float resultCompare;
         byte result = -1;
         if (arrayUtilities.isNullOrEmpty(firstArray) && arrayUtilities.isNullOrEmpty(secondArray)) {
-            resultCompare = Float.compare(getAverage(firstArray), getAverage(secondArray));
+            resultCompare = Float.compare(arrayUtilities.getAverage(firstArray), arrayUtilities.getAverage(secondArray));
             if (resultCompare == 0) {
                 result = 0;
             } else if (resultCompare > 0) {
