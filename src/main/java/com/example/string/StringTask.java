@@ -1,22 +1,22 @@
 package com.example.string;
 
+import com.example.utilities.StringUtilities;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 
-import static com.example.utilities.StringUtilities.*;
-
 public class StringTask {
 
+    StringUtilities stringUtilities = new StringUtilities();
     private static final Logger log = Logger.getLogger(StringTask.class);
 
     // Выводим строку с обратным порядком слов
     // TODO: Viktar Gavrilenko 28.06.2021: Посмотреть
     public String putReverseWordOrder(String stringIn) {
         StringBuilder stringOut = new StringBuilder();
-        if (isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
+        if (stringUtilities.isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
             stringIn = stringIn.trim();
-            int countSpaceInStr = countTarget(stringIn, " ");
+            int countSpaceInStr = stringUtilities.countTarget(stringIn, " ");
 
             for (int x = 0; x < countSpaceInStr; x++) {
                 if (stringOut.length() == 0) {
@@ -35,7 +35,7 @@ public class StringTask {
 
     //  Заменяет каждое второе вхождение строки
     public String replaceEverySecondEntry(String str, String entryMax, String entryMin) {
-        if (isNullOrEmpty(str) && isNullOrEmpty(entryMax)) {
+        if (stringUtilities.isNullOrEmpty(str) && stringUtilities.isNullOrEmpty(entryMax)) {
             if (entryMin == null) {
                 log.error("Строка не инициализирована!");
             } else {
@@ -43,7 +43,7 @@ public class StringTask {
                 String lowerCaseEntryMax = entryMax.toLowerCase();
 
                 int lengthEntryMax = entryMax.length();
-                int countEntryMaxInStr = countTarget(lowerCaseStr, lowerCaseEntryMax);
+                int countEntryMaxInStr = stringUtilities.countTarget(lowerCaseStr, lowerCaseEntryMax);
                 int indexStart = 0;
                 int indexEntryMax;
 
@@ -70,11 +70,11 @@ public class StringTask {
         String outWord = "";
         String word;
 
-        if (isNullOrEmpty(str)) {
+        if (stringUtilities.isNullOrEmpty(str)) {
             str = str.trim();
 
             int countCharMinWord = str.length();
-            int countWords = countWords(str);
+            int countWords = stringUtilities.countWords(str);
             int minChar;
             int lastSpace;
 
@@ -106,14 +106,14 @@ public class StringTask {
         int lastSpace;
         String word;
 
-        if (isNullOrEmpty(str)) {
-            int countWordsStr = countWords(str);
+        if (stringUtilities.isNullOrEmpty(str)) {
+            int countWordsStr = stringUtilities.countWords(str);
             str = str.trim();
             for (int x = 0; x < countWordsStr; x++) {
                 lastSpace = str.lastIndexOf(" ");
                 word = str.substring(lastSpace + 1);
 
-                if (isWordLatinChar(word)) {
+                if (stringUtilities.isWordLatinChar(word)) {
                     countWordLatinChar++;
                 }
 
@@ -133,18 +133,18 @@ public class StringTask {
         ArrayList<String> numericPalindromes = new ArrayList<>();
         String word;
 
-        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
-            int countWordStr = countWords(str);
+        if (stringUtilities.isNullOrEmpty(str) && !str.matches("\\s+")) {
+            int countWordStr = stringUtilities.countWords(str);
             str = str.trim();
 
             for (int x = 0; x < countWordStr; x++) {
-                word = getFirstWord(str);
+                word = stringUtilities.getFirstWord(str);
 
-                if (word.matches("\\d+") && isWordPalindrome(word)) {
+                if (word.matches("\\d+") && stringUtilities.isWordPalindrome(word)) {
                     numericPalindromes.add(word);
                 }
 
-                str = deleteFirstWord(str);
+                str = stringUtilities.deleteFirstWord(str);
                 str = str.trim();
             }
         }
