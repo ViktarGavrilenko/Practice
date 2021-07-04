@@ -75,9 +75,6 @@ public class ArrayTask {
             boolean isUniqueValue = false;
             for (int x = 0; x < inArray.length; x++) {
                 for (int y = 0; y < inArray.length; y++) {
-                    // TODO agorozhanko 27.06.2021: лишняя булиновская переменная, можно обойтись без неё
-                    // TODO: Viktar Gavrilenko 01.07.2021: boolean переменная все таки нужна, так как нужно сверить
-                    //  проверяемое значение зо всеми элементами массива, и только после этого принять решение
                     if (inArray[x] == inArray[y] && x != y) {
                         isUniqueValue = false;
                         break;
