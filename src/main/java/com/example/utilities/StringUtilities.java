@@ -43,8 +43,6 @@ public class StringUtilities {
 
             for (int x = 0; x < lengthWord / 2; x++) {
                 if (word.charAt(firstChar) != word.charAt(lastChar)) {
-                    // TODO agorozhanko 27.06.2021: можно использовать return
-                    // TODO: Viktar Gavrilenko 28.06.2021: исправил
                     return false;
                 } else {
                     firstChar++;
