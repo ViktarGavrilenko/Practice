@@ -4,7 +4,6 @@ import com.example.exception.ArrayEmptyException;
 import com.example.exception.ArrayNullException;
 import com.example.exception.ValueOutsideArrayException;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -32,12 +31,7 @@ public class ArrayTaskTest {
             {60, 3},
             {71, 2}};
 
-    ArrayTask arrayTask;
-
-    @BeforeTest()
-    public void setUp() {
-        arrayTask = new ArrayTask();
-    }
+    ArrayTask arrayTask = new ArrayTask();
 
     // Тесты для метода putWordsReverseInString
     @Test(description = "Тестируем массив с положительными и отрицательными значениями")
