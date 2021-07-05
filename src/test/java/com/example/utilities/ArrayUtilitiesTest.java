@@ -7,13 +7,13 @@ import org.testng.annotations.Test;
 
 public class ArrayUtilitiesTest {
 
-    final int[] NULL_ARRAY = null;
-    final int[] EMPTY_ARRAY = new int[]{};
-    final int[] NOT_VALUE_ARRAY = new int[5];
-    final int[] POSITIVE_ARRAY = new int[]{5, 3, 9, 10};
-    final int[] NEGATIVE_ARRAY = new int[]{-1, -35, -3};
-    final int[] NEGATIVE_POSITIVE = new int[]{-1, -35, -3, 3, 7, 0};
-    final int[] REPEATED_VALUES = new int[]{0, 4, 4, 4};
+    private final int[] NULL_ARRAY = null;
+    private final int[] EMPTY_ARRAY = new int[]{};
+    private final int[] NOT_VALUE_ARRAY = new int[5];
+    private final int[] POSITIVE_ARRAY = new int[]{5, 3, 9, 10};
+    private final int[] NEGATIVE_ARRAY = new int[]{-1, -35, -3};
+    private final int[] NEGATIVE_POSITIVE = new int[]{-1, -35, -3, 3, 7, 0};
+    private final int[] REPEATED_VALUES = new int[]{0, 4, 4, 4};
 
     // Тесты для метода getAverage
     @Test(description = "Тестируем получение целого среднеарифметического числа")
