@@ -9,7 +9,7 @@ public class StringUtilities {
     private static final Logger log = Logger.getLogger(StringUtilities.class);
 
     // Количество вхождений подстроки в строку
-    public int countTarget(String str, String target) {
+    public static int countTarget(String str, String target) {
         int countTarger = 0;
 
         if (isNullOrEmpty(str) && isNullOrEmpty(target)) {
@@ -20,7 +20,7 @@ public class StringUtilities {
     }
 
     // Кол-во слов в строке
-    public int countWords(String str) {
+    public static int countWords(String str) {
         int countWords = 0;
 
         if (isNullOrEmpty(str) && !str.matches("\\s+")) {
@@ -32,7 +32,7 @@ public class StringUtilities {
     }
 
     // Проверяем является ли слово палиндромом
-    public boolean isWordPalindrome(String word) {
+    public static boolean isWordPalindrome(String word) {
         boolean result = false;
 
         if (isNullOrEmpty(word) && !word.matches("\\s+")) {
@@ -56,7 +56,7 @@ public class StringUtilities {
     }
 
     // Проверяем слово на содержание символов только латинского алфавита
-    public boolean isWordLatinChar(String word) {
+    public static boolean isWordLatinChar(String word) {
         boolean checkWord = false;
         if (isNullOrEmpty(word)) {
             word = word.trim();
@@ -67,7 +67,7 @@ public class StringUtilities {
 
 
     // Проверка строки: не инициализирована ли строка или пустая
-    public boolean isNullOrEmpty(String str) {
+    public static boolean isNullOrEmpty(String str) {
         boolean checkArray;
 
         if (str == null || str.isEmpty()) {
@@ -81,7 +81,7 @@ public class StringUtilities {
 
 
     // Проверяем пустая ли строка
-    public boolean isStrEmpty(String str) throws StrEmptyException, StrNullException {
+    public static boolean isStrEmpty(String str) throws StrEmptyException, StrNullException {
         if (isStrNull(str) && str.equals("")) {
             throw new StrEmptyException();
         }
@@ -89,7 +89,7 @@ public class StringUtilities {
     }
 
     // Проверяем пустая ли строка
-    public boolean isStrNull(String str) throws StrNullException {
+    public static boolean isStrNull(String str) throws StrNullException {
         if (str == null) {
             throw new StrNullException();
         }
@@ -97,7 +97,7 @@ public class StringUtilities {
     }
 
     // Получение первого слова в строке
-    public String getFirstWord(String str) {
+    public static String getFirstWord(String str) {
         String firstWord = null;
         int firstSpace;
 
@@ -116,7 +116,7 @@ public class StringUtilities {
     }
 
     // Удалить из строки первое слово
-    public String deleteFirstWord(String str) {
+    public static String deleteFirstWord(String str) {
         if (isNullOrEmpty(str) && !str.matches("\\s+")) {
             str = str.trim();
             int firstSpace = str.indexOf(" ");
