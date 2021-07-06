@@ -13,228 +13,243 @@ public class StringUtilitiesTest {
 
     // Тесты для метода countTarget
     @Test(description = "Тестируем строку с двумя вхождениями подстроки (русские символы)")
-    public void testCountTargetRusText() {
+    public void testCountTargetRusText() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget("Слова: один два один", "один"), 2);
     }
 
     @Test(description = "Тестируем строку с тремя вхождениями подстроки (латинские символы)")
-    public void testCountTargetLatinText() {
+    public void testCountTargetLatinText() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget("Word: one one two three one", "one"), 3);
     }
 
-    @Test(description = "Тестируем не инициализированную строку")
-    public void testCountTargetNullStr() {
+    @Test(description = "Тестируем не инициализированную строку", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testCountTargetNullStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget(NULL_STR, "one"), 0);
     }
 
-    @Test(description = "Тестируем пустую строку")
-    public void testCountTargetEmptyStr() {
+    @Test(description = "Тестируем пустую строку", expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testCountTargetEmptyStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget(EMPTY_STR, "one"), 0);
     }
 
-    @Test(description = "Тестируем не инициализированную подстроку")
-    public void testCountTargetNullTarget() {
+    @Test(description = "Тестируем не инициализированную подстроку", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testCountTargetNullTarget() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget("one two three", NULL_STR), 0);
     }
 
     @Test(description = "Тестируем отсутствие подстроки в строке")
-    public void testCountTargetNotTarget() {
+    public void testCountTargetNotTarget() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget("one two three", "four"), 0);
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testCountTargetStrSpaces() {
+    public void testCountTargetStrSpaces() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget(SPACES_STR, "four"), 0);
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testCountTargetTargetSpaces() {
+    public void testCountTargetTargetSpaces() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countTarget("one two three", SPACES_STR), 0);
     }
 
     // Тесты для метода countWords
     @Test(description = "Тестируем строку с четырьмя русскими словами")
-    public void testCountWordsRusText() {
+    public void testCountWordsRusText() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countWords("Слова: один два один"), 4);
     }
 
     @Test(description = "Тестируем строку с шестью английскими словами и пробелами вначале и конце строки")
-    public void testCountWordsLatinText() {
+    public void testCountWordsLatinText() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countWords(" Word:  one one  two three one "), 6);
     }
 
-    @Test(description = "Тестируем с не инициализированной строкой")
-    public void testCountWordsNullStr() {
+    @Test(description = "Тестируем с не инициализированной строкой", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testCountWordsNullStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countWords(NULL_STR), 0);
     }
 
-    @Test(description = "Тестируем с пустой строкой")
-    public void testCountWordsEmptyStr() {
+    @Test(description = "Тестируем с пустой строкой", expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testCountWordsEmptyStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countWords(EMPTY_STR), 0);
     }
 
     @Test(description = "Тестируем строку с символами и цифрами")
-    public void testCountWordsDiffStr() {
+    public void testCountWordsDiffStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countWords("132 231 >> // qwe цук"), 6);
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testCountWordsSpacesStr() {
+    public void testCountWordsSpacesStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.countWords(SPACES_STR), 0);
     }
 
     // Тесты для метода isWordPalindrome
     @Test(description = "Тестируем палиндром из латинских символов")
-    public void testIsWordPalindromeTrue() {
+    public void testIsWordPalindromeTrue() throws StrEmptyException, StrNullException {
         Assert.assertTrue(StringUtilities.isWordPalindrome("hiih"));
     }
 
     @Test(description = "Тестируем строку без палиндрома")
-    public void testIsWordPalindromeFalse() {
+    public void testIsWordPalindromeFalse() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordPalindrome("hello"));
     }
 
     @Test(description = "Тестируем строку с числовым палиндромам")
-    public void testIsWordPalindromeNumber() {
+    public void testIsWordPalindromeNumber() throws StrEmptyException, StrNullException {
         Assert.assertTrue(StringUtilities.isWordPalindrome("1331"));
     }
 
-    @Test(description = "Тестируем не инициализированную строку")
-    public void testIsWordPalindromeNull() {
+    @Test(description = "Тестируем не инициализированную строку", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testIsWordPalindromeNull() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordPalindrome(NULL_STR));
     }
 
-    @Test(description = "Тестируем пустую строку")
-    public void testIsWordPalindromeEmpty() {
+    @Test(description = "Тестируем пустую строку", expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testIsWordPalindromeEmpty() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordPalindrome(EMPTY_STR));
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testIsWordPalindromeSpacesStr() {
+    public void testIsWordPalindromeSpacesStr() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordPalindrome(SPACES_STR));
     }
 
     // Тесты для метода isWordLatinChar
     @Test(description = "Тестируем не инициализированную строку")
-    public void testIsWordLatinChar() {
+    public void testIsWordLatinChar() throws StrEmptyException, StrNullException {
         Assert.assertTrue(StringUtilities.isWordLatinChar("Hello"));
     }
 
     @Test(description = "Тестируем строку с пробелами в начале и конце")
-    public void testIsWordLatinCharFirstLastSpace() {
+    public void testIsWordLatinCharFirstLastSpace() throws StrEmptyException, StrNullException {
         Assert.assertTrue(StringUtilities.isWordLatinChar(" Hello "));
     }
 
     @Test(description = "Тестируем строку с русскими символами")
-    public void testIsWordLatinCharRusText() {
+    public void testIsWordLatinCharRusText() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordLatinChar("Привет"));
     }
 
     @Test(description = "Тестируем строку с латинскими словами")
-    public void testIsWordLatinCharSpaceStr() {
+    public void testIsWordLatinCharSpaceStr() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordLatinChar("Hello word"));
     }
 
     @Test(description = "Тестируем строку с латинскими символами и цифрами")
-    public void testIsWordLatinCharStrNumber() {
+    public void testIsWordLatinCharStrNumber() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordLatinChar("Hello123"));
     }
 
-    @Test(description = "Тестируем не инициализированную строку")
-    public void testIsWordLatinCharCharNull() {
+    @Test(description = "Тестируем не инициализированную строку", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testIsWordLatinCharCharNull() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordLatinChar(NULL_STR));
     }
 
-    @Test(description = "Тестируем пустую строку")
-    public void testIsWordLatinCharEmpty() {
+    @Test(description = "Тестируем пустую строку", expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testIsWordLatinCharEmpty() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordLatinChar(EMPTY_STR));
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testIsWordLatinCharSpacesStr() {
+    public void testIsWordLatinCharSpacesStr() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isWordLatinChar(SPACES_STR));
     }
 
     // Тесты для метода isNullOrEmpty
     @Test(description = "Тестируем строку с латинскими буквами")
-    public void testIsNullOrEmptyTrue() {
+    public void testIsNullOrEmptyTrue() throws StrEmptyException, StrNullException {
         Assert.assertTrue(StringUtilities.isNullOrEmpty("Hello"));
     }
 
-    @Test(description = "Тестируем пустую строку")
-    public void testIsNullOrEmptyEmpty() {
+    @Test(description = "Тестируем пустую строку", expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testIsNullOrEmptyEmpty() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isNullOrEmpty(EMPTY_STR));
     }
 
-    @Test(description = "Тестируем не инициализированную строку")
-    public void testIsNullOrEmptyNull() {
+    @Test(description = "Тестируем не инициализированную строку", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testIsNullOrEmptyNull() throws StrEmptyException, StrNullException {
         Assert.assertFalse(StringUtilities.isNullOrEmpty(NULL_STR));
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testIsNullOrEmptySpacesStr() {
+    public void testIsNullOrEmptySpacesStr() throws StrEmptyException, StrNullException {
         Assert.assertTrue(StringUtilities.isNullOrEmpty(SPACES_STR));
     }
 
     // Тесты для метода getFirstWord
     @Test(description = "Тестируем строку с латинскими словами")
-    public void testGetFirstWord() {
+    public void testGetFirstWord() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.getFirstWord("Hello word!"), "Hello");
     }
 
     @Test(description = "Тестируем строку с пробелами в начале и конце")
-    public void testGetFirstWordFirstSpace() {
+    public void testGetFirstWordFirstSpace() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.getFirstWord(" Hello word! "), "Hello");
     }
 
-    @Test(description = "Тестируем пустую строку")
-    public void testGetFirstWordEmptyStr() {
+    @Test(description = "Тестируем пустую строку", expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testGetFirstWordEmptyStr() throws StrEmptyException, StrNullException {
         Assert.assertNull(StringUtilities.getFirstWord(EMPTY_STR));
     }
 
-    @Test(description = "Тестируем не инициализированную строку")
-    public void testGetFirstWordNullStr() {
+    @Test(description = "Тестируем не инициализированную строку", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testGetFirstWordNullStr() throws StrEmptyException, StrNullException {
         Assert.assertNull(StringUtilities.getFirstWord(NULL_STR));
     }
 
     @Test(description = "Тестируем строку цифрами и символами")
-    public void testGetFirstWordSymbol() {
+    public void testGetFirstWordSymbol() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.getFirstWord("11! /* "), "11!");
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testGetFirstWordSpaceStr() {
+    public void testGetFirstWordSpaceStr() throws StrEmptyException, StrNullException {
         Assert.assertNull(StringUtilities.getFirstWord(SPACES_STR));
     }
 
     // Тесты для метода deleteFirstWord
     @Test(description = "Тестируем строку английскими словами")
-    public void testDeleteFirstWord() {
+    public void testDeleteFirstWord() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.deleteFirstWord("Hello word! one two"), "word! one two");
     }
 
     @Test(description = "Тестируем строку с пробелами в начале строки")
-    public void testDeleteFirstWordFirstSpace() {
+    public void testDeleteFirstWordFirstSpace() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.deleteFirstWord("  Hello word! one two"), "word! one two");
     }
 
-    @Test(description = "Тестируем не инициализированную строку")
-    public void testDeleteFirstWordNullStr() {
+    @Test(description = "Тестируем не инициализированную строку", expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testDeleteFirstWordNullStr() throws StrEmptyException, StrNullException {
         Assert.assertNull(StringUtilities.deleteFirstWord(NULL_STR));
     }
 
-    @Test(description = "Тестируем пустую строку")
-    public void testDeleteFirstWordEmptyStr() {
+    @Test(description = "Тестируем пустую строку", expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testDeleteFirstWordEmptyStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.deleteFirstWord(EMPTY_STR), EMPTY_STR);
     }
 
     @Test(description = "Тестируем строку с одним словом")
-    public void testDeleteFirstWordOneWord() {
+    public void testDeleteFirstWordOneWord() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.deleteFirstWord("Hello"), "Hello");
     }
 
     @Test(description = "Тестируем строку только с пробелами", groups = {"deleteFirstWord"})
-    public void testDeleteFirstWordSpaceStr() {
+    public void testDeleteFirstWordSpaceStr() throws StrEmptyException, StrNullException {
         Assert.assertEquals(StringUtilities.deleteFirstWord(SPACES_STR), SPACES_STR);
     }
 
