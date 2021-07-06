@@ -1,22 +1,23 @@
 package com.example.string;
 
-import com.example.utilities.StringUtilities;
+import com.example.exception.StrEmptyException;
+import com.example.exception.StrNullException;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 
+import static com.example.utilities.StringUtilities.*;
+
 public class StringTask {
 
-    StringUtilities stringUtilities = new StringUtilities();
     private static final Logger log = Logger.getLogger(StringTask.class);
 
     // Выводим строку с обратным порядком слов
-    // TODO: Viktar Gavrilenko 28.06.2021: Посмотреть
-    public String putReverseWordOrder(String stringIn) {
+    public String putReverseWordOrder(String stringIn) throws StrEmptyException, StrNullException {
         StringBuilder stringOut = new StringBuilder();
-        if (stringUtilities.isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
+        if (isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
             stringIn = stringIn.trim();
-            int countSpaceInStr = stringUtilities.countTarget(stringIn, " ");
+            int countSpaceInStr = countTarget(stringIn, " ");
 
             for (int x = 0; x < countSpaceInStr; x++) {
                 if (stringOut.length() == 0) {
@@ -34,8 +35,8 @@ public class StringTask {
     }
 
     //  Заменяет каждое второе вхождение строки
-    public String replaceEverySecondEntry(String str, String entryMax, String entryMin) {
-        if (stringUtilities.isNullOrEmpty(str) && stringUtilities.isNullOrEmpty(entryMax)) {
+    public String replaceEverySecondEntry(String str, String entryMax, String entryMin) throws StrEmptyException, StrNullException {
+        if (isNullOrEmpty(str) && isNullOrEmpty(entryMax)) {
             if (entryMin == null) {
                 log.error("Строка не инициализирована!");
             } else {
@@ -43,7 +44,7 @@ public class StringTask {
                 String lowerCaseEntryMax = entryMax.toLowerCase();
 
                 int lengthEntryMax = entryMax.length();
-                int countEntryMaxInStr = stringUtilities.countTarget(lowerCaseStr, lowerCaseEntryMax);
+                int countEntryMaxInStr = countTarget(lowerCaseStr, lowerCaseEntryMax);
                 int indexStart = 0;
                 int indexEntryMax;
 
@@ -66,15 +67,15 @@ public class StringTask {
     }
 
     // Поиск слова с минимальным числом различных символов. Если таких слов несколько, найти первое из них
-    public String minNumberDistinctChar(String str) {
+    public String minNumberDistinctChar(String str) throws StrEmptyException, StrNullException {
         String outWord = "";
         String word;
 
-        if (stringUtilities.isNullOrEmpty(str)) {
+        if (isNullOrEmpty(str)) {
             str = str.trim();
 
             int countCharMinWord = str.length();
-            int countWords = stringUtilities.countWords(str);
+            int countWords = countWords(str);
             int minChar;
             int lastSpace;
 
@@ -101,19 +102,19 @@ public class StringTask {
     }
 
     // Поиск кол-во слов в предложении, содержащих только символы латинского алфавита
-    public int searchCountWordLatinChar(String str) {
+    public int searchCountWordLatinChar(String str) throws StrEmptyException, StrNullException {
         int countWordLatinChar = 0;
         int lastSpace;
         String word;
 
-        if (stringUtilities.isNullOrEmpty(str)) {
-            int countWordsStr = stringUtilities.countWords(str);
+        if (isNullOrEmpty(str)) {
+            int countWordsStr = countWords(str);
             str = str.trim();
             for (int x = 0; x < countWordsStr; x++) {
                 lastSpace = str.lastIndexOf(" ");
                 word = str.substring(lastSpace + 1);
 
-                if (stringUtilities.isWordLatinChar(word)) {
+                if (isWordLatinChar(word)) {
                     countWordLatinChar++;
                 }
 
@@ -129,22 +130,22 @@ public class StringTask {
     }
 
     // Ищем в строке числовые палиндромы
-    public ArrayList<String> searchNumericPalindromes(String str) {
+    public ArrayList<String> searchNumericPalindromes(String str) throws StrEmptyException, StrNullException {
         ArrayList<String> numericPalindromes = new ArrayList<>();
         String word;
 
-        if (stringUtilities.isNullOrEmpty(str) && !str.matches("\\s+")) {
-            int countWordStr = stringUtilities.countWords(str);
+        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
+            int countWordStr = countWords(str);
             str = str.trim();
 
             for (int x = 0; x < countWordStr; x++) {
-                word = stringUtilities.getFirstWord(str);
+                word = getFirstWord(str);
 
-                if (word.matches("\\d+") && stringUtilities.isWordPalindrome(word)) {
+                if (word.matches("\\d+") && isWordPalindrome(word)) {
                     numericPalindromes.add(word);
                 }
 
-                str = stringUtilities.deleteFirstWord(str);
+                str = deleteFirstWord(str);
                 str = str.trim();
             }
         }
