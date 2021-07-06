@@ -41,18 +41,18 @@ public class ArrayTask {
     // Сравниваем средние арифметические значения двух массивов
     public byte compareAverageArrays(int[] firstArray, int[] secondArray) throws ArrayEmptyException, ArrayNullException {
         float resultCompare;
-        byte result = -1;
         if (isNullOrEmpty(firstArray) && isNullOrEmpty(secondArray)) {
             resultCompare = Float.compare(getAverage(firstArray), getAverage(secondArray));
             if (resultCompare == 0) {
-                result = 0;
+                return 0;
             } else if (resultCompare > 0) {
-                result = 1;
+                return 1;
             } else {
-                result = 2;
+                return 2;
             }
+        } else {
+            return -1;
         }
-        return result;
     }
 
     // Поиск максимального и минимального значения каждой строки двумерного массива
@@ -94,7 +94,6 @@ public class ArrayTask {
 
     // Поиск суммы между максимальным и минимальным элементами массива
     public int calcSumBetweenMinMax(int[] inArray) throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
-        int result = 0;
         int indexMax;
         int indexMin;
         int maxValue;
@@ -107,9 +106,9 @@ public class ArrayTask {
             indexMax = getLastIndexWithGivenValue(inArray, maxValue);
             indexMin = getFirstIndexWithGivenValue(inArray, minValue);
 
-            result = getSumBetweenElements(inArray, indexMin, indexMax);
+            return getSumBetweenElements(inArray, indexMin, indexMax);
+        } else {
+            return 0;
         }
-
-        return result;
     }
 }
