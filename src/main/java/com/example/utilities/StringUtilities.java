@@ -9,18 +9,18 @@ public class StringUtilities {
     private static final Logger log = Logger.getLogger(StringUtilities.class);
 
     // Количество вхождений подстроки в строку
-    public static int countTarget(String str, String target) {
-        int countTarger = 0;
+    public static int countTarget(String str, String target) throws StrEmptyException, StrNullException {
+        int countTarget = 0;
 
         if (isNullOrEmpty(str) && isNullOrEmpty(target)) {
-            countTarger = (str.length() - str.replace(target, "").length()) / target.length();
+            countTarget = (str.length() - str.replace(target, "").length()) / target.length();
         }
 
-        return countTarger;
+        return countTarget;
     }
 
     // Кол-во слов в строке
-    public static int countWords(String str) {
+    public static int countWords(String str) throws StrEmptyException, StrNullException {
         int countWords = 0;
 
         if (isNullOrEmpty(str) && !str.matches("\\s+")) {
@@ -32,7 +32,7 @@ public class StringUtilities {
     }
 
     // Проверяем является ли слово палиндромом
-    public static boolean isWordPalindrome(String word) {
+    public static boolean isWordPalindrome(String word) throws StrEmptyException, StrNullException {
         boolean result = false;
 
         if (isNullOrEmpty(word) && !word.matches("\\s+")) {
@@ -56,27 +56,24 @@ public class StringUtilities {
     }
 
     // Проверяем слово на содержание символов только латинского алфавита
-    public static boolean isWordLatinChar(String word) {
-        boolean checkWord = false;
+    public static boolean isWordLatinChar(String word) throws StrEmptyException, StrNullException {
         if (isNullOrEmpty(word)) {
             word = word.trim();
-            checkWord = word.matches("[a-zA-Z]+");
+            return word.matches("[a-zA-Z]+");
+        } else {
+            return false;
         }
-        return checkWord;
     }
 
 
     // Проверка строки: не инициализирована ли строка или пустая
-    public static boolean isNullOrEmpty(String str) {
-        boolean checkArray;
-
-        if (str == null || str.isEmpty()) {
+    public static boolean isNullOrEmpty(String str) throws StrNullException, StrEmptyException {
+        if (!isStrNull(str) || !isStrEmpty(str)) {
             log.error("Получена не инициализированная или пустая строка!");
-            checkArray = false;
+            return false;
         } else {
-            checkArray = true;
+            return true;
         }
-        return checkArray;
     }
 
 
@@ -97,7 +94,7 @@ public class StringUtilities {
     }
 
     // Получение первого слова в строке
-    public static String getFirstWord(String str) {
+    public static String getFirstWord(String str) throws StrEmptyException, StrNullException {
         String firstWord = null;
         int firstSpace;
 
@@ -116,7 +113,7 @@ public class StringUtilities {
     }
 
     // Удалить из строки первое слово
-    public static String deleteFirstWord(String str) {
+    public static String deleteFirstWord(String str) throws StrEmptyException, StrNullException {
         if (isNullOrEmpty(str) && !str.matches("\\s+")) {
             str = str.trim();
             int firstSpace = str.indexOf(" ");
