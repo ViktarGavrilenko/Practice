@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 public class ArrayUtilities {
 
-    private static final Logger log = Logger.getLogger(ArrayUtilities.class);
+    private final static Logger log = Logger.getLogger(ArrayUtilities.class);
 
     // Среднее арифметическое значение массива
     public static float getAverage(int[] inArray) throws ArrayEmptyException, ArrayNullException {
