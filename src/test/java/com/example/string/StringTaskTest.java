@@ -1,9 +1,9 @@
 package com.example.string;
 
-import com.example.exception.ArrayNullException;
 import com.example.exception.StrEmptyException;
 import com.example.exception.StrNullException;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -15,7 +15,12 @@ public class StringTaskTest {
     private final String EMPTY_STR = "";
     private final String SPACES_STR = "    ";
 
-    StringTask stringTask = new StringTask();
+    StringTask stringTask;
+
+    @BeforeTest()
+    public void setUp() {
+        stringTask = new StringTask();
+    }
 
     // Тесты для метода putWordsReverseInString
     @Test(description = "Тестируем строку со значением NULL",
