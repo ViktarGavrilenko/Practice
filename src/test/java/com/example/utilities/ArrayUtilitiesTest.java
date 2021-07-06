@@ -2,6 +2,7 @@ package com.example.utilities;
 
 import com.example.exception.ArrayEmptyException;
 import com.example.exception.ArrayNullException;
+import com.example.exception.ValueOutsideArrayException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,188 +18,204 @@ public class ArrayUtilitiesTest {
 
     // Тесты для метода getAverage
     @Test(description = "Тестируем получение целого среднеарифметического числа")
-    public void testGetAverageArrayResultInt() {
+    public void testGetAverageArrayResultInt() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getAverage(REPEATED_VALUES), 3);
     }
 
-    @Test(description = "Тестируем пустой массив")
-    public void testGetAverageArrayEmpty() {
+    @Test(description = "Тестируем пустой массив", expectedExceptions = {ArrayEmptyException.class},
+            expectedExceptionsMessageRegExp = "Массив пустой")
+    public void testGetAverageArrayEmpty() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getAverage(EMPTY_ARRAY), 0);
     }
 
     @Test(description = "Тестируем получение десятичного среднеарифметического числа")
-    public void testGetAverageArrayResultFloat() {
+    public void testGetAverageArrayResultFloat() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getAverage(POSITIVE_ARRAY), 6.75);
     }
 
-    @Test(description = "Тестируем не инициализированный массив")
-    public void testGetAverageArrayNull() {
+    @Test(description = "Тестируем не инициализированный массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testGetAverageArrayNull() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getAverage(NULL_ARRAY), 0);
     }
 
     @Test(description = "Тестируем отрицательные значения в массиве")
-    public void testGetAverageArrayResultNegative() {
+    public void testGetAverageArrayResultNegative() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getAverage(NEGATIVE_ARRAY), -13);
     }
 
     // Тесты для метода getMaxValue
     @Test(description = "Тестируем положительные значения в массиве")
-    public void testGetMaxValuePositive() {
+    public void testGetMaxValuePositive() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMaxValue(POSITIVE_ARRAY), 10);
     }
 
     @Test(description = "Тестируем отрицательные значения в массиве")
-    public void testGetMaxValueNegative() {
+    public void testGetMaxValueNegative() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMaxValue(NEGATIVE_ARRAY), -1);
     }
 
     @Test(description = "Тестируем положительные и отрицательные значения в массиве")
-    public void testGetMaxValueNegativePositive() {
+    public void testGetMaxValueNegativePositive() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMaxValue(NEGATIVE_POSITIVE), 7);
     }
 
-    @Test(description = "Тестируем не инициализированный массив")
-    public void testGetMaxValueNull() {
+    @Test(description = "Тестируем не инициализированный массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testGetMaxValueNull() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMaxValue(NULL_ARRAY), 0);
     }
 
-    @Test(description = "Тестируем пустой массив")
-    public void testGetMaxValueEmpty() {
+    @Test(description = "Тестируем пустой массив", expectedExceptions = {ArrayEmptyException.class},
+            expectedExceptionsMessageRegExp = "Массив пустой")
+    public void testGetMaxValueEmpty() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMaxValue(EMPTY_ARRAY), 0);
     }
 
     // Тесты для метода getMinValue
     @Test(description = "Тестируем положительные значения в массиве")
-    public void testGetMinValuePositive() {
+    public void testGetMinValuePositive() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMinValue(POSITIVE_ARRAY), 3);
     }
 
     @Test(description = "Тестируем отрицательные значения в массиве")
-    public void testGetMinValueNegative() {
+    public void testGetMinValueNegative() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMinValue(NEGATIVE_ARRAY), -35);
     }
 
     @Test(description = "Тестируем положительные и отрицательные значения в массиве")
-    public void testGetMinValueNegativePositive() {
+    public void testGetMinValueNegativePositive() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMinValue(NEGATIVE_POSITIVE), -35);
     }
 
-    @Test(description = "Тестируем не инициализированный массив")
-    public void testGetMinValueNull() {
+    @Test(description = "Тестируем не инициализированный массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testGetMinValueNull() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMinValue(NULL_ARRAY), 0);
     }
 
-    @Test(description = "Тестируем пустой массив")
-    public void testGetMinValueEmpty() {
+    @Test(description = "Тестируем пустой массив", expectedExceptions = {ArrayEmptyException.class},
+            expectedExceptionsMessageRegExp = "Массив пустой")
+    public void testGetMinValueEmpty() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMinValue(EMPTY_ARRAY), 0);
     }
 
     @Test(description = "Тестируем не заполненный массив")
-    public void testGetMinValueNotValue() {
+    public void testGetMinValueNotValue() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getMinValue(NOT_VALUE_ARRAY), 0);
     }
 
     // Тесты для метода getFirstIndexWithGivenValue
     @Test(description = "Тестируем с одним совпадением в массиве")
-    public void testGetFirstIndexWithGivenValuePositiveNegative() {
+    public void testGetFirstIndexWithGivenValuePositiveNegative() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getFirstIndexWithGivenValue(NEGATIVE_POSITIVE, -3), 2);
     }
 
     @Test(description = "Тестируем не заполненный массив")
-    public void testGetFirstIndexWithGivenValueNegative() {
+    public void testGetFirstIndexWithGivenValueNegative() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getFirstIndexWithGivenValue(NOT_VALUE_ARRAY, -6), -1);
     }
 
     @Test(description = "Тестируем массив без совпадений")
-    public void testGetFirstIndexWithGivenValueNotFound() {
+    public void testGetFirstIndexWithGivenValueNotFound() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getFirstIndexWithGivenValue(POSITIVE_ARRAY, 12), -1);
     }
 
     @Test(description = "Тестируем массив с тремя совпадениями")
-    public void testGetFirstIndexWithGivenValueRepeatValue() {
+    public void testGetFirstIndexWithGivenValueRepeatValue() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getFirstIndexWithGivenValue(REPEATED_VALUES, 4), 1);
     }
 
-    @Test(description = "Тестируем не инициализированный массив массив")
-    public void testGetFirstIndexWithGivenValueNull() {
+    @Test(description = "Тестируем не инициализированный массив массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testGetFirstIndexWithGivenValueNull() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getFirstIndexWithGivenValue(NULL_ARRAY, 4), -1);
     }
 
     // Тесты для метода getLastIndexWithGivenValue
     @Test(description = "Тестируем с одним совпадением в массиве")
-    public void testGetLastIndexWithGivenValuePositiveNegative() {
+    public void testGetLastIndexWithGivenValuePositiveNegative() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getLastIndexWithGivenValue(NEGATIVE_POSITIVE, -3), 2);
     }
 
     @Test(description = "Тестируем не заполненный массив")
-    public void testGetLastIndexWithGivenValueNegative() {
+    public void testGetLastIndexWithGivenValueNegative() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getLastIndexWithGivenValue(NOT_VALUE_ARRAY, 5), -1);
     }
 
     @Test(description = "Тестируем массив без совпадений")
-    public void testGetLastIndexWithGivenValueNotFound() {
+    public void testGetLastIndexWithGivenValueNotFound() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getLastIndexWithGivenValue(POSITIVE_ARRAY, 12), -1);
     }
 
     @Test(description = "Тестируем массив с тремя совпадениями")
-    public void testGetLastIndexWithGivenValueRepeatValue() {
+    public void testGetLastIndexWithGivenValueRepeatValue() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getLastIndexWithGivenValue(REPEATED_VALUES, 4), 3);
     }
 
-    @Test(description = "Тестируем не инициализированный массив")
-    public void testGetLastIndexWithGivenValueNull() {
+    @Test(description = "Тестируем не инициализированный массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testGetLastIndexWithGivenValueNull() throws ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getLastIndexWithGivenValue(NULL_ARRAY, 4), -1);
     }
 
     // Тесты для метода getSumBetweenElements
     @Test(description = "Тестируем массив с первым минимальным и последним максимальным значениями")
-    public void testGetSumBetweenElementsFirstMinLastMax() {
+    public void testGetSumBetweenElementsFirstMinLastMax() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getSumBetweenElements(NEGATIVE_POSITIVE, 1,
                 3), -3);
     }
 
     @Test(description = "Тестируем массив с первым максимальным и последним минимальным значениями")
-    public void testGetSumBetweenElementsFirstMaxLastMin() {
+    public void testGetSumBetweenElementsFirstMaxLastMin() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getSumBetweenElements(NEGATIVE_POSITIVE, 4,
                 2), 3);
     }
 
-    @Test(description = "Тестируем массив с первым элементов выходящим за пределы массива")
-    public void testGetSumBetweenElementsFirstOutside() {
+    @Test(description = "Тестируем массив с первым элементов выходящим за пределы массива",
+            expectedExceptions = {ValueOutsideArrayException.class},
+            expectedExceptionsMessageRegExp = "Значение выходит за пределы массива")
+    public void testGetSumBetweenElementsFirstOutside() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getSumBetweenElements(POSITIVE_ARRAY, -3,
                 2), 0);
     }
 
-    @Test(description = "Тестируем массив с последним элементов выходящим за пределы массива")
-    public void testGetSumElementsArrayLastOutside() {
+    @Test(description = "Тестируем массив с последним элементов выходящим за пределы массива",
+            expectedExceptions = {ValueOutsideArrayException.class},
+            expectedExceptionsMessageRegExp = "Значение выходит за пределы массива")
+    public void testGetSumElementsArrayLastOutside() throws ValueOutsideArrayException, ArrayEmptyException,
+            ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getSumBetweenElements(POSITIVE_ARRAY, 2,
                 22), 0);
     }
 
     @Test(description = "Тестируем массив с одинаковыми первым и последним элементами")
-    public void testGetSumBetweenElementsFirstEquallyLast() {
+    public void testGetSumBetweenElementsFirstEquallyLast() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getSumBetweenElements(POSITIVE_ARRAY, 2,
                 2), 0);
     }
 
-    @Test(description = "Тестируем не инициализированный массив")
-    public void testGetSumBetweenElementsNull() {
+    @Test(description = "Тестируем не инициализированный массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testGetSumBetweenElementsNull() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertEquals(ArrayUtilities.getSumBetweenElements(NULL_ARRAY, 2, 3), 0);
     }
 
     // Тесты для метода isNullOrEmpty
-    @Test(description = "Тестируем не инициализированный массив")
-    public void testIsNullOrEmptyNull() {
+    @Test(description = "Тестируем не инициализированный массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testIsNullOrEmptyNull() throws ArrayEmptyException, ArrayNullException {
         Assert.assertFalse(ArrayUtilities.isNullOrEmpty(NULL_ARRAY));
     }
 
-    @Test(description = "Тестируем пустой массив")
-    public void testIsNullOrEmptyEmpty() {
+    @Test(description = "Тестируем пустой массив", expectedExceptions = {ArrayEmptyException.class},
+            expectedExceptionsMessageRegExp = "Массив пустой")
+    public void testIsNullOrEmptyEmpty() throws ArrayEmptyException, ArrayNullException {
         Assert.assertFalse(ArrayUtilities.isNullOrEmpty(EMPTY_ARRAY));
     }
 
     @Test(description = "Тестируем заполненный массив")
-    public void testIsNullOrEmptyWithValue() {
+    public void testIsNullOrEmptyWithValue() throws ArrayEmptyException, ArrayNullException {
         Assert.assertTrue(ArrayUtilities.isNullOrEmpty(POSITIVE_ARRAY));
     }
 
@@ -213,23 +230,27 @@ public class ArrayUtilitiesTest {
     }
 
     // Тесты для метода isNumberOutsideArray
-    @Test(description = "Тестируем значение выходящее за пределы массива")
-    public void testIsNumberOutsideArrayOutside() {
+    @Test(description = "Тестируем значение выходящее за пределы массива",
+            expectedExceptions = {ValueOutsideArrayException.class},
+            expectedExceptionsMessageRegExp = "Значение выходит за пределы массива")
+    public void testIsNumberOutsideArrayOutside() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertFalse(ArrayUtilities.isNumberOutsideArray(NOT_VALUE_ARRAY, 7));
     }
 
     @Test(description = "Тестируем значение в пределах массива")
-    public void testIsNumberOutsideArrayWithin() {
+    public void testIsNumberOutsideArrayWithin() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertTrue(ArrayUtilities.isNumberOutsideArray(POSITIVE_ARRAY, 2));
     }
 
-    @Test(description = "Тестируем не инициализированный массив")
-    public void testIsNumberOutsideArrayNull() {
+    @Test(description = "Тестируем не инициализированный массив", expectedExceptions = {ArrayNullException.class},
+            expectedExceptionsMessageRegExp = "Массив не инициализирован")
+    public void testIsNumberOutsideArrayNull() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertFalse(ArrayUtilities.isNumberOutsideArray(NULL_ARRAY, 1));
     }
 
-    @Test(description = "Тестируем пустой")
-    public void testIsNumberOutsideArrayEmpty() {
+    @Test(description = "Тестируем пустой", expectedExceptions = {ArrayEmptyException.class},
+            expectedExceptionsMessageRegExp = "Массив пустой")
+    public void testIsNumberOutsideArrayEmpty() throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         Assert.assertFalse(ArrayUtilities.isNumberOutsideArray(EMPTY_ARRAY, 1));
     }
 
