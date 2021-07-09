@@ -12,7 +12,7 @@ public class StringTask {
 
     private static final Logger log = Logger.getLogger(StringTask.class);
 
-    // Р’С‹РІРѕРґРёРј СЃС‚СЂРѕРєСѓ СЃ РѕР±СЂР°С‚РЅС‹Рј РїРѕСЂСЏРґРєРѕРј СЃР»РѕРІ
+    // Выводим строку с обратным порядком слов
     public String putReverseWordOrder(String stringIn) throws StrEmptyException, StrNullException {
         StringBuilder stringOut = new StringBuilder();
         if (isNullOrEmpty(stringIn) && !stringIn.matches("\\s+")) {
@@ -34,11 +34,11 @@ public class StringTask {
         return stringOut.toString();
     }
 
-    //  Р—Р°РјРµРЅСЏРµС‚ РєР°Р¶РґРѕРµ РІС‚РѕСЂРѕРµ РІС…РѕР¶РґРµРЅРёРµ СЃС‚СЂРѕРєРё
+    //  Заменяет каждое второе вхождение строки
     public String replaceEverySecondEntry(String str, String entryMax, String entryMin) throws StrEmptyException, StrNullException {
         if (isNullOrEmpty(str) && isNullOrEmpty(entryMax)) {
             if (entryMin == null) {
-                log.error("РЎС‚СЂРѕРєР° РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅР°!");
+                log.error("Строка не инициализирована!");
             } else {
                 String lowerCaseStr = str.toLowerCase();
                 String lowerCaseEntryMax = entryMax.toLowerCase();
@@ -66,7 +66,7 @@ public class StringTask {
         return str;
     }
 
-    // РџРѕРёСЃРє СЃР»РѕРІР° СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј С‡РёСЃР»РѕРј СЂР°Р·Р»РёС‡РЅС‹С… СЃРёРјРІРѕР»РѕРІ. Р•СЃР»Рё С‚Р°РєРёС… СЃР»РѕРІ РЅРµСЃРєРѕР»СЊРєРѕ, РЅР°Р№С‚Рё РїРµСЂРІРѕРµ РёР· РЅРёС…
+    // Поиск слова с минимальным числом различных символов. Если таких слов несколько, найти первое из них
     public String minNumberDistinctChar(String str) throws StrEmptyException, StrNullException {
         String outWord = "";
         String word;
@@ -101,7 +101,7 @@ public class StringTask {
         return outWord;
     }
 
-    // РџРѕРёСЃРє РєРѕР»-РІРѕ СЃР»РѕРІ РІ РїСЂРµРґР»РѕР¶РµРЅРёРё, СЃРѕРґРµСЂР¶Р°С‰РёС… С‚РѕР»СЊРєРѕ СЃРёРјРІРѕР»С‹ Р»Р°С‚РёРЅСЃРєРѕРіРѕ Р°Р»С„Р°РІРёС‚Р°
+    // Поиск кол-во слов в предложении, содержащих только символы латинского алфавита
     public int searchCountWordLatinChar(String str) throws StrEmptyException, StrNullException {
         int countWordLatinChar = 0;
         int lastSpace;
@@ -129,7 +129,7 @@ public class StringTask {
         return countWordLatinChar;
     }
 
-    // РС‰РµРј РІ СЃС‚СЂРѕРєРµ С‡РёСЃР»РѕРІС‹Рµ РїР°Р»РёРЅРґСЂРѕРјС‹
+    // Ищем в строке числовые палиндромы
     public ArrayList<String> searchNumericPalindromes(String str) throws StrEmptyException, StrNullException {
         ArrayList<String> numericPalindromes = new ArrayList<>();
         String word;
