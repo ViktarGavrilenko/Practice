@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 public class StringUtilities {
 
-    private final static  Logger log = Logger.getLogger(StringUtilities.class);
+    private static final Logger log = Logger.getLogger(StringUtilities.class);
 
     // Количество вхождений подстроки в строку
     public static int countTarget(String str, String target) throws StrEmptyException, StrNullException {
