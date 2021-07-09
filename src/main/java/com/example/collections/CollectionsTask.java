@@ -12,7 +12,7 @@ public class CollectionsTask {
     // Удаляет студентов со средним баллом меньше 3
     public ArrayList<Students> dismissStudentGPALessThree(ArrayList<Students> listStudents) throws ArrayEmptyException,
             ArrayNullException {
-        if (!(listStudents == null)) {
+        if (listStudents != null) {
             int sizeListStudents = listStudents.size();
 
             for (int x = 0; x < sizeListStudents; x++) {
