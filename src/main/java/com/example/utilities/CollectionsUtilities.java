@@ -6,7 +6,7 @@ import com.example.exception.ArrayListNotNullException;
 import java.util.ArrayList;
 
 public class CollectionsUtilities {
-    // Проверка массива на инициализацию
+    // РџСЂРѕРІРµСЂРєР° РјР°СЃСЃРёРІР° РЅР° РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ
     public static boolean isArrayListNotNull(ArrayList<Students> inArrayList) throws ArrayListNotNullException {
         if (inArrayList == null) {
             throw new ArrayListNotNullException();
