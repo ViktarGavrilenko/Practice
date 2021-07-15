@@ -1,8 +1,6 @@
 package com.example.collections;
 
-import com.example.exception.ArrayEmptyException;
-import com.example.exception.ArrayListNotNullException;
-import com.example.exception.ArrayNullException;
+import com.example.exception.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -11,6 +9,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class CollectionsTaskTest {
 
@@ -33,6 +32,13 @@ public class CollectionsTaskTest {
     Students ivanNextCourse;
     Students alex;
 
+    String str;
+    String strEnglish;
+    String emptyStr;
+    String spaceStr;
+    HashMap<String, Integer> correctCountWord;
+    HashMap<String, Integer> correctCountWordEnglish;
+
     @BeforeTest()
     public void setUp() {
         vasiliy = new Students("Василий", "Строители", (byte) 4, (byte) 5, (byte) 3, (byte) 3);
@@ -45,9 +51,24 @@ public class CollectionsTaskTest {
         ivanNextCourse = new Students("Иван", "Дизайнеры", (byte) 2, (byte) 5, (byte) 3, (byte) 2);
         alex = new Students("Александр", "Строители", (byte) 1, (byte) 2, (byte) 2, (byte) 2);
 
+        str = "один два, три   один, два   четыре один    Один  один.";
+        strEnglish = "  one, two three, one two one   ! ";
+        emptyStr = "";
+        spaceStr = "    ";
+
         collectionsTask = new CollectionsTask();
 
+        correctCountWord = new HashMap<>();
+        correctCountWord.put("один", 4);
+        correctCountWord.put("два", 2);
+        correctCountWord.put("три", 1);
+        correctCountWord.put("четыре", 1);
+        correctCountWord.put("Один", 1);
 
+        correctCountWordEnglish = new HashMap<>();
+        correctCountWordEnglish.put("one", 3);
+        correctCountWordEnglish.put("two", 2);
+        correctCountWordEnglish.put("three", 1);
     }
 
     @BeforeMethod()
@@ -264,5 +285,41 @@ public class CollectionsTaskTest {
     public void testPrintStudentsCourseSame() throws ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.printStudentsCourse(listStudentsSameCourse, 1);
         Assert.assertEquals(listStudentsResult, listStudentsSameCourse);
+    }
+
+    // Тесты для метода countNumberOfEachWordStr
+    @Test(description = "Тестируем количество конкретных слов в строке")
+    public void testCountNumberOfEachWordStr() throws StrEmptyException, StrNullException {
+        HashMap<String, Integer> countSpecificWords = collectionsTask.countNumberOfEachWordStr(str);
+        Assert.assertEquals(countSpecificWords, correctCountWord);
+    }
+
+    @Test(description = "Тестируем количество конкретных слов в не инициализированной строке",
+            expectedExceptions = {StrNullException.class},
+            expectedExceptionsMessageRegExp = "Строка не инициализирована")
+    public void testCountNumberOfEachWordStrNull() throws StrEmptyException, StrNullException {
+        HashMap<String, Integer> countSpecificWords = collectionsTask.countNumberOfEachWordStr(null);
+        Assert.assertNull(countSpecificWords);
+    }
+
+    @Test(description = "Тестируем количество конкретных слов в пустой строке",
+            expectedExceptions = {StrEmptyException.class},
+            expectedExceptionsMessageRegExp = "Пустая строка")
+    public void testCountNumberOfEachWordStrEmpty() throws StrEmptyException, StrNullException {
+        HashMap<String, Integer> countSpecificWords = collectionsTask.countNumberOfEachWordStr(emptyStr);
+        Assert.assertEquals(countSpecificWords, Collections.emptyMap());
+    }
+
+    @Test(description = "Тестируем количество конкретных слов в строке с английскими символами и " +
+            "пробелами в начале и в конце строки")
+    public void testCountNumberOfEachWordStrEnglishSpace() throws StrEmptyException, StrNullException {
+        HashMap<String, Integer> countSpecificWords = collectionsTask.countNumberOfEachWordStr(strEnglish);
+        Assert.assertEquals(countSpecificWords, correctCountWordEnglish);
+    }
+
+    @Test(description = "Тестируем количество конкретных слов в строке состоящей из пробелов")
+    public void testCountNumberOfEachWordStrSpaceStr() throws StrEmptyException, StrNullException {
+        HashMap<String, Integer> countSpecificWords = collectionsTask.countNumberOfEachWordStr(spaceStr);
+        Assert.assertEquals(countSpecificWords, Collections.emptyMap());
     }
 }
