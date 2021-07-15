@@ -9,7 +9,7 @@ public class ArrayUtilities {
 
     private static final Logger log = Logger.getLogger(ArrayUtilities.class);
 
-    // Среднее арифметическое значение массива
+    // РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ Р·РЅР°С‡РµРЅРёРµ РјР°СЃСЃРёРІР°
     public static float getAverage(int[] inArray) throws ArrayEmptyException, ArrayNullException {
         float averageArray = 0;
 
@@ -22,7 +22,7 @@ public class ArrayUtilities {
         return averageArray;
     }
 
-    // Поиск максимального значения в массиве
+    // РџРѕРёСЃРє РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РІ РјР°СЃСЃРёРІРµ
     public static int getMaxValue(int[] inArray) throws ArrayEmptyException, ArrayNullException {
         int maxValue = 0;
 
@@ -38,7 +38,7 @@ public class ArrayUtilities {
         return maxValue;
     }
 
-    // Поиск минимального значения в массиве
+    // РџРѕРёСЃРє РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РІ РјР°СЃСЃРёРІРµ
     public static int getMinValue(int[] inArray) throws ArrayEmptyException, ArrayNullException {
         int minValue = 0;
 
@@ -54,7 +54,7 @@ public class ArrayUtilities {
         return minValue;
     }
 
-    // Поиск индекса первого элемента массива с определенным значением
+    // РџРѕРёСЃРє РёРЅРґРµРєСЃР° РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РјР°СЃСЃРёРІР° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј
     public static int getFirstIndexWithGivenValue(int[] inArray, int givenValue) throws ArrayEmptyException, ArrayNullException {
         int indexArray = -1;
 
@@ -70,7 +70,7 @@ public class ArrayUtilities {
         return indexArray;
     }
 
-    // Поиск индекса последнего элемента массива с определенным значением
+    // РџРѕРёСЃРє РёРЅРґРµРєСЃР° РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р° РјР°СЃСЃРёРІР° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј
     public static int getLastIndexWithGivenValue(int[] inArray, int givenValue) throws ArrayEmptyException, ArrayNullException {
         int indexArray = -1;
 
@@ -86,7 +86,7 @@ public class ArrayUtilities {
         return indexArray;
     }
 
-    // Поиск суммы элементов массива между двумя заданными элементами, сами элементы в сумму не включаются
+    // РџРѕРёСЃРє СЃСѓРјРјС‹ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° РјРµР¶РґСѓ РґРІСѓРјСЏ Р·Р°РґР°РЅРЅС‹РјРё СЌР»РµРјРµРЅС‚Р°РјРё, СЃР°РјРё СЌР»РµРјРµРЅС‚С‹ РІ СЃСѓРјРјСѓ РЅРµ РІРєР»СЋС‡Р°СЋС‚СЃСЏ
     public static int getSumBetweenElements(int[] inArray, int firstElement, int lastElement) throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         int sumElementsArray = 0;
         int tempElement;
@@ -108,30 +108,30 @@ public class ArrayUtilities {
     }
 
 
-    // Проверка одномерного массива: не инициализирован ли массив или пустой
+    // РџСЂРѕРІРµСЂРєР° РѕРґРЅРѕРјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР°: РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ Р»Рё РјР°СЃСЃРёРІ РёР»Рё РїСѓСЃС‚РѕР№
     public static boolean isNullOrEmpty(int[] inArray) throws ArrayEmptyException, ArrayNullException {
         if (!isArrayNull(inArray) || !isArrayEmpty(inArray)) {
-            log.error("Массив не инициализирован или пустой!");
+            log.error("РњР°СЃСЃРёРІ РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ РёР»Рё РїСѓСЃС‚РѕР№!");
             return false;
         } else {
             return true;
         }
     }
 
-    // Проверка двумерного массива: не инициализирован ли массив или пустой
+    // РџСЂРѕРІРµСЂРєР° РґРІСѓРјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР°: РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ Р»Рё РјР°СЃСЃРёРІ РёР»Рё РїСѓСЃС‚РѕР№
     public static boolean isNullOrEmpty(int[][] inArray) {
         if (inArray == null || inArray.length < 1) {
-            log.error("Массив не инициализирован или пустой!");
+            log.error("РњР°СЃСЃРёРІ РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ РёР»Рё РїСѓСЃС‚РѕР№!");
             return false;
         } else if (inArray[0].length < 1) {
-            log.error("Массив пустой!");
+            log.error("РњР°СЃСЃРёРІ РїСѓСЃС‚РѕР№!");
             return false;
         } else {
             return true;
         }
     }
 
-    // Проверка массива на инициализацию
+    // РџСЂРѕРІРµСЂРєР° РјР°СЃСЃРёРІР° РЅР° РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ
     public static boolean isArrayNull(int[] inArray) throws ArrayNullException {
         if (inArray == null) {
             throw new ArrayNullException();
@@ -139,7 +139,7 @@ public class ArrayUtilities {
         return true;
     }
 
-    // Проверяем пустой ли массив
+    // РџСЂРѕРІРµСЂСЏРµРј РїСѓСЃС‚РѕР№ Р»Рё РјР°СЃСЃРёРІ
     public static boolean isArrayEmpty(int[] inArray) throws ArrayEmptyException, ArrayNullException {
         if (isArrayNull(inArray) && (inArray.length < 1)) {
             throw new ArrayEmptyException();
@@ -147,7 +147,7 @@ public class ArrayUtilities {
         return true;
     }
 
-    // Проверяет, что число не выходит за пределы массива
+    // РџСЂРѕРІРµСЂСЏРµС‚, С‡С‚Рѕ С‡РёСЃР»Рѕ РЅРµ РІС‹С…РѕРґРёС‚ Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
     public static boolean isNumberOutsideArray(int[] inArray, int number) throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         if (isNullOrEmpty(inArray)) {
             if (-1 < number && number < inArray.length) {
