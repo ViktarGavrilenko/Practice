@@ -1,20 +1,20 @@
 package com.example.collections;
 
-import com.example.exception.ArrayEmptyException;
-import com.example.exception.ArrayListNotNullException;
-import com.example.exception.ArrayNullException;
+import com.example.exception.*;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.example.utilities.ArrayUtilities.getAverage;
 import static com.example.utilities.CollectionsUtilities.isArrayListNotNull;
+import static com.example.utilities.StringUtilities.isNullOrEmpty;
 
 public class CollectionsTask {
 
     private static final Logger log = Logger.getLogger(CollectionsTask.class);
 
-    // Удаляет студентов со средним баллом меньше 3
+    // РЈРґР°Р»СЏРµС‚ СЃС‚СѓРґРµРЅС‚РѕРІ СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј РјРµРЅСЊС€Рµ 3
     public ArrayList<Students> dismissStudentGPALessThree(ArrayList<Students> listStudents) throws ArrayEmptyException,
             ArrayNullException, ArrayListNotNullException {
         if (isArrayListNotNull(listStudents)) {
@@ -27,7 +27,7 @@ public class CollectionsTask {
         return listStudents;
     }
 
-    // Переводит студентов со средним балом выше и равный 3 на следующий курс
+    // РџРµСЂРµРІРѕРґРёС‚ СЃС‚СѓРґРµРЅС‚РѕРІ СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»РѕРј РІС‹С€Рµ Рё СЂР°РІРЅС‹Р№ 3 РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ
     public ArrayList<Students> transferStudentNextCourseGPAThreeAndMore(ArrayList<Students> listStudents)
             throws ArrayListNotNullException, ArrayEmptyException, ArrayNullException {
         if (isArrayListNotNull(listStudents)) {
@@ -42,18 +42,18 @@ public class CollectionsTask {
         return listStudents;
     }
 
-    // Получение оценок в массив
+    // РџРѕР»СѓС‡РµРЅРёРµ РѕС†РµРЅРѕРє РІ РјР°СЃСЃРёРІ
     public int[] marksStudent(Students student) {
         return new int[]{student.mathMark, student.russianMark, student.englishMark};
     }
 
-    // Удаляет студентов со средним баллом <3 и если средний балл>=3, студент переводится на следующий курс
+    // РЈРґР°Р»СЏРµС‚ СЃС‚СѓРґРµРЅС‚РѕРІ СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј <3 Рё РµСЃР»Рё СЃСЂРµРґРЅРёР№ Р±Р°Р»Р»>=3, СЃС‚СѓРґРµРЅС‚ РїРµСЂРµРІРѕРґРёС‚СЃСЏ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ
     public ArrayList<Students> dismissAndTransferStudents(ArrayList<Students> listStudents)
             throws ArrayEmptyException, ArrayListNotNullException, ArrayNullException {
         return transferStudentNextCourseGPAThreeAndMore(dismissStudentGPALessThree(listStudents));
     }
 
-    // Вывод студентов которые обучаются на данном курсе
+    // Р’С‹РІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ РєРѕС‚РѕСЂС‹Рµ РѕР±СѓС‡Р°СЋС‚СЃСЏ РЅР° РґР°РЅРЅРѕРј РєСѓСЂСЃРµ
     public ArrayList<Students> printStudentsCourse(ArrayList<Students> listStudents, int course)
             throws ArrayListNotNullException {
         if (isArrayListNotNull(listStudents)) {
@@ -66,5 +66,23 @@ public class CollectionsTask {
             }
         }
         return listStudents;
+    }
+
+
+    // РЎС‡РёС‚Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРЅРєСЂРµС‚РЅС‹С… СЃР»РѕРІ РІ СЃС‚СЂРѕРєРµ
+    public HashMap<String, Integer> countNumberOfEachWordStr(String str) throws StrEmptyException, StrNullException {
+        HashMap<String, Integer> countSpecificWords = new HashMap<>();
+        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
+            str = str.trim();
+            String[] words = str.replaceAll("[^a-zA-ZР°-СЏРђ-РЇ ]", "").split("\\s+");
+            for (String word : words) {
+                if (countSpecificWords.containsKey(word)) {
+                    countSpecificWords.put(word, countSpecificWords.get(word) + 1);
+                } else {
+                    countSpecificWords.put(word, 1);
+                }
+            }
+        }
+        return countSpecificWords;
     }
 }
