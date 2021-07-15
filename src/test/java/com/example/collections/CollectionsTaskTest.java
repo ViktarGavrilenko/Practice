@@ -35,15 +35,15 @@ public class CollectionsTaskTest {
 
     @BeforeTest()
     public void setUp() {
-        vasiliy = new Students("Василий", "Строители", (byte) 4, (byte) 5, (byte) 3, (byte) 3);
-        vasiliyNextCourse = new Students("Василий", "Строители", (byte) 5, (byte) 5, (byte) 3, (byte) 3);
-        tatiana = new Students("Татьяна", "Дизайнеры", (byte) 2, (byte) 2, (byte) 3, (byte) 2);
-        dmitriy = new Students("Дмитрий", "Программисты", (byte) 1, (byte) 1, (byte) 4, (byte) 4);
-        dmitriyNextCourse = new Students("Дмитрий", "Программисты", (byte) 2, (byte) 1, (byte) 4, (byte) 4);
-        natalia = new Students("Наталья", "Строители", (byte) 3, (byte) 2, (byte) 3, (byte) 3);
-        ivan = new Students("Иван", "Дизайнеры", (byte) 1, (byte) 5, (byte) 3, (byte) 2);
-        ivanNextCourse = new Students("Иван", "Дизайнеры", (byte) 2, (byte) 5, (byte) 3, (byte) 2);
-        alex = new Students("Александр", "Строители", (byte) 1, (byte) 2, (byte) 2, (byte) 2);
+        vasiliy = new Students("Р’Р°СЃРёР»РёР№", "РЎС‚СЂРѕРёС‚РµР»Рё", (byte) 4, (byte) 5, (byte) 3, (byte) 3);
+        vasiliyNextCourse = new Students("Р’Р°СЃРёР»РёР№", "РЎС‚СЂРѕРёС‚РµР»Рё", (byte) 5, (byte) 5, (byte) 3, (byte) 3);
+        tatiana = new Students("РўР°С‚СЊСЏРЅР°", "Р”РёР·Р°Р№РЅРµСЂС‹", (byte) 2, (byte) 2, (byte) 3, (byte) 2);
+        dmitriy = new Students("Р”РјРёС‚СЂРёР№", "РџСЂРѕРіСЂР°РјРјРёСЃС‚С‹", (byte) 1, (byte) 1, (byte) 4, (byte) 4);
+        dmitriyNextCourse = new Students("Р”РјРёС‚СЂРёР№", "РџСЂРѕРіСЂР°РјРјРёСЃС‚С‹", (byte) 2, (byte) 1, (byte) 4, (byte) 4);
+        natalia = new Students("РќР°С‚Р°Р»СЊСЏ", "РЎС‚СЂРѕРёС‚РµР»Рё", (byte) 3, (byte) 2, (byte) 3, (byte) 3);
+        ivan = new Students("РРІР°РЅ", "Р”РёР·Р°Р№РЅРµСЂС‹", (byte) 1, (byte) 5, (byte) 3, (byte) 2);
+        ivanNextCourse = new Students("РРІР°РЅ", "Р”РёР·Р°Р№РЅРµСЂС‹", (byte) 2, (byte) 5, (byte) 3, (byte) 2);
+        alex = new Students("РђР»РµРєСЃР°РЅРґСЂ", "РЎС‚СЂРѕРёС‚РµР»Рё", (byte) 1, (byte) 2, (byte) 2, (byte) 2);
 
         collectionsTask = new CollectionsTask();
 
@@ -83,17 +83,17 @@ public class CollectionsTaskTest {
         listStudentsSameCourse.add(alex);
     }
 
-    // Тесты для метода dismissStudentGPALessThree
-    @Test(description = "Тестируем удаление студента со средним баллом меньше трех")
+    // РўРµСЃС‚С‹ РґР»СЏ РјРµС‚РѕРґР° dismissStudentGPALessThree
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚Р° СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј РјРµРЅСЊС€Рµ С‚СЂРµС…")
     public void testDismissStudentGPALessThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissStudentGPALessThree(listStudents);
         Assert.assertEquals(listStudentsResult, Arrays.asList(vasiliy, dmitriy, ivan));
     }
 
-    @Test(description = "Тестируем удаление студента со средним баллом меньше трех при не инициализированном списке",
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚Р° СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј РјРµРЅСЊС€Рµ С‚СЂРµС… РїСЂРё РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅРѕРј СЃРїРёСЃРєРµ",
             expectedExceptions = {ArrayListNotNullException.class},
-            expectedExceptionsMessageRegExp = "ArrayList пустой")
+            expectedExceptionsMessageRegExp = "ArrayList РїСѓСЃС‚РѕР№")
     public void testDismissStudentGPALessThreeNull() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
 
@@ -101,7 +101,7 @@ public class CollectionsTaskTest {
         Assert.assertNull(listStudentsResult);
     }
 
-    @Test(description = "Тестируем удаление студента со средним баллом меньше трех, у всех бал меньше трех")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚Р° СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј РјРµРЅСЊС€Рµ С‚СЂРµС…, Сѓ РІСЃРµС… Р±Р°Р» РјРµРЅСЊС€Рµ С‚СЂРµС…")
     public void testDismissStudentGPALessThreeAllLessThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
 
@@ -109,7 +109,7 @@ public class CollectionsTaskTest {
         Assert.assertEquals(listStudentsResult, Collections.emptyList());
     }
 
-    @Test(description = "Тестируем удаление студента со средним баллом меньше трех, у первого студента бал меньше трех")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚Р° СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј РјРµРЅСЊС€Рµ С‚СЂРµС…, Сѓ РїРµСЂРІРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р° Р±Р°Р» РјРµРЅСЊС€Рµ С‚СЂРµС…")
     public void testDismissStudentGPALessThreeFirstLessThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
 
@@ -117,7 +117,7 @@ public class CollectionsTaskTest {
         Assert.assertEquals(listStudentsResult, Arrays.asList(vasiliy, dmitriy, ivan));
     }
 
-    @Test(description = "Тестируем удаление студента со средним баллом меньше трех, когда у всех больше трех")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚Р° СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј РјРµРЅСЊС€Рµ С‚СЂРµС…, РєРѕРіРґР° Сѓ РІСЃРµС… Р±РѕР»СЊС€Рµ С‚СЂРµС…")
     public void testDismissStudentGPALessThreeAllMoreThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
 
@@ -125,15 +125,15 @@ public class CollectionsTaskTest {
         Assert.assertEquals(listStudentsResult, Arrays.asList(vasiliy, dmitriy, ivan));
     }
 
-    @Test(description = "Тестируем удаление студента со средним баллом меньше трех, если список пустой")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚Р° СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј РјРµРЅСЊС€Рµ С‚СЂРµС…, РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚РѕР№")
     public void testDismissStudentGPALessThreeEmpty() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissStudentGPALessThree(listStudentsEmpty);
         Assert.assertEquals(listStudentsResult, Collections.emptyList());
     }
 
-    // Тесты для метода transferStudentNextCourseGPAThreeAndMore
-    @Test(description = "Тестируем перевод студентов на следующий курс, если средний балл выше или равен трем")
+    // РўРµСЃС‚С‹ РґР»СЏ РјРµС‚РѕРґР° transferStudentNextCourseGPAThreeAndMore
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РїРµСЂРµРІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» РІС‹С€Рµ РёР»Рё СЂР°РІРµРЅ С‚СЂРµРј")
     public void testTransferStudentNextCourseGPAThreeAndMore() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.transferStudentNextCourseGPAThreeAndMore(listStudents);
@@ -141,7 +141,7 @@ public class CollectionsTaskTest {
                 natalia, ivanNextCourse, alex));
     }
 
-    @Test(description = "Тестируем перевод студентов на следующий курс, если средний балл у всех выше или равен трем")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РїРµСЂРµРІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» Сѓ РІСЃРµС… РІС‹С€Рµ РёР»Рё СЂР°РІРµРЅ С‚СЂРµРј")
     public void testTransferStudentNextCourseGPAThreeAndMoreAll() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult =
@@ -150,7 +150,7 @@ public class CollectionsTaskTest {
                 Arrays.asList(vasiliyNextCourse, dmitriyNextCourse, ivanNextCourse));
     }
 
-    @Test(description = "Тестируем перевод студентов на следующий курс, если средний балл у всех ниже трех")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РїРµСЂРµРІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» Сѓ РІСЃРµС… РЅРёР¶Рµ С‚СЂРµС…")
     public void testTransferStudentNextCourseGPALessThreeAll() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult =
@@ -158,7 +158,7 @@ public class CollectionsTaskTest {
         Assert.assertEquals(listStudentsResult, listStudentsAllLessThree);
     }
 
-    @Test(description = "Тестируем перевод студентов на следующий курс, если средний балл у всех ниже трех")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РїРµСЂРµРІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» Сѓ РІСЃРµС… РЅРёР¶Рµ С‚СЂРµС…")
     public void testTransferStudentNextCourseGPAFirstLessThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult =
@@ -167,9 +167,9 @@ public class CollectionsTaskTest {
                 Arrays.asList(tatiana, vasiliyNextCourse, dmitriyNextCourse, ivanNextCourse));
     }
 
-    @Test(description = "Тестируем перевод студентов на следующий курс при не инициализированном списке",
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РїРµСЂРµРІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ РїСЂРё РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅРѕРј СЃРїРёСЃРєРµ",
             expectedExceptions = {ArrayListNotNullException.class},
-            expectedExceptionsMessageRegExp = "ArrayList пустой")
+            expectedExceptionsMessageRegExp = "ArrayList РїСѓСЃС‚РѕР№")
     public void testTransferStudentNextCourseGPANull() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
 
@@ -177,90 +177,90 @@ public class CollectionsTaskTest {
         Assert.assertNull(listStudentsResult);
     }
 
-    @Test(description = "Тестируем перевод студентов на следующий курс, если список пустой")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РїРµСЂРµРІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚РѕР№")
     public void testTransferStudentNextCourseGPAEmpty() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.transferStudentNextCourseGPAThreeAndMore(listStudentsEmpty);
         Assert.assertEquals(listStudentsResult, Collections.emptyList());
     }
 
-    // Тесты для метода dismissAndTransferStudents
-    @Test(description = "Тестируем удаление студентов, если средний балл меньше трех и " +
-            "перевод на следующий курс, если средний балл выше или равен трем")
+    // РўРµСЃС‚С‹ РґР»СЏ РјРµС‚РѕРґР° dismissAndTransferStudents
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚РѕРІ, РµСЃР»Рё СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» РјРµРЅСЊС€Рµ С‚СЂРµС… Рё " +
+            "РїРµСЂРµРІРѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» РІС‹С€Рµ РёР»Рё СЂР°РІРµРЅ С‚СЂРµРј")
     public void testDismissAndTransferStudents() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissAndTransferStudents(listStudents);
         Assert.assertEquals(listStudentsResult, Arrays.asList(vasiliyNextCourse, dmitriyNextCourse, ivanNextCourse));
     }
 
-    @Test(description = "Тестируем студентов со средним баллом только меньше трех в методе удаления и перевода " +
-            "студентов на следующий курс")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СЃС‚СѓРґРµРЅС‚РѕРІ СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј С‚РѕР»СЊРєРѕ РјРµРЅСЊС€Рµ С‚СЂРµС… РІ РјРµС‚РѕРґРµ СѓРґР°Р»РµРЅРёСЏ Рё РїРµСЂРµРІРѕРґР° " +
+            "СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ")
     public void testDismissAndTransferStudentsAllLessThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissAndTransferStudents(listStudentsAllLessThree);
         Assert.assertEquals(listStudentsResult, Collections.emptyList());
     }
 
-    @Test(description = "Тестируем студентов со средним баллом только больше или равном трем в методе удаления и " +
-            "перевода студентов на следующий курс")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СЃС‚СѓРґРµРЅС‚РѕРІ СЃРѕ СЃСЂРµРґРЅРёРј Р±Р°Р»Р»РѕРј С‚РѕР»СЊРєРѕ Р±РѕР»СЊС€Рµ РёР»Рё СЂР°РІРЅРѕРј С‚СЂРµРј РІ РјРµС‚РѕРґРµ СѓРґР°Р»РµРЅРёСЏ Рё " +
+            "РїРµСЂРµРІРѕРґР° СЃС‚СѓРґРµРЅС‚РѕРІ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ")
     public void testDismissAndTransferStudentsAllMoreThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissAndTransferStudents(listStudentsAllMoreThree);
         Assert.assertEquals(listStudentsResult, Arrays.asList(vasiliyNextCourse, dmitriyNextCourse, ivanNextCourse));
     }
 
-    @Test(description = "Тестируем удаление студентов и перевод на следующий курс, если только у первого студента бал " +
-            "меньше трех")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚РѕРІ Рё РїРµСЂРµРІРѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё С‚РѕР»СЊРєРѕ Сѓ РїРµСЂРІРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р° Р±Р°Р» " +
+            "РјРµРЅСЊС€Рµ С‚СЂРµС…")
     public void testDismissAndTransferStudentsFirstLessThree() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissAndTransferStudents(listStudentsFirstLessThree);
         Assert.assertEquals(listStudentsResult, Arrays.asList(vasiliyNextCourse, dmitriyNextCourse, ivanNextCourse));
     }
 
-    @Test(description = "Тестируем удаление студентов и перевод на следующий курс, если список не инициализирован",
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚РѕРІ Рё РїРµСЂРµРІРѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃРїРёСЃРѕРє РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ",
             expectedExceptions = {ArrayListNotNullException.class},
-            expectedExceptionsMessageRegExp = "ArrayList пустой")
+            expectedExceptionsMessageRegExp = "ArrayList РїСѓСЃС‚РѕР№")
     public void testDismissAndTransferStudentsNull() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissAndTransferStudents(null);
         Assert.assertNull(listStudentsResult);
     }
 
-    @Test(description = "Тестируем удаление студентов и перевод на следующий курс, если список пустой")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СѓРґР°Р»РµРЅРёРµ СЃС‚СѓРґРµРЅС‚РѕРІ Рё РїРµСЂРµРІРѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ, РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚РѕР№")
     public void testDismissAndTransferStudentsEmpty() throws
             ArrayEmptyException, ArrayNullException, ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.dismissAndTransferStudents(listStudentsEmpty);
         Assert.assertEquals(listStudentsResult, Collections.emptyList());
     }
 
-    // Тесты для метода printStudentsCourse
-    @Test(description = "Тестируем вывод студентов с первого курса")
+    // РўРµСЃС‚С‹ РґР»СЏ РјРµС‚РѕРґР° printStudentsCourse
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РІС‹РІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ СЃ РїРµСЂРІРѕРіРѕ РєСѓСЂСЃР°")
     public void testPrintStudentsCourse() throws ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.printStudentsCourse(listStudents, 1);
         Assert.assertEquals(listStudentsResult, Arrays.asList(dmitriy, ivan, alex));
     }
 
-    @Test(description = "Тестируем курс на котором студенты не учатся")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РєСѓСЂСЃ РЅР° РєРѕС‚РѕСЂРѕРј СЃС‚СѓРґРµРЅС‚С‹ РЅРµ СѓС‡Р°С‚СЃСЏ")
     public void testPrintStudentsCourseNotCourse() throws ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.printStudentsCourse(listStudents, 6);
         Assert.assertEquals(listStudentsResult, Collections.emptyList());
     }
 
-    @Test(description = "Тестируем вывод студентов с не инициализированного курса",
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РІС‹РІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ СЃ РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅРѕРіРѕ РєСѓСЂСЃР°",
             expectedExceptions = {ArrayListNotNullException.class},
-            expectedExceptionsMessageRegExp = "ArrayList пустой")
+            expectedExceptionsMessageRegExp = "ArrayList РїСѓСЃС‚РѕР№")
     public void testPrintStudentsCourseNull() throws ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.printStudentsCourse(null, 1);
         Assert.assertNull(listStudentsResult);
     }
 
-    @Test(description = "Тестируем вывод студентов, если список пустой")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј РІС‹РІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ, РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚РѕР№")
     public void testPrintStudentsCourseEmpty() throws ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.printStudentsCourse(listStudentsEmpty, 1);
         Assert.assertEquals(listStudentsResult, Collections.emptyList());
     }
 
-    @Test(description = "Тестируем список студентов одного курса")
+    @Test(description = "РўРµСЃС‚РёСЂСѓРµРј СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ РѕРґРЅРѕРіРѕ РєСѓСЂСЃР°")
     public void testPrintStudentsCourseSame() throws ArrayListNotNullException {
         ArrayList<Students> listStudentsResult = collectionsTask.printStudentsCourse(listStudentsSameCourse, 1);
         Assert.assertEquals(listStudentsResult, listStudentsSameCourse);
