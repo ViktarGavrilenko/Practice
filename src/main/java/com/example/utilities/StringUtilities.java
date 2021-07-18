@@ -19,6 +19,7 @@ public class StringUtilities {
         return countTarget;
     }
 
+
     // Кол-во слов в строке
     public static int countWords(String str) throws StrEmptyException, StrNullException {
         int countWords = 0;

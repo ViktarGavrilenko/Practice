@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 public class ArrayUtilities {
 
+
     private static final Logger log = Logger.getLogger(ArrayUtilities.class);
 
     // Среднее арифметическое значение массива
