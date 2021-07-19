@@ -20,14 +20,18 @@ public class StringUtilities {
     }
 
     // Кол-во слов в строке
-    public static int countWords(String str) throws StrEmptyException, StrNullException {
+    public static int countWords(String str) {
         int countWords = 0;
 
-        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
-            str = str.trim();
-            countWords = str.split("\\s+").length;
+        try {
+            if (isNullOrEmpty(str) && !str.matches("\\s+")) {
+                str = str.trim();
+                countWords = str.split("\\s+").length;
+            }
+        } catch (StrEmptyException | StrNullException e) {
+            log.info(e.getMessage());
+            return countWords;
         }
-
         return countWords;
     }
 
