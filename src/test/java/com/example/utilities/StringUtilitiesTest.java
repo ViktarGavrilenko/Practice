@@ -57,34 +57,32 @@ public class StringUtilitiesTest {
 
     // Тесты для метода countWords
     @Test(description = "Тестируем строку с четырьмя русскими словами")
-    public void testCountWordsRusText() throws StrEmptyException, StrNullException {
+    public void testCountWordsRusText() {
         Assert.assertEquals(StringUtilities.countWords("Слова: один два один"), 4);
     }
 
     @Test(description = "Тестируем строку с шестью английскими словами и пробелами вначале и конце строки")
-    public void testCountWordsLatinText() throws StrEmptyException, StrNullException {
+    public void testCountWordsLatinText() {
         Assert.assertEquals(StringUtilities.countWords(" Word:  one one  two three one "), 6);
     }
 
-    @Test(description = "Тестируем с не инициализированной строкой", expectedExceptions = {StrNullException.class},
-            expectedExceptionsMessageRegExp = "Строка не инициализирована")
-    public void testCountWordsNullStr() throws StrEmptyException, StrNullException {
+    @Test(description = "Тестируем с не инициализированной строкой")
+    public void testCountWordsNullStr() {
         Assert.assertEquals(StringUtilities.countWords(NULL_STR), 0);
     }
 
-    @Test(description = "Тестируем с пустой строкой", expectedExceptions = {StrEmptyException.class},
-            expectedExceptionsMessageRegExp = "Пустая строка")
-    public void testCountWordsEmptyStr() throws StrEmptyException, StrNullException {
+    @Test(description = "Тестируем с пустой строкой")
+    public void testCountWordsEmptyStr() {
         Assert.assertEquals(StringUtilities.countWords(EMPTY_STR), 0);
     }
 
     @Test(description = "Тестируем строку с символами и цифрами")
-    public void testCountWordsDiffStr() throws StrEmptyException, StrNullException {
+    public void testCountWordsDiffStr() {
         Assert.assertEquals(StringUtilities.countWords("132 231 >> // qwe цук"), 6);
     }
 
     @Test(description = "Тестируем строку только с пробелами")
-    public void testCountWordsSpacesStr() throws StrEmptyException, StrNullException {
+    public void testCountWordsSpacesStr() {
         Assert.assertEquals(StringUtilities.countWords(SPACES_STR), 0);
     }
 
