@@ -72,9 +72,11 @@ public class CollectionsTask {
     // Считает количество конкретных слов в строке
     public HashMap<String, Integer> countNumberOfEachWordStr(String str) throws StrEmptyException, StrNullException {
         HashMap<String, Integer> countSpecificWords = new HashMap<>();
-        if (isNullOrEmpty(str) && !str.matches("\\s+")) {
+        final String GROUP_OF_SPACES = "\\s+";
+        final String LATIN_AND_RUSSIAN_SYMBOL = "[^a-zA-Zа-яА-Я ]";
+        if (isNullOrEmpty(str) && !str.matches(GROUP_OF_SPACES)) {
             str = str.trim();
-            String[] words = str.replaceAll("[^a-zA-Zа-яА-Я ]", "").split("\\s+");
+            String[] words = str.replaceAll(LATIN_AND_RUSSIAN_SYMBOL, "").split(GROUP_OF_SPACES);
             for (String word : words) {
                 if (countSpecificWords.containsKey(word)) {
                     countSpecificWords.put(word, countSpecificWords.get(word) + 1);
