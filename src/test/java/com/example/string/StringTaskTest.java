@@ -150,8 +150,7 @@ public class StringTaskTest {
         Assert.assertEquals(stringTask.minNumberDistinctChar("hello"), "hello");
     }
 
-    @Test(description = "Тестируем строку только с пробелами", expectedExceptions = {StrEmptyException.class},
-            expectedExceptionsMessageRegExp = "Пустая строка")
+    @Test(description = "Тестируем строку только с пробелами")
     public void testMinNumberDistinctCharOnlySpaces() throws StrEmptyException, StrNullException {
         Assert.assertEquals(stringTask.minNumberDistinctChar(SPACES_STR), EMPTY_STR);
     }
