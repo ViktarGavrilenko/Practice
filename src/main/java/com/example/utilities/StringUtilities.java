@@ -30,9 +30,9 @@ public class StringUtilities {
             }
         } catch (StrEmptyException | StrNullException e) {
             log.info(e.getMessage());
-        } finally {
             return countWords;
         }
+        return countWords;
     }
 
     // Проверяем является ли слово палиндромом
