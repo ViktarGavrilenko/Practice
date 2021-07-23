@@ -13,31 +13,31 @@ import java.util.HashMap;
 
 public class CollectionsTaskTest {
 
-    CollectionsTask collectionsTask;
+    private CollectionsTask collectionsTask;
 
-    ArrayList<Students> listStudents;
-    ArrayList<Students> listStudentsAllLessThree;
-    ArrayList<Students> listStudentsFirstLessThree;
-    ArrayList<Students> listStudentsAllMoreThree;
-    ArrayList<Students> listStudentsSameCourse;
-    ArrayList<Students> listStudentsEmpty = new ArrayList<>();
+    private ArrayList<Students> listStudents;
+    private ArrayList<Students> listStudentsAllLessThree;
+    private ArrayList<Students> listStudentsFirstLessThree;
+    private ArrayList<Students> listStudentsAllMoreThree;
+    private ArrayList<Students> listStudentsSameCourse;
+    private ArrayList<Students> listStudentsEmpty;
 
-    Students vasiliy;
-    Students vasiliyNextCourse;
-    Students tatiana;
-    Students dmitriy;
-    Students dmitriyNextCourse;
-    Students natalia;
-    Students ivan;
-    Students ivanNextCourse;
-    Students alex;
+    private Students vasiliy;
+    private Students vasiliyNextCourse;
+    private Students tatiana;
+    private Students dmitriy;
+    private Students dmitriyNextCourse;
+    private Students natalia;
+    private Students ivan;
+    private Students ivanNextCourse;
+    private Students alex;
 
-    String str;
-    String strEnglish;
-    String emptyStr;
-    String spaceStr;
-    HashMap<String, Integer> correctCountWord;
-    HashMap<String, Integer> correctCountWordEnglish;
+    private String str;
+    private String strEnglish;
+    private String emptyStr;
+    private String spaceStr;
+    private HashMap<String, Integer> correctCountWord;
+    private HashMap<String, Integer> correctCountWordEnglish;
 
     @BeforeTest()
     public void setUp() {
@@ -69,6 +69,8 @@ public class CollectionsTaskTest {
         correctCountWordEnglish.put("one", 3);
         correctCountWordEnglish.put("two", 2);
         correctCountWordEnglish.put("three", 1);
+
+        listStudentsEmpty = new ArrayList<>();
     }
 
     @BeforeMethod()
