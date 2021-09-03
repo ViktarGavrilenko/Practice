@@ -1,4 +1,4 @@
-package com.example.textfile;
+package com.example.file;
 
 import com.example.exception.DataNotFilledException;
 import com.example.exception.NotFoundCellDataException;
@@ -9,13 +9,32 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
-import static com.example.utilities.XlsFileUtilities.getSheetFromXlsFile;
-import static com.example.utilities.XlsFileUtilities.searchIndexCell;
+import static com.example.constant.Constant.INFO_FILE_XLS;
+import static com.example.constant.Constant.OUT_TEXT_FILE_TXT;
+import static com.example.utilities.FileUtilities.getSheetFromXlsFile;
+import static com.example.utilities.FileUtilities.searchIndexCell;
+import static com.example.utilities.StringUtilities.countWords;
 
-public class XlsFile {
+public class FileTask {
+
+    public void readerTextFileAndWriterInfoInFile(String fileName) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName, StandardCharsets.UTF_8));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter
+                (new FileOutputStream(OUT_TEXT_FILE_TXT), StandardCharsets.UTF_8));
+        int countLine = 0;
+        String line;
+        while ((line = reader.readLine()) != null) {
+            countLine++;
+            writer.write(countWords(line) + " сл., " + line.length() + " сим\n");
+        }
+        writer.write(countLine + " стр.");
+        reader.close();
+        writer.close();
+    }
 
     public void parseXlsFile(String fileName, int index) throws IOException, NotFoundCellDataException,
             DataNotFilledException {
@@ -62,7 +81,6 @@ public class XlsFile {
                 }
             }
             // Записываем полученные данные
-            String filename = "InfoFile.xls";
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheetOut = workbook.createSheet("Info");
 
@@ -82,7 +100,7 @@ public class XlsFile {
 
             sheetOut.autoSizeColumn(1);
 
-            FileOutputStream fileOut = new FileOutputStream(filename);
+            FileOutputStream fileOut = new FileOutputStream(INFO_FILE_XLS);
             workbook.write(fileOut);
             fileOut.close();
             workbook.close();

@@ -88,7 +88,8 @@ public class ArrayUtilities {
     }
 
     // Поиск суммы элементов массива между двумя заданными элементами, сами элементы в сумму не включаются
-    public static int getSumBetweenElements(int[] inArray, int firstElement, int lastElement) throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
+    public static int getSumBetweenElements(int[] inArray, int firstElement, int lastElement)
+            throws ValueOutsideArrayException, ArrayEmptyException, ArrayNullException {
         int sumElementsArray = 0;
         int tempElement;
 

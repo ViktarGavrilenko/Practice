@@ -1,20 +1,24 @@
-package com.example.textfile;
+package com.example.file;
 
 import com.example.exception.DataNotFilledException;
 import com.example.exception.NotFoundCellDataException;
-import com.example.utilities.XlsFileUtilities;
+import com.example.utilities.FileUtilities;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class XlsFileTest {
+import static com.example.constant.Constant.*;
 
-    private XlsFile xlsFile;
+public class FileTaskTest {
+
+    private FileTask fileTask;
+    private FileUtilities fileUtilities;
 
     private Sheet sheet;
     private Row rowMax;
@@ -28,15 +32,38 @@ public class XlsFileTest {
 
     @BeforeTest()
     public void setUp() {
-        xlsFile = new XlsFile();
+        fileTask = new FileTask();
+        fileUtilities = new FileUtilities();
+    }
 
+    @Test(description = "Тестируем подсчет кол-ва строк, слов, символов в несуществующем файле",
+            expectedExceptions = {FileNotFoundException.class})
+    public void testReaderTextFileAndWriterInfoInFileNotFile() throws IOException {
+        fileTask.readerTextFileAndWriterInfoInFile("textFileNotFile.txt");
+    }
+
+    @DataProvider
+    public Object[][] dataForFile() {
+        return new Object[][]{
+                {TEXT_FILE_TXT, "2 сл., 11 сим\n4 сл., 19 сим\n1 сл., 4 сим\n2 сл., 9 сим\n4 стр."},
+                {TEXT_FILE_EMPTY_TXT, "0 стр."},
+                {TEXT_FILE_SPACES_TXT, "0 сл., 3 сим\n0 сл., 3 сим\n0 сл., 5 сим\n3 стр."},
+                {TEXT_FILE_FIRST_EMPTY_TXT, "0 сл., 0 сим\n2 сл., 7 сим\n2 сл., 8 сим\n0 сл., 0 сим\n1 сл., " +
+                        "8 сим\n0 сл., 0 сим\n6 стр."},
+        };
+    }
+
+    @Test(dataProvider = "dataForFile")
+    public void testReaderTextFileAndWriterInfoInFile(String fileName, String textOutFile) throws IOException {
+        fileTask.readerTextFileAndWriterInfoInFile(fileName);
+        Assert.assertEquals(fileUtilities.getTextFromTextFile(OUT_TEXT_FILE_TXT), textOutFile);
     }
 
     // Тесты для метода parseXlsFile
     @Test(description = "Тестируем считывание и запись данных из xls файла")
     public void testParseXlsFile() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        xlsFile.parseXlsFile("file.xls", 0);
-        sheet = XlsFileUtilities.getSheetFromXlsFile("InfoFile.xls", 0);
+        fileTask.parseXlsFile(FILE_XLS, 0);
+        sheet = fileUtilities.getSheetFromXlsFile(INFO_FILE_XLS, 0);
 
         rowMax = sheet.getRow(1);
         maxTotal = rowMax.getCell(2).getNumericCellValue();
@@ -59,8 +86,8 @@ public class XlsFileTest {
 
     @Test(description = "Тестируем считывание и запись данных из второго листа xls файла со смещением таблицы")
     public void testParseXlsFileSecondSheet() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        xlsFile.parseXlsFile("file.xls", 1);
-        sheet = XlsFileUtilities.getSheetFromXlsFile("InfoFile.xls", 0);
+        fileTask.parseXlsFile(FILE_XLS, 1);
+        sheet = fileUtilities.getSheetFromXlsFile(INFO_FILE_XLS, 0);
 
         rowMax = sheet.getRow(1);
         maxTotal = rowMax.getCell(2).getNumericCellValue();
@@ -84,20 +111,21 @@ public class XlsFileTest {
     @Test(description = "Тестируем считывание и запись данных из несуществующего xls файла",
             expectedExceptions = {FileNotFoundException.class})
     public void testParseXlsFileNotFile() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        xlsFile.parseXlsFile("NotFile.xls", 1);
+        fileTask.parseXlsFile(NOT_FILE_XLS, 1);
     }
 
     @Test(description = "Тестируем считывание и запись данных из пустого xls файла",
             expectedExceptions = {DataNotFilledException.class},
             expectedExceptionsMessageRegExp = "Таблица без данных, заполните таблицу!")
     public void testParseXlsFileEmptySheet() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        xlsFile.parseXlsFile("file.xls", 2);
+        fileTask.parseXlsFile(FILE_XLS, 2);
     }
 
     @Test(description = "Тестируем считывание и запись данных из xls файла без данных",
             expectedExceptions = {DataNotFilledException.class},
             expectedExceptionsMessageRegExp = "Таблица без данных, заполните таблицу!")
     public void testParseXlsFileEmptyData() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        xlsFile.parseXlsFile("file.xls", 2);
+        fileTask.parseXlsFile(FILE_XLS, 2);
     }
+
 }
