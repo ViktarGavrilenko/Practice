@@ -10,13 +10,27 @@ import static com.example.utilities.ArrayUtilities.getAverage;
 import static com.example.utilities.CollectionsUtilities.isArrayListNotNull;
 import static com.example.utilities.StringUtilities.isNullOrEmpty;
 
+/**
+ * Tasks with collections
+ *
+ * @author Viktar Gavrilenko
+ * @date 09.09.2021
+ */
 public class CollectionsTask {
 
     private static final Logger log = Logger.getLogger(CollectionsTask.class);
 
-    // Удаляет студентов со средним баллом меньше 3
+    /**
+     * Dismiss students with a GPA of less than three
+     *
+     * @param listStudents is a list with student data
+     * @return returns a list of students with a grade point average of three or more
+     * @throws ArrayEmptyException    if the array is empty
+     * @throws ArrayNullException     if the array is not initialized
+     * @throws ArrayListNullException if the ArrayList is not initialized
+     */
     public ArrayList<Students> dismissStudentGPALessThree(ArrayList<Students> listStudents) throws ArrayEmptyException,
-            ArrayNullException, ArrayListNotNullException {
+            ArrayNullException, ArrayListNullException {
         if (isArrayListNotNull(listStudents)) {
             for (int x = listStudents.size() - 1; x >= 0; x--) {
                 if (getAverage(marksStudent(listStudents.get(x))) < 3) {
@@ -27,9 +41,17 @@ public class CollectionsTask {
         return listStudents;
     }
 
-    // Переводит студентов со средним балом выше и равный 3 на следующий курс
+    /**
+     * Transfers students with a GPA above and equal to 3 to the next course
+     *
+     * @param listStudents is a list with student data
+     * @return returns a list of students, modifying the course only for those with a GPA greater than or equal to three.
+     * @throws ArrayListNullException if the ArrayList is not initialized
+     * @throws ArrayEmptyException    if the array is empty
+     * @throws ArrayNullException     if the array is not initialized
+     */
     public ArrayList<Students> transferStudentNextCourseGPAThreeAndMore(ArrayList<Students> listStudents)
-            throws ArrayListNotNullException, ArrayEmptyException, ArrayNullException {
+            throws ArrayListNullException, ArrayEmptyException, ArrayNullException {
         if (isArrayListNotNull(listStudents)) {
             for (int x = 0; x < listStudents.size(); x++) {
                 if (getAverage(marksStudent(listStudents.get(x))) >= 3) {
@@ -42,20 +64,42 @@ public class CollectionsTask {
         return listStudents;
     }
 
-    // Получение оценок в массив
+    /**
+     * Retrieves only grade data from the list and stores it in an array
+     *
+     * @param student student information
+     * @return returns an array with scores
+     */
     public int[] marksStudent(Students student) {
         return new int[]{student.mathMark, student.russianMark, student.englishMark};
     }
 
-    // Удаляет студентов со средним баллом <3 и если средний балл>=3, студент переводится на следующий курс
+    /**
+     * Dismiss students with a GPA of less than three and transfers students with a GPA above and
+     * equal to 3 to the next course
+     *
+     * @param listStudents is a list with student data
+     * @return returns a list of students, modifying the course only for those with a GPA greater than or
+     * equal to three and dismiss students with a GPA of less than three
+     * @throws ArrayEmptyException    if the array is empty
+     * @throws ArrayListNullException if the ArrayList is not initialized
+     * @throws ArrayNullException     if the array is not initialized
+     */
     public ArrayList<Students> dismissAndTransferStudents(ArrayList<Students> listStudents)
-            throws ArrayEmptyException, ArrayListNotNullException, ArrayNullException {
+            throws ArrayEmptyException, ArrayListNullException, ArrayNullException {
         return transferStudentNextCourseGPAThreeAndMore(dismissStudentGPALessThree(listStudents));
     }
 
-    // Вывод студентов которые обучаются на данном курсе
+    /**
+     * Displays a list of students who are studying on this course
+     *
+     * @param listStudents is a list with student data
+     * @param course       is a course in which you need to select students
+     * @return returns a list of students who are enrolled in a given course
+     * @throws ArrayListNullException if the ArrayList is not initialized
+     */
     public ArrayList<Students> printStudentsCourse(ArrayList<Students> listStudents, int course)
-            throws ArrayListNotNullException {
+            throws ArrayListNullException {
         if (isArrayListNotNull(listStudents)) {
             for (int x = listStudents.size() - 1; x >= 0; x--) {
                 if (listStudents.get(x).course == course) {
@@ -68,8 +112,14 @@ public class CollectionsTask {
         return listStudents;
     }
 
-
-    // Считает количество конкретных слов в строке
+    /**
+     * Counts how many times each word occurs in a line
+     *
+     * @param str is source string
+     * @return returns a list of words with the number of repetitions in a string
+     * @throws StrEmptyException if the string is empty
+     * @throws StrNullException  if the string is not initialized
+     */
     public HashMap<String, Integer> countNumberOfEachWordStr(String str) throws StrEmptyException, StrNullException {
         HashMap<String, Integer> countSpecificWords = new HashMap<>();
         final String GROUP_OF_SPACES = "\\s+";

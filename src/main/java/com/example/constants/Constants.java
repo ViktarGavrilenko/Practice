@@ -1,6 +1,6 @@
-package com.example.constant;
+package com.example.constants;
 
-public interface Constant {
+public interface Constants {
 
     String FILE_XLS =  "src\\main\\resources\\file.xls";
     String TEXT_FILE_TXT = "src\\main\\resources\\textFile.txt";
@@ -9,6 +9,6 @@ public interface Constant {
     String TEXT_FILE_FIRST_EMPTY_TXT = "src\\main\\resources\\textFileFirstEmpty.txt";
     String OUT_TEXT_FILE_TXT = "src\\main\\resources\\outTextFile.txt";
     String INFO_FILE_XLS = "src\\main\\resources\\InfoFile.xls";
-    String NOT_FILE_XLS = "src\\main\\resources\\NotFile.xls";
+    String NON_EXISTENT_FILE_XLS = "src\\main\\resources\\NonExistentFile.xls";
 
 }

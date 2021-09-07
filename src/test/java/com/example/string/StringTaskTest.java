@@ -2,10 +2,18 @@ package com.example.string;
 
 import com.example.exception.StrEmptyException;
 import com.example.exception.StrNullException;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvValidationException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -54,6 +62,19 @@ public class StringTaskTest {
     @Test(description = "Тестируем строку только с пробелами")
     public void testPutWordsReverseInStringSpace() throws StrEmptyException, StrNullException {
         Assert.assertEquals(stringTask.putReverseWordOrder(SPACES_STR), EMPTY_STR);
+    }
+
+    @Test(description = "Тестируем строчки из CSV файла")
+    public void testDDTPutWordsReverseInString() throws StrEmptyException, StrNullException, IOException,
+            CsvValidationException {
+        String CSV_FILE = "src\\main\\resources\\DataForDDTTest.csv";
+        FileReader filereader = new FileReader(CSV_FILE, StandardCharsets.UTF_8);
+        CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
+        CSVReader reader = new CSVReaderBuilder(filereader).withCSVParser(parser).build();
+        String[] csvCell;
+        while ((csvCell = reader.readNext()) != null) {
+            Assert.assertEquals(stringTask.putReverseWordOrder(csvCell[0]), csvCell[1]);
+        }
     }
 
     // Тесты для метода replaceEverySecondEntryString

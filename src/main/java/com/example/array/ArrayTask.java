@@ -9,15 +9,12 @@ import java.util.ArrayList;
 import static com.example.utilities.ArrayUtilities.*;
 
 /**
- * Performs tasks with arrays
+ * Tasks with arrays
  *
  * @author Viktar Gavrilenko
- * @version 1.0
+ * @date 07.09.2021
  */
-
 public class ArrayTask {
-
-    //  Меняем элементы массива в обратном порядке
 
     /**
      * Swaps the elements of an array in reverse order
@@ -27,7 +24,6 @@ public class ArrayTask {
      * @throws ArrayEmptyException if the array is empty
      * @throws ArrayNullException  if the array is not initialized
      */
-
     public int[] reverseArray(int[] inArray) throws ArrayEmptyException, ArrayNullException {
         if (isNullOrEmpty(inArray)) {
             int tempVariable;
@@ -43,8 +39,6 @@ public class ArrayTask {
 
         return inArray;
     }
-
-    // Заполняем массив случайными числами от 0 до 5
 
     /**
      * Fills an array with random numbers from 0 to 5
@@ -63,8 +57,6 @@ public class ArrayTask {
 
         return inArray;
     }
-
-    // Сравниваем средние арифметические значения двух массивов
 
     /**
      * Compares the arithmetic mean of two arrays
@@ -94,8 +86,6 @@ public class ArrayTask {
         }
     }
 
-    // Поиск максимального и минимального значения каждой строки двумерного массива
-
     /**
      * Searches for the maximum and minimum value in each row of a two-dimensional array
      *
@@ -115,8 +105,6 @@ public class ArrayTask {
         }
         return outArray;
     }
-
-    // Поиск уникальных значений массива
 
     /**
      * Finds unique values in an array
@@ -148,8 +136,6 @@ public class ArrayTask {
         }
         return uniqueValue;
     }
-
-    // Поиск суммы между максимальным и минимальным элементами массива
 
     /**
      * Finds the sum of the elements of an array, between the maximum and minimum values

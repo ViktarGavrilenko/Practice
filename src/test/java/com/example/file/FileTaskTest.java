@@ -1,24 +1,21 @@
 package com.example.file;
 
 import com.example.exception.DataNotFilledException;
+import com.example.exception.FileNotFoundException;
 import com.example.exception.NotFoundCellDataException;
+import com.example.exception.NumberOfSheetsOutsideLimitException;
 import com.example.utilities.FileUtilities;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static com.example.constant.Constant.*;
+import static com.example.constants.Constants.*;
 
 public class FileTaskTest {
-
-    private FileTask fileTask;
-    private FileUtilities fileUtilities;
 
     private Sheet sheet;
     private Row rowMax;
@@ -30,16 +27,11 @@ public class FileTaskTest {
     private Row rowAVG;
     private double avg;
 
-    @BeforeTest()
-    public void setUp() {
-        fileTask = new FileTask();
-        fileUtilities = new FileUtilities();
-    }
-
     @Test(description = "Тестируем подсчет кол-ва строк, слов, символов в несуществующем файле",
-            expectedExceptions = {FileNotFoundException.class})
-    public void testReaderTextFileAndWriterInfoInFileNotFile() throws IOException {
-        fileTask.readerTextFileAndWriterInfoInFile("textFileNotFile.txt");
+            expectedExceptions = {FileNotFoundException.class},
+            expectedExceptionsMessageRegExp = "Файл не найден!")
+    public void testReaderTextFileAndWriterInfoInFileNotFile() throws IOException, FileNotFoundException {
+        FileTask.readerTextFileAndWriterInfoInFile("textFileNotFile.txt");
     }
 
     @DataProvider
@@ -54,16 +46,18 @@ public class FileTaskTest {
     }
 
     @Test(dataProvider = "dataForFile")
-    public void testReaderTextFileAndWriterInfoInFile(String fileName, String textOutFile) throws IOException {
-        fileTask.readerTextFileAndWriterInfoInFile(fileName);
-        Assert.assertEquals(fileUtilities.getTextFromTextFile(OUT_TEXT_FILE_TXT), textOutFile);
+    public void testReaderTextFileAndWriterInfoInFile(String fileName, String textOutFile) throws IOException,
+            FileNotFoundException {
+        FileTask.readerTextFileAndWriterInfoInFile(fileName);
+        Assert.assertEquals(FileUtilities.getTextFromTextFile(OUT_TEXT_FILE_TXT), textOutFile);
     }
 
     // Тесты для метода parseXlsFile
     @Test(description = "Тестируем считывание и запись данных из xls файла")
-    public void testParseXlsFile() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        fileTask.parseXlsFile(FILE_XLS, 0);
-        sheet = fileUtilities.getSheetFromXlsFile(INFO_FILE_XLS, 0);
+    public void testParseXlsFile() throws IOException, NotFoundCellDataException, DataNotFilledException,
+            FileNotFoundException, NumberOfSheetsOutsideLimitException {
+        FileTask.parseXlsFile(FILE_XLS, 0);
+        sheet = FileUtilities.getSheetFromXlsFile(INFO_FILE_XLS, 0);
 
         rowMax = sheet.getRow(1);
         maxTotal = rowMax.getCell(2).getNumericCellValue();
@@ -85,9 +79,10 @@ public class FileTaskTest {
     }
 
     @Test(description = "Тестируем считывание и запись данных из второго листа xls файла со смещением таблицы")
-    public void testParseXlsFileSecondSheet() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        fileTask.parseXlsFile(FILE_XLS, 1);
-        sheet = fileUtilities.getSheetFromXlsFile(INFO_FILE_XLS, 0);
+    public void testParseXlsFileSecondSheet() throws IOException, NotFoundCellDataException, DataNotFilledException,
+            FileNotFoundException, NumberOfSheetsOutsideLimitException {
+        FileTask.parseXlsFile(FILE_XLS, 1);
+        sheet = FileUtilities.getSheetFromXlsFile(INFO_FILE_XLS, 0);
 
         rowMax = sheet.getRow(1);
         maxTotal = rowMax.getCell(2).getNumericCellValue();
@@ -109,23 +104,18 @@ public class FileTaskTest {
     }
 
     @Test(description = "Тестируем считывание и запись данных из несуществующего xls файла",
-            expectedExceptions = {FileNotFoundException.class})
-    public void testParseXlsFileNotFile() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        fileTask.parseXlsFile(NOT_FILE_XLS, 1);
+            expectedExceptions = {FileNotFoundException.class},
+            expectedExceptionsMessageRegExp = "Файл не найден!")
+    public void testParseXlsFileNotFile() throws IOException, NotFoundCellDataException, DataNotFilledException,
+            FileNotFoundException, NumberOfSheetsOutsideLimitException {
+        FileTask.parseXlsFile(NON_EXISTENT_FILE_XLS, 1);
     }
 
     @Test(description = "Тестируем считывание и запись данных из пустого xls файла",
             expectedExceptions = {DataNotFilledException.class},
             expectedExceptionsMessageRegExp = "Таблица без данных, заполните таблицу!")
-    public void testParseXlsFileEmptySheet() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        fileTask.parseXlsFile(FILE_XLS, 2);
+    public void testParseXlsFileEmptySheet() throws IOException, NotFoundCellDataException, DataNotFilledException,
+            FileNotFoundException, NumberOfSheetsOutsideLimitException {
+        FileTask.parseXlsFile(FILE_XLS, 2);
     }
-
-    @Test(description = "Тестируем считывание и запись данных из xls файла без данных",
-            expectedExceptions = {DataNotFilledException.class},
-            expectedExceptionsMessageRegExp = "Таблица без данных, заполните таблицу!")
-    public void testParseXlsFileEmptyData() throws IOException, NotFoundCellDataException, DataNotFilledException {
-        fileTask.parseXlsFile(FILE_XLS, 2);
-    }
-
 }
